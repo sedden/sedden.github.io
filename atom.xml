@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Stefan Jenkner]]></title>
+  <link href="http://sedden.github.com/atom.xml" rel="self"/>
+  <link href="http://sedden.github.com/"/>
+  <updated>2013-03-25T11:05:45+01:00</updated>
+  <id>http://sedden.github.com/</id>
+  <author>
+    <name><![CDATA[Stefan Jenkner]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>

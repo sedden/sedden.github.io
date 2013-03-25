@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://sedden.github.com/archives/</loc>
+        <lastmod>2013-03-17T00:31:12+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sedden.github.com/blog/archives/</loc>
+        <lastmod>2013-03-17T00:31:12+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sedden.github.com/</loc>
+        <lastmod>2013-03-17T00:31:12+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sedden.github.com/new-page/</loc>
+        <lastmod>2013-03-17T01:34:57+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sedden.github.com/person/</loc>
+        <lastmod>2013-03-17T01:30:46+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sedden.github.com/projekte/</loc>
+        <lastmod>2013-03-17T01:35:45+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sedden.github.com/robots.txt</loc>
+        <lastmod>2013-03-17T00:20:52+01:00</lastmod>
+    </url>
+</urlset>
