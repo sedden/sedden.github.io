@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Stefan Jenkner]]></title>
-  <link href="http://sedden.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Puppet | Stefan Jenkner]]></title>
+  <link href="http://sedden.github.com/blog/categories/puppet/atom.xml" rel="self"/>
   <link href="http://sedden.github.com/"/>
   <updated>2013-03-25T11:24:22+01:00</updated>
   <id>http://sedden.github.com/</id>
@@ -20,11 +20,11 @@
     <id>http://sedden.github.com/archive/2013/03/27/use-osfamily-instead-of-operatingsystem</id>
     <content type="html"><![CDATA[<p>Once you read the <a href="http://docs.puppetlabs.com/guides/style_guide.html">Puppet Style Guide</a>, you should know how to writing well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
 Well, I think there are lots of other things you <del>better</del> should care.
-For this time, it&#8217;s about when to use <code>$::osfamily</code> and when better to stay with the <code>$::operatingsystem</code> fact.</p>
+For this time, it's about when to use <code>$::osfamily</code> and when better to stay with the <code>$::operatingsystem</code> fact.</p>
 
 <h4>Pros</h4>
 
-<p>The key benefit of using <code>$::osfamily</code> is that you don&#8217;t end up forking your favorite Puppet module on GitHub to add the eleventh RedHat derivate:</p>
+<p>The key benefit of using <code>$::osfamily</code> is that you don't end up forking your favorite Puppet module on GitHub to add the eleventh RedHat derivate:</p>
 
 <pre><code>case $::operatingsystem {
    'RedHat', 'CentOS', 'Scientific', . . . , 'OracleLinux', 'OEL': {
@@ -59,8 +59,8 @@ You still have the choice to handle details via <code>$::operatingsystem</code> 
 
 <h4>Cons</h4>
 
-<p>There are disadvantages of course: You claim tosupport an Operating-System you might haven&#8217;t even heard of.
-But my experience is that most people are using the EPEL repositories anyway. So wouldn&#8217;t it be enough to test your modules against EPEL? And yes: you really should test your manifests!</p>
+<p>There are disadvantages of course: You claim tosupport an Operating-System you might haven't even heard of.
+But my experience is that most people are using the EPEL repositories anyway. So wouldn't it be enough to test your modules against EPEL? And yes: you really should test your manifests!</p>
 
 <h4>Support for Facter &lt; 1.6.1</h4>
 

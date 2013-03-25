@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>new-page - Stefan Jenkner</title>
+  <title>Pros and cons using $::osfamily instead of $::operatingsystem Fact - Stefan Jenkner</title>
   <meta name="author" content="Stefan Jenkner">
 
   
-  <meta name="description" content="new-page Mar 17th, 2013 Mar 17th, 2013 Tweet Recent Posts Pros and cons using $::osfamily instead of $::operatingsystem Fact GitHub Repos Status &hellip;">
+  <meta name="description" content="Once you read the Puppet Style Guide, you should know how to writing well structured manifests, with the modest indentation, spacing, arrow alignment &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sedden.github.com/new-page/">
+  <link rel="canonical" href="http://sedden.github.com/archive/2013/03/27/use-osfamily-instead-of-operatingsystem/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -62,32 +62,15 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">new-page</h1>
-    <p class="meta">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-17T01:34:00+01:00" pubdate data-updated="true">Mar 17<span>th</span>, 2013</time></p>
-  </header>
-  
-  
-
-  
-    <footer>
+    
+      <h1 class="entry-title">Pros and cons using $::osfamily instead of $::operatingsystem Fact</h1>
+    
+    
       <p class="meta">
         
-        
 
 
 
@@ -99,21 +82,131 @@
   
 
 
-<time datetime="2013-03-17T01:34:00+01:00" pubdate data-updated="true">Mar 17<span>th</span>, 2013</time>
+<time datetime="2013-03-27T11:36:00+01:00" pubdate data-updated="true">Mar 27<span>th</span>, 2013</time>
         
       </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Once you read the <a href="http://docs.puppetlabs.com/guides/style_guide.html">Puppet Style Guide</a>, you should know how to writing well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
+Well, I think there are lots of other things you <del>better</del> should care.
+For this time, it&#8217;s about when to use <code>$::osfamily</code> and when better to stay with the <code>$::operatingsystem</code> fact.</p>
+
+<h4>Pros</h4>
+
+<p>The key benefit of using <code>$::osfamily</code> is that you don&#8217;t end up forking your favorite Puppet module on GitHub to add the eleventh RedHat derivate:</p>
+
+<pre><code>case $::operatingsystem {
+   'RedHat', 'CentOS', 'Scientific', . . . , 'OracleLinux', 'OEL': {
+     # do something RHEL specific
+   }
+   'ubuntu', 'debian': {
+     # do something Debian specific 
+   }
+   default: {
+     # ...
+   }
+}
+</code></pre>
+
+<p>Instead you would use:</p>
+
+<pre><code>case $::osfamily {
+   'redhat': {
+     # do something RHEL specific
+   }
+   'debian': {
+     # do something Debian specific 
+   }
+   default: {
+     # ...
+   }
+}
+</code></pre>
+
+<p>It allows you to write cleaner manifests and works well for common tasks.
+You still have the choice to handle details via <code>$::operatingsystem</code> the more complex your classes become.</p>
+
+<h4>Cons</h4>
+
+<p>There are disadvantages of course: You claim tosupport an Operating-System you might haven&#8217;t even heard of.
+But my experience is that most people are using the EPEL repositories anyway. So wouldn&#8217;t it be enough to test your modules against EPEL? And yes: you really should test your manifests!</p>
+
+<h4>Support for Facter &lt; 1.6.1</h4>
+
+<p>The <code>$::osfamily</code> fact was introduced with Facter 1.6.1. There is a simple workaround for older versions. I found this solution in the description of the <a href="https://github.com/puppetlabs/puppetlabs-mysql/">puppetlabs-mysql Module</a>. Just put this into your <code>site.pp</code> (before any node definition):</p>
+
+<pre><code>if ! $::osfamily {
+  case $::operatingsystem {
+    'RedHat', 'Fedora', 'CentOS', 'Scientific', 'SLC', 'Ascendos', 'CloudLinux', 'PSBM', 'OracleLinux', 'OVS', 'OEL': {
+      $osfamily = 'RedHat'
+    }
+    'ubuntu', 'debian': {
+      $osfamily = 'Debian'
+    }
+    'SLES', 'SLED', 'OpenSuSE', 'SuSE': {
+      $osfamily = 'Suse'
+    }
+    'Solaris', 'Nexenta': {
+      $osfamily = 'Solaris'
+    }
+    default: {
+      $osfamily = $::operatingsystem  
+    }
+  }
+}
+</code></pre>
+
+<p>It defines <code>$::osfamily</code> if not available.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-        <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sedden.github.com/new-page/index.html" data-via="sedden" data-counturl="http://sedden.github.com/new-page/index.html" >Tweet</a>
+
+<span class="byline author vcard">Posted by <span class="fn">Stefan Jenkner</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-27T11:36:00+01:00" pubdate data-updated="true">Mar 27<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/puppet/'>Puppet</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sedden.github.com/archive/2013/03/27/use-osfamily-instead-of-operatingsystem/" data-via="sedden" data-counturl="http://sedden.github.com/archive/2013/03/27/use-osfamily-instead-of-operatingsystem/" >Tweet</a>
   
   
   
 </div>
 
+    
+    <p class="meta">
       
-    </footer>
-  
+      
+    </p>
+  </footer>
 </article>
 
 </div>
