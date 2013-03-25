@@ -69,7 +69,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/archive/2013/03/27/use-osfamily-instead-of-operatingsystem/">Pros and cons using $::osfamily instead of $::operatingsystem Fact</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/">Pros and cons using $::osfamily instead of $::operatingsystem Fact</a></h1>
     
     
       <p class="meta">
@@ -100,33 +100,57 @@ For this time, it&#8217;s about when to use <code>$::osfamily</code> and when be
 
 <p>The key benefit of using <code>$::osfamily</code> is that you don&#8217;t end up forking your favorite Puppet module on GitHub to add the eleventh RedHat derivate:</p>
 
-<pre><code>case $::operatingsystem {
-   'RedHat', 'CentOS', 'Scientific', . . . , 'OracleLinux', 'OEL': {
-     # do something RHEL specific
-   }
-   'ubuntu', 'debian': {
-     # do something Debian specific 
-   }
-   default: {
-     # ...
-   }
-}
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="k">case</span> <span class="nv">$::operatingsystem</span> <span class="p">{</span>
+</span><span class='line'>   <span class="s">&#39;RedHat&#39;</span><span class="p">,</span> <span class="s">&#39;CentOS&#39;</span><span class="p">,</span> <span class="s">&#39;Scientific&#39;</span><span class="p">,</span> <span class="err">.</span> <span class="err">.</span> <span class="err">.</span> <span class="p">,</span> <span class="s">&#39;OracleLinux&#39;</span><span class="p">,</span> <span class="s">&#39;OEL&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
+</span><span class='line'><span class="c">     # do something RHEL specific</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'>   <span class="s">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="s">&#39;debian&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
+</span><span class='line'><span class="c">     # do something Debian specific </span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'>   <span class="k">default</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
+</span><span class='line'><span class="c">     # ...</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Instead you would use:</p>
 
-<pre><code>case $::osfamily {
-   'redhat': {
-     # do something RHEL specific
-   }
-   'debian': {
-     # do something Debian specific 
-   }
-   default: {
-     # ...
-   }
-}
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="k">case</span> <span class="nv">$::osfamily</span> <span class="p">{</span>
+</span><span class='line'>   <span class="s">&#39;redhat&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
+</span><span class='line'><span class="c">     # do something RHEL specific</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'>   <span class="s">&#39;debian&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
+</span><span class='line'><span class="c">     # do something Debian specific </span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'>   <span class="k">default</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
+</span><span class='line'><span class="c">     # ...</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>It allows you to write cleaner manifests and works well for common tasks.
 You still have the choice to handle details via <code>$::operatingsystem</code> the more complex your classes become.</p>
@@ -140,26 +164,46 @@ But my experience is that most people are using the EPEL repositories anyway. So
 
 <p>The <code>$::osfamily</code> fact was introduced with Facter 1.6.1. There is a simple workaround for older versions. I found this solution in the description of the <a href="https://github.com/puppetlabs/puppetlabs-mysql/">puppetlabs-mysql Module</a>. Just put this into your <code>site.pp</code> (before any node definition):</p>
 
-<pre><code>if ! $::osfamily {
-  case $::operatingsystem {
-    'RedHat', 'Fedora', 'CentOS', 'Scientific', 'SLC', 'Ascendos', 'CloudLinux', 'PSBM', 'OracleLinux', 'OVS', 'OEL': {
-      $osfamily = 'RedHat'
-    }
-    'ubuntu', 'debian': {
-      $osfamily = 'Debian'
-    }
-    'SLES', 'SLED', 'OpenSuSE', 'SuSE': {
-      $osfamily = 'Suse'
-    }
-    'Solaris', 'Nexenta': {
-      $osfamily = 'Solaris'
-    }
-    default: {
-      $osfamily = $::operatingsystem  
-    }
-  }
-}
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="k">if</span> <span class="o">!</span> <span class="nv">$::osfamily</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">case</span> <span class="nv">$::operatingsystem</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s">&#39;RedHat&#39;</span><span class="p">,</span> <span class="s">&#39;Fedora&#39;</span><span class="p">,</span> <span class="s">&#39;CentOS&#39;</span><span class="p">,</span> <span class="s">&#39;Scientific&#39;</span><span class="p">,</span> <span class="s">&#39;SLC&#39;</span><span class="p">,</span> <span class="s">&#39;Ascendos&#39;</span><span class="p">,</span> <span class="s">&#39;CloudLinux&#39;</span><span class="p">,</span> <span class="s">&#39;PSBM&#39;</span><span class="p">,</span> <span class="s">&#39;OracleLinux&#39;</span><span class="p">,</span> <span class="s">&#39;OVS&#39;</span><span class="p">,</span> <span class="s">&#39;OEL&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s">&#39;RedHat&#39;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="s">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="s">&#39;debian&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s">&#39;Debian&#39;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="s">&#39;SLES&#39;</span><span class="p">,</span> <span class="s">&#39;SLED&#39;</span><span class="p">,</span> <span class="s">&#39;OpenSuSE&#39;</span><span class="p">,</span> <span class="s">&#39;SuSE&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s">&#39;Suse&#39;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="s">&#39;Solaris&#39;</span><span class="p">,</span> <span class="s">&#39;Nexenta&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s">&#39;Solaris&#39;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">default</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="nv">$::operatingsystem</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>It defines <code>$::osfamily</code> if not available.</p>
 </div>
@@ -182,7 +226,7 @@ But my experience is that most people are using the EPEL repositories anyway. So
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/archive/2013/03/27/use-osfamily-instead-of-operatingsystem/">Pros and cons using $::osfamily instead of $::operatingsystem Fact</a>
+        <a href="/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/">Pros and cons using $::osfamily instead of $::operatingsystem Fact</a>
       </li>
     
   </ul>
