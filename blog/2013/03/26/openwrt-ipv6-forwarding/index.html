@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Puppet - Stefan Jenkner</title>
+  <title>Forwarding IPv6 Traffic from WAN to LAN with OpenWRT - Stefan Jenkner</title>
   <meta name="author" content="Stefan Jenkner">
 
   
-  <meta name="description" content="Category: Puppet">
+  <meta name="description" content="We&#8217;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on: Aiccu/Installing on OpenWRT
+IPv6 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sedden.github.comblog/categories/puppet/">
+  <link rel="canonical" href="http://sedden.github.com/blog/2013/03/26/openwrt-ipv6-forwarding/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -62,36 +63,141 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Puppet</h1>
+    
+      <h1 class="entry-title">Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-26T09:58:00+01:00" pubdate data-updated="true">Mar 26<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>We&#8217;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:</p>
 
-  
-  <h2>2013</h2>
-
-<article>
-  
-<h1><a href="/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/">Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</a></h1>
-<time datetime="2013-03-27T11:36:00+01:00" pubdate><span class='month'>Mar</span> <span class='day'>27</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/puppet/'>Puppet</a></span>
-</footer>
+<ul>
+<li><a href="http://www.sixxs.net/wiki/Aiccu/Installing_on_OpenWRT">Aiccu/Installing on OpenWRT</a></li>
+<li><a href="http://wiki.openwrt.org/doc/howto/ipv6">IPv6 HowTo on Backfire and later</a></li>
+</ul>
 
 
-</article>
+<p>OpenWRT Attitude Adjustment 2012.09 warning: There is an ongoing discussion regarding the AICCU init script. If you can, stay with OpenWRT Backfire 2010.3.</p>
 
+<p>I&#8217;m using SixxS tunnels to enable IPv6. My <code>/etc/config/network</code> looks like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>config interface 'lan'
+</span><span class='line'>  # ...
+</span><span class='line'>  option ip6addr '2001:my:subnet:prefix::1/64'
+</span><span class='line'>
+</span><span class='line'>config 'interface' 'wan6'
+</span><span class='line'>  # ...
+</span><span class='line'>  option 'ip6addr' '2001:my:end:point::2'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To enable that your local server is reachable via SSH (port 22) add this rule to <code>/etc/config/firewall</code> straight after the standard IPv6 rules:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>config rule
+</span><span class='line'>       option 'src' 'wan6'
+</span><span class='line'>       option 'proto' 'tcp'
+</span><span class='line'>       option 'dest_port' '22'
+</span><span class='line'>       option 'dest_ip' '2001:your:servers:global:ipv6:address:####:####'
+</span><span class='line'>       option 'family' 'ipv6'
+</span><span class='line'>       option 'target' 'ACCEPT'
+</span><span class='line'>       option 'dest' 'lan' </span></code></pre></td></tr></table></div></figure>
+
+
+<p>Also make sure that you installed the <code>ip6tables</code> Package,
+then restart the firewall with <code>/etc/init.d/firewall restart</code>
+and test your setup.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Stefan Jenkner</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-26T09:58:00+01:00" pubdate data-updated="true">Mar 26<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ipv6/'>IPv6</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sedden.github.com/blog/2013/03/26/openwrt-ipv6-forwarding/" data-via="sedden" data-counturl="http://sedden.github.com/blog/2013/03/26/openwrt-ipv6-forwarding/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/" title="Next Post: Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact">Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -181,7 +287,10 @@
       var disqus_shortname = 'seddengithubcom';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sedden.github.com/blog/2013/03/26/openwrt-ipv6-forwarding/';
+        var disqus_url = 'http://sedden.github.com/blog/2013/03/26/openwrt-ipv6-forwarding/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

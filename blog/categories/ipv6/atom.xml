@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: IPv6 | Stefan Jenkner]]></title>
+  <link href="http://sedden.github.com/blog/categories/ipv6/atom.xml" rel="self"/>
+  <link href="http://sedden.github.com/"/>
+  <updated>2013-03-26T13:51:10+01:00</updated>
+  <id>http://sedden.github.com/</id>
+  <author>
+    <name><![CDATA[Stefan Jenkner]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Forwarding IPv6 Traffic from WAN to LAN with OpenWRT]]></title>
+    <link href="http://sedden.github.com/blog/2013/03/26/openwrt-ipv6-forwarding/"/>
+    <updated>2013-03-26T09:58:00+01:00</updated>
+    <id>http://sedden.github.com/blog/2013/03/26/openwrt-ipv6-forwarding</id>
+    <content type="html"><![CDATA[<p>We're starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:</p>
+
+<ul>
+<li><a href="http://www.sixxs.net/wiki/Aiccu/Installing_on_OpenWRT">Aiccu/Installing on OpenWRT</a></li>
+<li><a href="http://wiki.openwrt.org/doc/howto/ipv6">IPv6 HowTo on Backfire and later</a></li>
+</ul>
+
+
+<p>OpenWRT Attitude Adjustment 2012.09 warning: There is an ongoing discussion regarding the AICCU init script. If you can, stay with OpenWRT Backfire 2010.3.</p>
+
+<p>I'm using SixxS tunnels to enable IPv6. My <code>/etc/config/network</code> looks like this:</p>
+
+<p>```
+config interface 'lan'</p>
+
+<pre><code># ...
+option ip6addr '2001:my:subnet:prefix::1/64'
+</code></pre>
+
+<p>config 'interface' 'wan6'</p>
+
+<pre><code># ...
+option 'ip6addr' '2001:my:end:point::2'
+</code></pre>
+
+<p>```</p>
+
+<p>To enable that your local server is reachable via SSH (port 22) add this rule to <code>/etc/config/firewall</code> straight after the standard IPv6 rules:</p>
+
+<p>```
+config rule</p>
+
+<pre><code>   option 'src' 'wan6'
+   option 'proto' 'tcp'
+   option 'dest_port' '22'
+   option 'dest_ip' '2001:your:servers:global:ipv6:address:####:####'
+   option 'family' 'ipv6'
+   option 'target' 'ACCEPT'
+   option 'dest' 'lan' 
+</code></pre>
+
+<p>```</p>
+
+<p>Also make sure that you installed the <code>ip6tables</code> Package,
+then restart the firewall with <code>/etc/init.d/firewall restart</code>
+and test your setup.</p>
+]]></content>
+  </entry>
+  
+</feed>

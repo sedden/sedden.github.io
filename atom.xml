@@ -4,7 +4,7 @@
   <title><![CDATA[Stefan Jenkner]]></title>
   <link href="http://sedden.github.com/atom.xml" rel="self"/>
   <link href="http://sedden.github.com/"/>
-  <updated>2013-03-26T00:26:00+01:00</updated>
+  <updated>2013-03-26T13:51:10+01:00</updated>
   <id>http://sedden.github.com/</id>
   <author>
     <name><![CDATA[Stefan Jenkner]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Pros and cons using $::osfamily instead of $::operatingsystem Fact]]></title>
+    <title type="html"><![CDATA[Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact]]></title>
     <link href="http://sedden.github.com/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/"/>
     <updated>2013-03-27T11:36:00+01:00</updated>
     <id>http://sedden.github.com/blog/2013/03/27/use-osfamily-instead-of-operatingsystem</id>
@@ -132,6 +132,65 @@ But my experience is that most people are using the EPEL repositories anyway. So
 
 
 <p>It defines <code>$::osfamily</code> if not available.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Forwarding IPv6 Traffic from WAN to LAN with OpenWRT]]></title>
+    <link href="http://sedden.github.com/blog/2013/03/26/openwrt-ipv6-forwarding/"/>
+    <updated>2013-03-26T09:58:00+01:00</updated>
+    <id>http://sedden.github.com/blog/2013/03/26/openwrt-ipv6-forwarding</id>
+    <content type="html"><![CDATA[<p>We&#8217;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:</p>
+
+<ul>
+<li><a href="http://www.sixxs.net/wiki/Aiccu/Installing_on_OpenWRT">Aiccu/Installing on OpenWRT</a></li>
+<li><a href="http://wiki.openwrt.org/doc/howto/ipv6">IPv6 HowTo on Backfire and later</a></li>
+</ul>
+
+
+<p>OpenWRT Attitude Adjustment 2012.09 warning: There is an ongoing discussion regarding the AICCU init script. If you can, stay with OpenWRT Backfire 2010.3.</p>
+
+<p>I&#8217;m using SixxS tunnels to enable IPv6. My <code>/etc/config/network</code> looks like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>config interface 'lan'
+</span><span class='line'>  # ...
+</span><span class='line'>  option ip6addr '2001:my:subnet:prefix::1/64'
+</span><span class='line'>
+</span><span class='line'>config 'interface' 'wan6'
+</span><span class='line'>  # ...
+</span><span class='line'>  option 'ip6addr' '2001:my:end:point::2'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To enable that your local server is reachable via SSH (port 22) add this rule to <code>/etc/config/firewall</code> straight after the standard IPv6 rules:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>config rule
+</span><span class='line'>       option 'src' 'wan6'
+</span><span class='line'>       option 'proto' 'tcp'
+</span><span class='line'>       option 'dest_port' '22'
+</span><span class='line'>       option 'dest_ip' '2001:your:servers:global:ipv6:address:####:####'
+</span><span class='line'>       option 'family' 'ipv6'
+</span><span class='line'>       option 'target' 'ACCEPT'
+</span><span class='line'>       option 'dest' 'lan' </span></code></pre></td></tr></table></div></figure>
+
+
+<p>Also make sure that you installed the <code>ip6tables</code> Package,
+then restart the firewall with <code>/etc/init.d/firewall restart</code>
+and test your setup.</p>
 ]]></content>
   </entry>
   
