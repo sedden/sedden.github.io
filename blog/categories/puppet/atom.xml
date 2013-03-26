@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Puppet | Stefan Jenkner]]></title>
   <link href="http://jenkner.org/blog/categories/puppet/atom.xml" rel="self"/>
   <link href="http://jenkner.org/"/>
-  <updated>2013-03-26T20:57:28+01:00</updated>
+  <updated>2013-03-26T21:00:43+01:00</updated>
   <id>http://jenkner.org/</id>
   <author>
     <name><![CDATA[Stefan Jenkner]]></name>
@@ -18,7 +18,7 @@
     <link href="http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/"/>
     <updated>2013-03-27T11:36:00+01:00</updated>
     <id>http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem</id>
-    <content type="html"><![CDATA[<p>Once you read the <a href="http://docs.puppetlabs.com/guides/style_guide.html">Puppet Style Guide</a>, you should know how to writing well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
+    <content type="html"><![CDATA[<p>Once you read the <a href="http://docs.puppetlabs.com/guides/style_guide.html">Puppet Style Guide</a>, you should know how to write well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
 Well, I think there are lots of other things you <del>better</del> should care.
 For this time, it's about when to use <code>$::osfamily</code> and when better to stay with the <code>$::operatingsystem</code> fact.</p>
 
