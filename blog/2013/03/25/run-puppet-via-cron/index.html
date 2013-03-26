@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Forwarding IPv6 Traffic from WAN to LAN with OpenWRT - Stefan Jenkner</title>
+  <title>Run Puppet via Cron - Stefan Jenkner</title>
   <meta name="author" content="Stefan Jenkner">
 
   
-  <meta name="description" content="We&#8217;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on: Aiccu/Installing on OpenWRT
-IPv6 &hellip;">
+  <meta name="description" content="While deploying Puppet on several Ubuntu machines, everything was fine until Nagios started sending out warnings about high memory and high CPU usage &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ IPv6 &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/">
+  <link rel="canonical" href="http://jenkner.org/blog/2013/03/25/run-puppet-via-cron/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -67,7 +66,7 @@ IPv6 &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</h1>
+      <h1 class="entry-title">Run Puppet via Cron</h1>
     
     
       <p class="meta">
@@ -83,64 +82,73 @@ IPv6 &hellip;">
   
 
 
-<time datetime="2013-03-26T09:58:00+01:00" pubdate data-updated="true">Mar 26<span>th</span>, 2013</time>
+<time datetime="2013-03-25T13:37:00+01:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>We&#8217;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:</p>
+<div class="entry-content"><p>While deploying <a href="http://puppetlabs.com">Puppet</a> on several Ubuntu machines, everything was fine until Nagios started sending out warnings about high memory and high CPU usage, caused by the Puppet agent process. Related Bug-reports are:</p>
 
 <ul>
-<li><a href="http://www.sixxs.net/wiki/Aiccu/Installing_on_OpenWRT">Aiccu/Installing on OpenWRT</a></li>
-<li><a href="http://wiki.openwrt.org/doc/howto/ipv6">IPv6 HowTo on Backfire and later</a></li>
+<li><a href="https://projects.puppetlabs.com/issues/1395#change-55821">Bug #1395</a> puppet memory usage</li>
+<li><a href="http://projects.puppetlabs.com/issues/12310#note-16">Bug #12310</a> Significant slow down in 2.7.10 apply</li>
+<li><a href="https://bugs.launchpad.net/ubuntu/+source/puppet/+bug/995719">Bug #995719</a> process_name.rb removed in 2.7.11 but still provided by puppet-common</li>
 </ul>
 
 
-<p>OpenWRT Attitude Adjustment 2012.09 warning: There is an ongoing discussion regarding the AICCU init script. If you can, stay with OpenWRT Backfire 2010.3.</p>
+<p>A common workaround is to run the Puppet agent via Cron. Take a look at the <a href="http://projects.puppetlabs.com/projects/1/wiki/Cron_Patterns">Cron Patterns</a> Wiki page, but don&#8217;t get too confused. Until Puppet 2.6, simply run:</p>
 
-<p>I&#8217;m using SixxS tunnels to enable IPv6. My <code>/etc/config/network</code> looks like this:</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/sbin/puppetd --no-daemonize --onetime
+</span></code></pre></td></tr></table></div></figure>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p>With Puppet 2.7 it slightly changed to:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/bin/puppet agent --no-daemonize --onetime
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Furthermore you won&#8217;t run all the agents at the same time. So the next step is to plan the execution time. To run Puppet every 30 minutes, use <code>fqdn_rand(30)</code> to generate a value between 0 and 29 for the first, and add 30 more to get the second point of time:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="nv">$min1</span> <span class="o">=</span> <span class="k">fqdn_rand</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</span><span class='line'><span class="nv">$min2</span> <span class="o">=</span> <span class="nv">$min1</span> <span class="o">+</span> <span class="mi">30</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>fqdn_rand</code> function will generate the same value each time you call it, dependent on the FQDN of the actual host.
+Finally, the file resource will look like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>config interface 'lan'
-</span><span class='line'>  # ...
-</span><span class='line'>  option ip6addr '2001:my:subnet:prefix::1/64'
-</span><span class='line'>
-</span><span class='line'>config 'interface' 'wan6'
-</span><span class='line'>  # ...
-</span><span class='line'>  option 'ip6addr' '2001:my:end:point::2'</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="k">file</span> <span class="p">{</span> <span class="s">&#39;/etc/cron.d/puppet-cron&#39;</span><span class="p">:</span>
+</span><span class='line'>  <span class="na">ensure</span>  <span class="o">=&gt;</span> <span class="s">&#39;present&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="na">content</span> <span class="o">=&gt;</span> <span class="s">&quot;$min1,$min2 * * * * root /usr/bin/puppet agent --no-daemonize --onetime\n&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="na">mode</span>    <span class="o">=&gt;</span> <span class="s">&#39;0644&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="na">owner</span>   <span class="o">=&gt;</span> <span class="s">&#39;root&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="na">group</span>   <span class="o">=&gt;</span> <span class="s">&#39;root&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>To enable that your local server is reachable via SSH (port 22) add this rule to <code>/etc/config/firewall</code> straight after the standard IPv6 rules:</p>
+<p>As a side effect, this will solve another problem for you.
+Have you ever tried to reconfigure Puppet via Puppet?
+Currently there is no way telling Puppet to stop, re-read it&#8217;s configuration and start again (e.g. via sending the SIGHUP signal). This related Bug-report was added two years ago:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>config rule
-</span><span class='line'>       option 'src' 'wan6'
-</span><span class='line'>       option 'proto' 'tcp'
-</span><span class='line'>       option 'dest_port' '22'
-</span><span class='line'>       option 'dest_ip' '2001:your:servers:global:ipv6:address:####:####'
-</span><span class='line'>       option 'family' 'ipv6'
-</span><span class='line'>       option 'target' 'ACCEPT'
-</span><span class='line'>       option 'dest' 'lan' </span></code></pre></td></tr></table></div></figure>
+<ul>
+<li><a href="http://projects.puppetlabs.com/issues/7273">Bug #7273</a> - Add additional signals for restarting Puppet agent runs</li>
+</ul>
 
-
-<p>Also make sure that you installed the <code>ip6tables</code> Package,
-then restart the firewall with <code>/etc/init.d/firewall restart</code>
-and test your setup.</p>
 </div>
 
 
@@ -163,12 +171,12 @@ and test your setup.</p>
   
 
 
-<time datetime="2013-03-26T09:58:00+01:00" pubdate data-updated="true">Mar 26<span>th</span>, 2013</time>
+<time datetime="2013-03-25T13:37:00+01:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ipv6/'>IPv6</a>
+    <a class='category' href='/blog/categories/puppet/'>Puppet</a>
   
 </span>
 
@@ -177,7 +185,7 @@ and test your setup.</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/" data-via="sedden" data-counturl="http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jenkner.org/blog/2013/03/25/run-puppet-via-cron/" data-via="sedden" data-counturl="http://jenkner.org/blog/2013/03/25/run-puppet-via-cron/" >Tweet</a>
   
   
   
@@ -186,10 +194,8 @@ and test your setup.</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/03/25/run-puppet-via-cron/" title="Previous Post: Run Puppet via Cron">&laquo; Run Puppet via Cron</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/" title="Next Post: Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact">Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/03/26/openwrt-ipv6-forwarding/" title="Next Post: Forwarding IPv6 Traffic from WAN to LAN with OpenWRT">Forwarding IPv6 Traffic from WAN to LAN with OpenWRT &raquo;</a>
       
     </p>
   </footer>
@@ -294,8 +300,8 @@ and test your setup.</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/';
-        var disqus_url = 'http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/';
+        var disqus_identifier = 'http://jenkner.org/blog/2013/03/25/run-puppet-via-cron/';
+        var disqus_url = 'http://jenkner.org/blog/2013/03/25/run-puppet-via-cron/';
         var disqus_script = 'embed.js';
       
     (function () {
