@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Puppet | Stefan Jenkner]]></title>
-  <link href="http://sedden.github.com/blog/categories/puppet/atom.xml" rel="self"/>
-  <link href="http://sedden.github.com/"/>
-  <updated>2013-03-26T14:49:31+01:00</updated>
-  <id>http://sedden.github.com/</id>
+  <link href="http://jenkner.org/blog/categories/puppet/atom.xml" rel="self"/>
+  <link href="http://jenkner.org/"/>
+  <updated>2013-03-26T19:55:36+01:00</updated>
+  <id>http://jenkner.org/</id>
   <author>
     <name><![CDATA[Stefan Jenkner]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact]]></title>
-    <link href="http://sedden.github.com/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/"/>
+    <link href="http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/"/>
     <updated>2013-03-27T11:36:00+01:00</updated>
-    <id>http://sedden.github.com/blog/2013/03/27/use-osfamily-instead-of-operatingsystem</id>
+    <id>http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem</id>
     <content type="html"><![CDATA[<p>Once you read the <a href="http://docs.puppetlabs.com/guides/style_guide.html">Puppet Style Guide</a>, you should know how to writing well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
 Well, I think there are lots of other things you <del>better</del> should care.
 For this time, it's about when to use <code>$::osfamily</code> and when better to stay with the <code>$::operatingsystem</code> fact.</p>
@@ -112,64 +112,6 @@ default: {
 ```</p>
 
 <p>It defines <code>$::osfamily</code> if not available.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Run Puppet via Cron]]></title>
-    <link href="http://sedden.github.com/blog/2013/03/25/run-puppet-via-cron/"/>
-    <updated>2013-03-25T09:58:00+01:00</updated>
-    <id>http://sedden.github.com/blog/2013/03/25/run-puppet-via-cron</id>
-    <content type="html"><![CDATA[<p>While deploying <a href="http://puppetlabs.com">Puppet</a> on several Ubuntu machines, everything was fine until Nagios started sending out warnings about high memory and high CPU usage, caused by the Puppet agent process. Related Bug-reports are:</p>
-
-<ul>
-<li><a href="https://projects.puppetlabs.com/issues/1395#change-55821">Bug #1395</a> puppet memory usage</li>
-<li><a href="http://projects.puppetlabs.com/issues/12310#note-16">Bug #12310</a> Significant slow down in 2.7.10 apply</li>
-<li><a href="https://bugs.launchpad.net/ubuntu/+source/puppet/+bug/995719">Bug #995719</a> process_name.rb removed in 2.7.11 but still provided by puppet-common</li>
-</ul>
-
-
-<p>A common workaround is to run Puppet via Cron. Take a look at the <a href="http://projects.puppetlabs.com/projects/1/wiki/Cron_Patterns">Cron Patterns</a> Wiki page, but don't get too confused. Until Puppet 2.6, simply run:</p>
-
-<p><code>bash
-/usr/sbin/puppetd --no-daemonize --onetime
-</code></p>
-
-<p>With Puppet 2.7 it slightly changed to:</p>
-
-<p><code>bash    
-/usr/bin/puppet agent --no-daemonize --onetime
-</code></p>
-
-<p>Furthermore you won't run all the agents at the same time. So the next step is to plan the execution time. To run Puppet every 30 minutes, use <code>fqdn_rand(30)</code> to generate a value between 0 and 30 for the first, and add 30 more to get the second point of time:</p>
-
-<p><code>puppet
-$min1 = fqdn_rand(30)
-$min2 = $min1 + 30
-</code></p>
-
-<p>The <code>fqdn_rand</code> function will generate the same value each time you call it, dependent on the FQDN of the actual host.</p>
-
-<p>Finally, the file resource definition will look like this:</p>
-
-<p><code>puppet
-file { '/etc/cron.d/puppet-cron':
-  ensure  =&gt; 'present',
-  content =&gt; "$min1,$min2 * * * * root /usr/bin/puppet agent --no-daemonize --onetime\n",
-  mode    =&gt; '0644',
-  owner   =&gt; 'root',
-  group   =&gt; 'root',
-}
-</code></p>
-
-<p>As a side effect, this will solve another problem for you.
-Have you ever tried to reconfigure Puppet via Puppet?
-Currently there is no way telling Puppet to stop, re-read it's configuration and start again (e.g. via sending the SIGHUP signal). The related Bug-report was added two years ago:</p>
-
-<ul>
-<li><a href="http://projects.puppetlabs.com/issues/7273">Bug #7273</a> - Add additional signals for restarting Puppet agent runs</li>
-</ul>
-
 ]]></content>
   </entry>
   

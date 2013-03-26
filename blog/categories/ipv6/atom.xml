@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: IPv6 | Stefan Jenkner]]></title>
-  <link href="http://sedden.github.com/blog/categories/ipv6/atom.xml" rel="self"/>
-  <link href="http://sedden.github.com/"/>
-  <updated>2013-03-26T14:49:31+01:00</updated>
-  <id>http://sedden.github.com/</id>
+  <link href="http://jenkner.org/blog/categories/ipv6/atom.xml" rel="self"/>
+  <link href="http://jenkner.org/"/>
+  <updated>2013-03-26T19:55:36+01:00</updated>
+  <id>http://jenkner.org/</id>
   <author>
     <name><![CDATA[Stefan Jenkner]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Forwarding IPv6 Traffic from WAN to LAN with OpenWRT]]></title>
-    <link href="http://sedden.github.com/blog/2013/03/26/openwrt-ipv6-forwarding/"/>
+    <link href="http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/"/>
     <updated>2013-03-26T09:58:00+01:00</updated>
-    <id>http://sedden.github.com/blog/2013/03/26/openwrt-ipv6-forwarding</id>
+    <id>http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding</id>
     <content type="html"><![CDATA[<p>We're starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:</p>
 
 <ul>
