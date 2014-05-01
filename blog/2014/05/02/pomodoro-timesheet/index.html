@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Time tracking with the Pomodoro.app</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+        <!-- Favicon -->
+        <link href="/favicon.png" rel="icon">
+
+        <!-- OpenID -->
+        <link rel="openid2.provider" href="https://openid.stackexchange.com/openid/provider">
+        <link rel="openid2.local_id" href="https://openid.stackexchange.com/user/2cd92ecb-186e-42d2-839e-e1b36cc3d6fb">
+
+        <!-- Feed -->
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml"/>
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">A developer's notebook</a></h1>
+            <a class="extra" href="/">home</a>
+            <a class="extra" href="/about/">about</a>
+            <a class="extra" href="/atom.xml">feed</a>
+          </div>
+
+          <h2>Time tracking with the Pomodoro.app</h2>
+<p class="meta">02 May 2014</p>
+
+<div class="post">
+<p>I&#39;m a huge fan of the <a href="https://github.com/ugol/pomodoro">Pomodoro.app</a>. 
+It helps me to focus on my work and it controlls my messenger status (Adium) to tell my colleagues when I&#39;m busy.
+Now I even use it to log my activies and put them into a SQLite database for reporting. </p>
+
+<h4>Clue code</h4>
+
+<p>The <a href="https://github.com/ugol/pomodoro">Pomodoro.app</a> can invoke AppleScripts on certain events. 
+I&#39;m not a big fan of the AppleScript-Language but I know how to make it run external programs. 
+For that reason I wrote a <a href="https://gist.github.com/sedden/19391359f6c0e4baf8ed">few lines of Python</a> to insert the activities into the database. </p>
+
+<p>Frist put the <a href="https://gist.github.com/sedden/19391359f6c0e4baf8ed">Python-Script</a> somewhere.
+Then launch <em>Pomodoro</em> , go to <em>Preferences</em> / <em>Scripts</em>, check <em>End</em> and put this script into the field:</p>
+
+<div class="highlight"><pre><code class="applescript"><span class="c">-- Applescript:</span>
+<span class="nb">do shell script</span> <span class="s2">&quot;/Users/stefan/timesheet_add.py -t \&quot;$pomodoroName\&quot; -m \&quot;$duration\&quot;&quot;</span>
+</code></pre></div>
+
+<p>Just replace the path to <code>timesheet_add.py</code>. The parameters <code>$pomodoroName</code> (name of the activity) and <code>$duration</code> (time in minutes) will be passed to the script.</p>
+
+<h4>Database</h4>
+
+<p>The table structure is as simple as:</p>
+
+<div class="highlight"><pre><code class="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">activities</span> <span class="p">(</span>
+  <span class="k">day</span> <span class="nb">text</span><span class="p">,</span>
+  <span class="n">activity</span> <span class="nb">text</span><span class="p">,</span>
+  <span class="n">minutes</span> <span class="nb">text</span><span class="p">,</span>
+  <span class="n">added</span> <span class="k">timestamp</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<p>This <code>timesheet</code> view groups all activities with the same name on a certain day and shows the time <code>HH:MM</code> formated:</p>
+
+<div class="highlight"><pre><code class="sql"><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">timesheet</span> <span class="k">AS</span>
+   <span class="k">select</span> <span class="k">day</span><span class="p">,</span> <span class="n">activity</span> <span class="p">,</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;:&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">%</span><span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">hours</span> 
+   <span class="k">from</span> <span class="n">activities</span>
+   <span class="k">group</span> <span class="k">by</span> <span class="k">day</span><span class="p">,</span><span class="n">activity</span>
+</code></pre></div>
+
+<p>The next one only selects activities of the current week:</p>
+
+<div class="highlight"><pre><code class="sql"><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">timesheet_current_week</span> <span class="k">AS</span>
+   <span class="k">select</span> <span class="k">day</span><span class="p">,</span><span class="n">activity</span><span class="p">,</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;:&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">%</span><span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">hours</span> 
+   <span class="k">from</span> <span class="n">activities</span> 
+   <span class="k">where</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%YW%W&#39;</span><span class="p">,</span> <span class="k">day</span><span class="p">)</span> <span class="o">=</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%YW%W&#39;</span><span class="p">,</span> <span class="nb">date</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">))</span> 
+   <span class="k">group</span> <span class="k">by</span> <span class="k">day</span><span class="p">,</span><span class="n">activity</span>
+</code></pre></div>
+
+<p>With a slightly altered <code>WHERE</code> condition to select last weeks activities:</p>
+
+<div class="highlight"><pre><code class="sql"><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">timesheet_last_week</span> <span class="k">AS</span>
+  <span class="k">select</span> <span class="k">day</span><span class="p">,</span><span class="n">activity</span><span class="p">,</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;:&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">%</span><span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">hours</span>
+  <span class="k">from</span> <span class="n">activities</span>
+  <span class="k">where</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%YW%W&#39;</span><span class="p">,</span> <span class="k">day</span><span class="p">)</span> <span class="o">=</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%YW%W&#39;</span><span class="p">,</span> <span class="nb">date</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">,</span> <span class="s1">&#39;-7 days&#39;</span><span class="p">))</span> 
+  <span class="k">group</span> <span class="k">by</span> <span class="k">day</span><span class="p">,</span><span class="n">activity</span>
+</code></pre></div>
+
+<p>There is even a view that indicates if you worked too much (100% = 480 minutes = 8 hours):</p>
+
+<div class="highlight"><pre><code class="sql"><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">completeness_current_week</span> <span class="k">AS</span>
+  <span class="k">select</span>
+   <span class="k">day</span><span class="p">,</span>
+   <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;:&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">%</span><span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">hours</span><span class="p">,</span>
+   <span class="n">round</span><span class="p">(((</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">480</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)),</span> <span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">percent</span>
+  <span class="k">from</span> <span class="n">activities</span> 
+  <span class="k">where</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%YW%W&#39;</span><span class="p">,</span> <span class="k">day</span><span class="p">)</span> <span class="o">=</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%YW%W&#39;</span><span class="p">,</span> <span class="nb">date</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">))</span>
+  <span class="k">group</span> <span class="k">by</span> <span class="k">day</span>
+</code></pre></div>
+
+<p>I use <a href="https://www.sqlitepro.com/">SQLite Professional</a> (at that time it was free) to display the views.
+It automatically detects changes on the database file and refreshes the current view.</p>
+
+</div>
+
+<div>
+
+
+
+	<p><a href="/blog/2014/05/01/from-octopress-to-jekyll">« Howto migrate from Octopress to Jekyll</a></p>
+
+
+
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Stefan Jenkner<br />
+                stefan@jenkner.org
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/sedden">github.com/sedden</a><br />
+                <a href="https://twitter.com/sedden">twitter.com/sedden</a> 
+                <a href="https://alpha.app.net/sedden">alpha.app.net/sedden</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>
