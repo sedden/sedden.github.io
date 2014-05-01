@@ -1,265 +1,246 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-
-  <title><![CDATA[Stefan Jenkner]]></title>
+  <title>A developers notebook</title>
   <link href="http://jenkner.org/atom.xml" rel="self"/>
-  <link href="http://jenkner.org/"/>
-  <updated>2013-03-29T01:21:44+01:00</updated>
-  <id>http://jenkner.org/</id>
+  <link href="http://jenkner.org"/>
+  <updated>2014-05-01T19:02:49+02:00</updated>
+  <id>http://jenkner.org</id>
   <author>
-    <name><![CDATA[Stefan Jenkner]]></name>
-    
+    <name>Stefan Jenkner</name>
+    <email></email>
   </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
-
   
   <entry>
-    <title type="html"><![CDATA[Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact]]></title>
-    <link href="http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/"/>
+    <title>Howto migrate from Octopress to Jekyll</title>
+    <link href="http://jenkner.org"/>
+    <updated>2014-05-01T16:11:52+02:00</updated>
+    <id>http://jenkner.org/blog/2014/05/01/from-octopress-jekyll</id>
+    <content type="html">&lt;p&gt;Here are a few tipps on how to migrate from &lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt; to &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;. &lt;/p&gt;
+
+&lt;h4&gt;Permalinks&lt;/h4&gt;
+
+&lt;p&gt;Permalinks somehow defaults to &lt;code&gt;/mycategory/2014/05/01/title&lt;/code&gt;.&lt;br&gt;
+Set &lt;code&gt;permalink: /blog/:year/:month/:day/:title&lt;/code&gt; in &lt;code&gt;_config.yml&lt;/code&gt; to use a fixed prefix.&lt;/p&gt;
+
+&lt;h4&gt;XML-Sitemap&lt;/h4&gt;
+
+&lt;p&gt;There is a plugin to generate a &lt;code&gt;sitemap.xml&lt;/code&gt; - &lt;a href=&quot;https://github.com/kinnetica/jekyll-plugins&quot;&gt;https://github.com/kinnetica/jekyll-plugins&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;robots.txt&lt;/h4&gt;
+
+&lt;p&gt;The &lt;code&gt;robots.txt&lt;/code&gt; can easily be adopted from the Octopress installation.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;yaml&quot;&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;nil&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;User-agent&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;Disallow&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; 
+
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;Sitemap&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;{{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;site.url&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;}}&lt;/span&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;/sitemap.xml&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Ensure that &lt;code&gt;url: http://yoursite.com&lt;/code&gt; has been set in &lt;code&gt;_config.yml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4&gt;Provide Atom feed&lt;/h4&gt;
+
+&lt;p&gt;This &lt;code&gt;atom.xml&lt;/code&gt; provides atom feed functionality.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;---
+layout: nil
+---
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;feed&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://www.w3.org/2005/Atom&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;{{ site.name }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{{ site.url }}/atom.xml&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;self&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{{ site.url }}&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;{{site.time | date_to_xmlschema }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;{{ site.url }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;author&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;{{ site.author }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;email&amp;gt;&amp;lt;/email&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/author&amp;gt;&lt;/span&gt;
+  {% for post in site.posts %}
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;{{ post.title }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{{ site.url }}&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;{{post.date | date_to_xmlschema }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;{{ site.url }}{{ post.url }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ post.content | xml_escape }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
+  {% endfor %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/feed&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As mentioned above, &lt;code&gt;url: http://yoursite.com&lt;/code&gt; and &lt;code&gt;author: Your Name&lt;/code&gt; must be set in &lt;code&gt;_config.yml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4&gt;Linking previous/next posts&lt;/h4&gt;
+
+&lt;p&gt;Append this to &lt;code&gt;_layouts/post.html&lt;/code&gt; for linking previous/next posts:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;{% if page.previous %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{{ page.previous.url }}&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;« {{ page.previous.title }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+{% endif %}
+{% if page.next %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{{ page.next.url }}&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ page.next.title }} »&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+{% endif %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Other useful variables can be found here: &lt;a href=&quot;http://jekyllrb.com/docs/variables/&quot;&gt;http://jekyllrb.com/docs/variables/&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</title>
+    <link href="http://jenkner.org"/>
     <updated>2013-03-27T11:36:00+01:00</updated>
     <id>http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem</id>
-    <content type="html"><![CDATA[<p>Once you read the <a href="http://docs.puppetlabs.com/guides/style_guide.html">Puppet Style Guide</a>, you should know how to write well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
-Well, I think there are lots of other things you <del>better</del> should care.
-For this time, it&#8217;s about when to use <code>$::osfamily</code> and when better to stay with the <code>$::operatingsystem</code> fact.</p>
+    <content type="html">&lt;p&gt;Once you read the &lt;a href=&quot;http://docs.puppetlabs.com/guides/style_guide.html&quot;&gt;Puppet Style Guide&lt;/a&gt;, you should know how to write well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
+Well, I think there are lots of other things you &lt;del&gt;better&lt;/del&gt; should care. 
+For this time, it&amp;#39;s about when to use &lt;code&gt;$::osfamily&lt;/code&gt; and when better to stay with the &lt;code&gt;$::operatingsystem&lt;/code&gt; fact.&lt;/p&gt;
 
-<h4>Pros</h4>
+&lt;h4&gt;Pros&lt;/h4&gt;
 
-<p>The key benefit of using <code>$::osfamily</code> is that you don&#8217;t end up forking your favorite Puppet module on GitHub to add the eleventh RedHat derivate:</p>
+&lt;p&gt;The key benefit of using &lt;code&gt;$::osfamily&lt;/code&gt; is that you don&amp;#39;t end up forking your favorite Puppet module on GitHub to add the eleventh RedHat derivate: &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;puppet language-puppet&quot; data-lang=&quot;puppet&quot;&gt;&lt;span class=&quot;kr&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$::operatingsystem&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;s1&quot;&gt;&amp;#39;RedHat&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;CentOS&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Scientific&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;OracleLinux&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;OEL&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c-Singleline&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;c-Singleline&quot;&gt;     # do something RHEL specific&lt;/span&gt;
+   }
+   &lt;span class=&quot;s1&quot;&gt;&amp;#39;ubuntu&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;debian&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c-Singleline&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;c-Singleline&quot;&gt;     # do something Debian specific &lt;/span&gt;
+   }
+   &lt;span class=&quot;kr&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c-Singleline&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;c-Singleline&quot;&gt;     # ...&lt;/span&gt;
+   }
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Instead you would use:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;puppet language-puppet&quot; data-lang=&quot;puppet&quot;&gt;&lt;span class=&quot;kr&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$::osfamily&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;s1&quot;&gt;&amp;#39;redhat&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c-Singleline&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;c-Singleline&quot;&gt;     # do something RHEL specific&lt;/span&gt;
+   }
+   &lt;span class=&quot;s1&quot;&gt;&amp;#39;debian&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c-Singleline&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;c-Singleline&quot;&gt;     # do something Debian specific &lt;/span&gt;
+   }
+   &lt;span class=&quot;kr&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c-Singleline&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;c-Singleline&quot;&gt;     # ...&lt;/span&gt;
+   }
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It allows you to write cleaner manifests and works well for common tasks. 
+You still have the choice to handle details via &lt;code&gt;$::operatingsystem&lt;/code&gt; the more complex your classes become.&lt;/p&gt;
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="k">case</span> <span class="nv">$::operatingsystem</span> <span class="p">{</span>
-</span><span class='line'>   <span class="s">&#39;RedHat&#39;</span><span class="p">,</span> <span class="s">&#39;CentOS&#39;</span><span class="p">,</span> <span class="s">&#39;Scientific&#39;</span><span class="p">,</span> <span class="err">.</span> <span class="err">.</span> <span class="err">.</span> <span class="p">,</span> <span class="s">&#39;OracleLinux&#39;</span><span class="p">,</span> <span class="s">&#39;OEL&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
-</span><span class='line'><span class="c">     # do something RHEL specific</span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'>   <span class="s">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="s">&#39;debian&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
-</span><span class='line'><span class="c">     # do something Debian specific </span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'>   <span class="k">default</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
-</span><span class='line'><span class="c">     # ...</span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
+&lt;h4&gt;Cons&lt;/h4&gt;
 
+&lt;p&gt;There are disadvantages of course: You claim tosupport an Operating-System you might haven&amp;#39;t even heard of.
+But my experience is that most people are using the EPEL repositories anyway. So wouldn&amp;#39;t it be enough to test your modules against EPEL? And yes: you really should test your manifests!&lt;/p&gt;
 
-<p>Instead you would use:</p>
+&lt;h4&gt;Support for Facter &amp;lt; 1.6.1&lt;/h4&gt;
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="k">case</span> <span class="nv">$::osfamily</span> <span class="p">{</span>
-</span><span class='line'>   <span class="s">&#39;redhat&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
-</span><span class='line'><span class="c">     # do something RHEL specific</span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'>   <span class="s">&#39;debian&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
-</span><span class='line'><span class="c">     # do something Debian specific </span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'>   <span class="k">default</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
-</span><span class='line'><span class="c">     # ...</span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It allows you to write cleaner manifests and works well for common tasks.
-You still have the choice to handle details via <code>$::operatingsystem</code> the more complex your classes become.</p>
-
-<h4>Cons</h4>
-
-<p>There are disadvantages of course: You claim tosupport an Operating-System you might haven&#8217;t even heard of.
-But my experience is that most people are using the EPEL repositories anyway. So wouldn&#8217;t it be enough to test your modules against EPEL? And yes: you really should test your manifests!</p>
-
-<h4>Support for Facter &lt; 1.6.1</h4>
-
-<p>The <code>$::osfamily</code> fact was introduced with Facter 1.6.1. There is a simple workaround for older versions. I found this solution in the description of the <a href="https://github.com/puppetlabs/puppetlabs-mysql/">puppetlabs-mysql Module</a>. Just put this into your <code>site.pp</code> (before any node definition):</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="k">if</span> <span class="o">!</span> <span class="nv">$::osfamily</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">case</span> <span class="nv">$::operatingsystem</span> <span class="p">{</span>
-</span><span class='line'>    <span class="s">&#39;RedHat&#39;</span><span class="p">,</span> <span class="s">&#39;Fedora&#39;</span><span class="p">,</span> <span class="s">&#39;CentOS&#39;</span><span class="p">,</span> <span class="s">&#39;Scientific&#39;</span><span class="p">,</span> <span class="s">&#39;SLC&#39;</span><span class="p">,</span> <span class="s">&#39;Ascendos&#39;</span><span class="p">,</span> <span class="s">&#39;CloudLinux&#39;</span><span class="p">,</span> <span class="s">&#39;PSBM&#39;</span><span class="p">,</span> <span class="s">&#39;OracleLinux&#39;</span><span class="p">,</span> <span class="s">&#39;OVS&#39;</span><span class="p">,</span> <span class="s">&#39;OEL&#39;</span><span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s">&#39;RedHat&#39;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="s">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="s">&#39;debian&#39;</span><span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s">&#39;Debian&#39;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="s">&#39;SLES&#39;</span><span class="p">,</span> <span class="s">&#39;SLED&#39;</span><span class="p">,</span> <span class="s">&#39;OpenSuSE&#39;</span><span class="p">,</span> <span class="s">&#39;SuSE&#39;</span><span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s">&#39;Suse&#39;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="s">&#39;Solaris&#39;</span><span class="p">,</span> <span class="s">&#39;Nexenta&#39;</span><span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s">&#39;Solaris&#39;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="k">default</span><span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="nv">$::operatingsystem</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It defines <code>$::osfamily</code> if not available.</p>
-]]></content>
+&lt;p&gt;The &lt;code&gt;$::osfamily&lt;/code&gt; fact was introduced with Facter 1.6.1. There is a simple workaround for older versions. I found this solution in the description of the &lt;a href=&quot;https://github.com/puppetlabs/puppetlabs-mysql/&quot;&gt;puppetlabs-mysql Module&lt;/a&gt;. Just put this into your &lt;code&gt;site.pp&lt;/code&gt; (before any node definition):&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;puppet language-puppet&quot; data-lang=&quot;puppet&quot;&gt;&lt;span class=&quot;kr&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$::osfamily&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$::operatingsystem&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;&amp;#39;RedHat&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Fedora&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;CentOS&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Scientific&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SLC&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Ascendos&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;CloudLinux&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;PSBM&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;OracleLinux&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;OVS&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;OEL&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;$osfamily&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;RedHat&amp;#39;&lt;/span&gt;
+    }
+    &lt;span class=&quot;s1&quot;&gt;&amp;#39;ubuntu&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;debian&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;$osfamily&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Debian&amp;#39;&lt;/span&gt;
+    }
+    &lt;span class=&quot;s1&quot;&gt;&amp;#39;SLES&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SLED&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;OpenSuSE&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SuSE&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;$osfamily&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Suse&amp;#39;&lt;/span&gt;
+    }
+    &lt;span class=&quot;s1&quot;&gt;&amp;#39;Solaris&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Nexenta&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;$osfamily&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Solaris&amp;#39;&lt;/span&gt;
+    }
+    &lt;span class=&quot;kr&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;$osfamily&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$::operatingsystem&lt;/span&gt;  
+    }
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It defines &lt;code&gt;$::osfamily&lt;/code&gt; if not available.&lt;/p&gt;
+</content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Forwarding IPv6 Traffic from WAN to LAN with OpenWRT]]></title>
-    <link href="http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/"/>
+    <title>Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</title>
+    <link href="http://jenkner.org"/>
     <updated>2013-03-26T09:58:00+01:00</updated>
     <id>http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding</id>
-    <content type="html"><![CDATA[<p>We&#8217;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:</p>
+    <content type="html">&lt;p&gt;We&amp;#39;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:&lt;/p&gt;
 
-<ul>
-<li><a href="http://www.sixxs.net/wiki/Aiccu/Installing_on_OpenWRT">Aiccu/Installing on OpenWRT</a></li>
-<li><a href="http://wiki.openwrt.org/doc/howto/ipv6">IPv6 HowTo on Backfire and later</a></li>
-</ul>
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.sixxs.net/wiki/Aiccu/Installing_on_OpenWRT&quot;&gt;Aiccu/Installing on OpenWRT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://wiki.openwrt.org/doc/howto/ipv6&quot;&gt;IPv6 HowTo on Backfire and later&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;p&gt;OpenWRT Attitude Adjustment 2012.09 warning: There is an ongoing discussion regarding the AICCU init script. If you can, stay with OpenWRT Backfire 2010.3.&lt;/p&gt;
 
-<p>OpenWRT Attitude Adjustment 2012.09 warning: There is an ongoing discussion regarding the AICCU init script. If you can, stay with OpenWRT Backfire 2010.3.</p>
+&lt;p&gt;I&amp;#39;m using SixxS tunnels to enable IPv6. My &lt;code&gt;/etc/config/network&lt;/code&gt; looks like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;config interface &amp;#39;lan&amp;#39;
+    # ...
+    option ip6addr &amp;#39;2001:my:subnet:prefix::1/64&amp;#39;
 
-<p>I&#8217;m using SixxS tunnels to enable IPv6. My <code>/etc/config/network</code> looks like this:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>config interface 'lan'
-</span><span class='line'>  # ...
-</span><span class='line'>  option ip6addr '2001:my:subnet:prefix::1/64'
-</span><span class='line'>
-</span><span class='line'>config 'interface' 'wan6'
-</span><span class='line'>  # ...
-</span><span class='line'>  option 'ip6addr' '2001:my:end:point::2'</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To enable that your local server is reachable via SSH (port 22) add this rule to <code>/etc/config/firewall</code> straight after the standard IPv6 rules:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>config rule
-</span><span class='line'>       option 'src' 'wan6'
-</span><span class='line'>       option 'proto' 'tcp'
-</span><span class='line'>       option 'dest_port' '22'
-</span><span class='line'>       option 'dest_ip' '2001:your:servers:global:ipv6:address:####:####'
-</span><span class='line'>       option 'family' 'ipv6'
-</span><span class='line'>       option 'target' 'ACCEPT'
-</span><span class='line'>       option 'dest' 'lan' </span></code></pre></td></tr></table></div></figure>
-
-
-<p>Also make sure that you installed the <code>ip6tables</code> Package,
-then restart the firewall with <code>/etc/init.d/firewall restart</code>
-and test your setup.</p>
-]]></content>
+config &amp;#39;interface&amp;#39; &amp;#39;wan6&amp;#39;
+    # ...
+    option &amp;#39;ip6addr&amp;#39; &amp;#39;2001:my:end:point::2&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To enable that your local server is reachable via SSH (port 22) add this rule to &lt;code&gt;/etc/config/firewall&lt;/code&gt; straight after the standard IPv6 rules: &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;config rule
+       option &amp;#39;src&amp;#39; &amp;#39;wan6&amp;#39;
+       option &amp;#39;proto&amp;#39; &amp;#39;tcp&amp;#39;
+       option &amp;#39;dest_port&amp;#39; &amp;#39;22&amp;#39;
+       option &amp;#39;dest_ip&amp;#39; &amp;#39;2001:your:servers:global:ipv6:address:####:####&amp;#39;
+       option &amp;#39;family&amp;#39; &amp;#39;ipv6&amp;#39;
+       option &amp;#39;target&amp;#39; &amp;#39;ACCEPT&amp;#39;
+       option &amp;#39;dest&amp;#39; &amp;#39;lan&amp;#39; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Also make sure that you installed the &lt;code&gt;ip6tables&lt;/code&gt; Package,
+then restart the firewall with &lt;code&gt;/etc/init.d/firewall restart&lt;/code&gt;
+and test your setup.&lt;/p&gt;
+</content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Run Puppet via Cron]]></title>
-    <link href="http://jenkner.org/blog/2013/03/25/run-puppet-via-cron/"/>
+    <title>Run Puppet via Cron</title>
+    <link href="http://jenkner.org"/>
     <updated>2013-03-25T13:37:00+01:00</updated>
     <id>http://jenkner.org/blog/2013/03/25/run-puppet-via-cron</id>
-    <content type="html"><![CDATA[<p>While deploying <a href="http://puppetlabs.com">Puppet</a> on several Ubuntu machines, everything was fine until Nagios started sending out warnings about high memory and high CPU usage, caused by the Puppet agent process. Related Bug-reports are:</p>
+    <content type="html">&lt;p&gt;While deploying &lt;a href=&quot;http://puppetlabs.com&quot;&gt;Puppet&lt;/a&gt; on several Ubuntu machines, everything was fine until Nagios started sending out warnings about high memory and high CPU usage, caused by the Puppet agent process. Related Bug-reports are:&lt;/p&gt;
 
-<ul>
-<li><a href="https://projects.puppetlabs.com/issues/1395#change-55821">Bug #1395</a> puppet memory usage</li>
-<li><a href="http://projects.puppetlabs.com/issues/12310#note-16">Bug #12310</a> Significant slow down in 2.7.10 apply</li>
-<li><a href="https://bugs.launchpad.net/ubuntu/+source/puppet/+bug/995719">Bug #995719</a> process_name.rb removed in 2.7.11 but still provided by puppet-common</li>
-</ul>
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://projects.puppetlabs.com/issues/1395#change-55821&quot;&gt;Bug #1395&lt;/a&gt; puppet memory usage&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://projects.puppetlabs.com/issues/12310#note-16&quot;&gt;Bug #12310&lt;/a&gt; Significant slow down in 2.7.10 apply&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.launchpad.net/ubuntu/+source/puppet/+bug/995719&quot;&gt;Bug #995719&lt;/a&gt; process_name.rb removed in 2.7.11 but still provided by puppet-common&lt;/li&gt;
+&lt;/ul&gt;
 
-
-<p>A common workaround is to run the Puppet agent via Cron. Take a look at the <a href="http://projects.puppetlabs.com/projects/1/wiki/Cron_Patterns">Cron Patterns</a> Wiki page, but don&#8217;t get too confused. Until Puppet 2.6, simply run:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/sbin/puppetd --no-daemonize --onetime
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>With Puppet 2.7 it slightly changed to:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/bin/puppet agent --no-daemonize --onetime
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Furthermore you won&#8217;t run all the agents at the same time. So the next step is to plan the execution time. To run Puppet every 30 minutes, use <code>fqdn_rand(30)</code> to generate a value between 0 and 29 for the first, and add 30 more to get the second point of time:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="nv">$min1</span> <span class="o">=</span> <span class="k">fqdn_rand</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
-</span><span class='line'><span class="nv">$min2</span> <span class="o">=</span> <span class="nv">$min1</span> <span class="o">+</span> <span class="mi">30</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The <code>fqdn_rand</code> function will generate the same value each time you call it, dependent on the FQDN of the actual host.
-Finally, the file resource will look like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="k">file</span> <span class="p">{</span> <span class="s">&#39;/etc/cron.d/puppet-cron&#39;</span><span class="p">:</span>
-</span><span class='line'>  <span class="na">ensure</span>  <span class="o">=&gt;</span> <span class="s">&#39;present&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="na">content</span> <span class="o">=&gt;</span> <span class="s">&quot;$min1,$min2 * * * * root /usr/bin/puppet agent --no-daemonize --onetime\n&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="na">mode</span>    <span class="o">=&gt;</span> <span class="s">&#39;0644&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="na">owner</span>   <span class="o">=&gt;</span> <span class="s">&#39;root&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="na">group</span>   <span class="o">=&gt;</span> <span class="s">&#39;root&#39;</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>As a side effect, this will solve another problem for you.
+&lt;p&gt;A common workaround is to run the Puppet agent via Cron. Take a look at the &lt;a href=&quot;http://projects.puppetlabs.com/projects/1/wiki/Cron_Patterns&quot;&gt;Cron Patterns&lt;/a&gt; Wiki page, but don&amp;#39;t get too confused. Until Puppet 2.6, simply run: &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash language-bash&quot; data-lang=&quot;bash&quot;&gt;/usr/sbin/puppetd --no-daemonize --onetime
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With Puppet 2.7 it slightly changed to:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash language-bash&quot; data-lang=&quot;bash&quot;&gt;/usr/bin/puppet agent --no-daemonize --onetime
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Furthermore you won&amp;#39;t run all the agents at the same time. So the next step is to plan the execution time. To run Puppet every 30 minutes, use &lt;code&gt;fqdn_rand(30)&lt;/code&gt; to generate a value between 0 and 29 for the first, and add 30 more to get the second point of time:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;puppet language-puppet&quot; data-lang=&quot;puppet&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$min1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fqdn_rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$min2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$min1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;30&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;fqdn_rand&lt;/code&gt; function will generate the same value each time you call it, dependent on the FQDN of the actual host.
+Finally, the file resource will look like this: &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;puppet language-puppet&quot; data-lang=&quot;puppet&quot;&gt;&lt;span class=&quot;nc&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/etc/cron.d/puppet-cron&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;ensure&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;present&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;$min1,$min2 * * * * root /usr/bin/puppet agent --no-daemonize --onetime&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;mode&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;0644&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;owner&lt;/span&gt;   &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;root&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;group&lt;/span&gt;   &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;root&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As a side effect, this will solve another problem for you.
 Have you ever tried to reconfigure Puppet via Puppet?
-Currently there is no way telling Puppet to stop, re-read it&#8217;s configuration and start again (e.g. via sending the SIGHUP signal). This related Bug-report was added two years ago:</p>
+Currently there is no way telling Puppet to stop, re-read it&amp;#39;s configuration and start again (e.g. via sending the SIGHUP signal). This related Bug-report was added two years ago:&lt;/p&gt;
 
-<ul>
-<li><a href="http://projects.puppetlabs.com/issues/7273">Bug #7273</a> - Add additional signals for restarting Puppet agent runs</li>
-</ul>
-
-]]></content>
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://projects.puppetlabs.com/issues/7273&quot;&gt;Bug #7273&lt;/a&gt; - Add additional signals for restarting Puppet agent runs&lt;/li&gt;
+&lt;/ul&gt;
+</content>
   </entry>
   
 </feed>

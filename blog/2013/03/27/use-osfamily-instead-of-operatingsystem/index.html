@@ -1,402 +1,129 @@
-
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact - Stefan Jenkner</title>
-  <meta name="author" content="Stefan Jenkner">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</title>
+        <meta name="viewport" content="width=device-width">
 
-  
-  <meta name="description" content="Once you read the Puppet Style Guide, you should know how to write well structured manifests, with the modest indentation, spacing, arrow alignment, &hellip;">
-  
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
 
-  
-  <link rel="canonical" href="http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Stefan Jenkner" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
 
-<!-- OpenID -->
-<link rel="openid2.provider" href="https://openid.stackexchange.com/openid/provider">
-<link rel="openid2.local_id" href="https://openid.stackexchange.com/user/2cd92ecb-186e-42d2-839e-e1b36cc3d6fb">
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">A developers notebook</a></h1>
+            <a class="extra" href="/">home</a>
+            <a class="extra" href="/about/">about</a>
+            <a class="extra" href="/atom.xml">feed</a>
+          </div>
 
-  
+          <h2>Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</h2>
+<p class="meta">27 Mar 2013</p>
 
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-</hgroup>
-
-</header>
-  <!-- <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:jenkner.org" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav> -->
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
-    
-      <h1 class="entry-title">Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-27T11:36:00+01:00" pubdate data-updated="true">Mar 27<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><p>Once you read the <a href="http://docs.puppetlabs.com/guides/style_guide.html">Puppet Style Guide</a>, you should know how to write well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
-Well, I think there are lots of other things you <del>better</del> should care.
-For this time, it&#8217;s about when to use <code>$::osfamily</code> and when better to stay with the <code>$::operatingsystem</code> fact.</p>
+<div class="post">
+<p>Once you read the <a href="http://docs.puppetlabs.com/guides/style_guide.html">Puppet Style Guide</a>, you should know how to write well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
+Well, I think there are lots of other things you <del>better</del> should care. 
+For this time, it&#39;s about when to use <code>$::osfamily</code> and when better to stay with the <code>$::operatingsystem</code> fact.</p>
 
 <h4>Pros</h4>
 
-<p>The key benefit of using <code>$::osfamily</code> is that you don&#8217;t end up forking your favorite Puppet module on GitHub to add the eleventh RedHat derivate:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="k">case</span> <span class="nv">$::operatingsystem</span> <span class="p">{</span>
-</span><span class='line'>   <span class="s">&#39;RedHat&#39;</span><span class="p">,</span> <span class="s">&#39;CentOS&#39;</span><span class="p">,</span> <span class="s">&#39;Scientific&#39;</span><span class="p">,</span> <span class="err">.</span> <span class="err">.</span> <span class="err">.</span> <span class="p">,</span> <span class="s">&#39;OracleLinux&#39;</span><span class="p">,</span> <span class="s">&#39;OEL&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
-</span><span class='line'><span class="c">     # do something RHEL specific</span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'>   <span class="s">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="s">&#39;debian&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
-</span><span class='line'><span class="c">     # do something Debian specific </span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'>   <span class="k">default</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
-</span><span class='line'><span class="c">     # ...</span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<p>The key benefit of using <code>$::osfamily</code> is that you don&#39;t end up forking your favorite Puppet module on GitHub to add the eleventh RedHat derivate: </p>
+<div class="highlight"><pre><code class="puppet language-puppet" data-lang="puppet"><span class="kr">case</span> <span class="nv">$::operatingsystem</span> <span class="p">{</span>
+   <span class="s1">&#39;RedHat&#39;</span><span class="p">,</span> <span class="s1">&#39;CentOS&#39;</span><span class="p">,</span> <span class="s1">&#39;Scientific&#39;</span><span class="p">,</span> <span class="m">.</span> <span class="m">.</span> <span class="m">.</span> <span class="p">,</span> <span class="s1">&#39;OracleLinux&#39;</span><span class="p">,</span> <span class="s1">&#39;OEL&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c-Singleline"></span>
+<span class="c-Singleline">     # do something RHEL specific</span>
+   }
+   <span class="s1">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="s1">&#39;debian&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c-Singleline"></span>
+<span class="c-Singleline">     # do something Debian specific </span>
+   }
+   <span class="kr">default</span><span class="p">:</span> <span class="p">{</span><span class="c-Singleline"></span>
+<span class="c-Singleline">     # ...</span>
+   }
+<span class="p">}</span>
+</code></pre></div>
 <p>Instead you would use:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="k">case</span> <span class="nv">$::osfamily</span> <span class="p">{</span>
-</span><span class='line'>   <span class="s">&#39;redhat&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
-</span><span class='line'><span class="c">     # do something RHEL specific</span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'>   <span class="s">&#39;debian&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
-</span><span class='line'><span class="c">     # do something Debian specific </span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'>   <span class="k">default</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
-</span><span class='line'><span class="c">     # ...</span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It allows you to write cleaner manifests and works well for common tasks.
+<div class="highlight"><pre><code class="puppet language-puppet" data-lang="puppet"><span class="kr">case</span> <span class="nv">$::osfamily</span> <span class="p">{</span>
+   <span class="s1">&#39;redhat&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c-Singleline"></span>
+<span class="c-Singleline">     # do something RHEL specific</span>
+   }
+   <span class="s1">&#39;debian&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c-Singleline"></span>
+<span class="c-Singleline">     # do something Debian specific </span>
+   }
+   <span class="kr">default</span><span class="p">:</span> <span class="p">{</span><span class="c-Singleline"></span>
+<span class="c-Singleline">     # ...</span>
+   }
+<span class="p">}</span>
+</code></pre></div>
+<p>It allows you to write cleaner manifests and works well for common tasks. 
 You still have the choice to handle details via <code>$::operatingsystem</code> the more complex your classes become.</p>
 
 <h4>Cons</h4>
 
-<p>There are disadvantages of course: You claim tosupport an Operating-System you might haven&#8217;t even heard of.
-But my experience is that most people are using the EPEL repositories anyway. So wouldn&#8217;t it be enough to test your modules against EPEL? And yes: you really should test your manifests!</p>
+<p>There are disadvantages of course: You claim tosupport an Operating-System you might haven&#39;t even heard of.
+But my experience is that most people are using the EPEL repositories anyway. So wouldn&#39;t it be enough to test your modules against EPEL? And yes: you really should test your manifests!</p>
 
 <h4>Support for Facter &lt; 1.6.1</h4>
 
 <p>The <code>$::osfamily</code> fact was introduced with Facter 1.6.1. There is a simple workaround for older versions. I found this solution in the description of the <a href="https://github.com/puppetlabs/puppetlabs-mysql/">puppetlabs-mysql Module</a>. Just put this into your <code>site.pp</code> (before any node definition):</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="k">if</span> <span class="o">!</span> <span class="nv">$::osfamily</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">case</span> <span class="nv">$::operatingsystem</span> <span class="p">{</span>
-</span><span class='line'>    <span class="s">&#39;RedHat&#39;</span><span class="p">,</span> <span class="s">&#39;Fedora&#39;</span><span class="p">,</span> <span class="s">&#39;CentOS&#39;</span><span class="p">,</span> <span class="s">&#39;Scientific&#39;</span><span class="p">,</span> <span class="s">&#39;SLC&#39;</span><span class="p">,</span> <span class="s">&#39;Ascendos&#39;</span><span class="p">,</span> <span class="s">&#39;CloudLinux&#39;</span><span class="p">,</span> <span class="s">&#39;PSBM&#39;</span><span class="p">,</span> <span class="s">&#39;OracleLinux&#39;</span><span class="p">,</span> <span class="s">&#39;OVS&#39;</span><span class="p">,</span> <span class="s">&#39;OEL&#39;</span><span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s">&#39;RedHat&#39;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="s">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="s">&#39;debian&#39;</span><span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s">&#39;Debian&#39;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="s">&#39;SLES&#39;</span><span class="p">,</span> <span class="s">&#39;SLED&#39;</span><span class="p">,</span> <span class="s">&#39;OpenSuSE&#39;</span><span class="p">,</span> <span class="s">&#39;SuSE&#39;</span><span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s">&#39;Suse&#39;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="s">&#39;Solaris&#39;</span><span class="p">,</span> <span class="s">&#39;Nexenta&#39;</span><span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s">&#39;Solaris&#39;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="k">default</span><span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="nv">$::operatingsystem</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="puppet language-puppet" data-lang="puppet"><span class="kr">if</span> <span class="o">!</span> <span class="nv">$::osfamily</span> <span class="p">{</span>
+  <span class="kr">case</span> <span class="nv">$::operatingsystem</span> <span class="p">{</span>
+    <span class="s1">&#39;RedHat&#39;</span><span class="p">,</span> <span class="s1">&#39;Fedora&#39;</span><span class="p">,</span> <span class="s1">&#39;CentOS&#39;</span><span class="p">,</span> <span class="s1">&#39;Scientific&#39;</span><span class="p">,</span> <span class="s1">&#39;SLC&#39;</span><span class="p">,</span> <span class="s1">&#39;Ascendos&#39;</span><span class="p">,</span> <span class="s1">&#39;CloudLinux&#39;</span><span class="p">,</span> <span class="s1">&#39;PSBM&#39;</span><span class="p">,</span> <span class="s1">&#39;OracleLinux&#39;</span><span class="p">,</span> <span class="s1">&#39;OVS&#39;</span><span class="p">,</span> <span class="s1">&#39;OEL&#39;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s1">&#39;RedHat&#39;</span>
+    }
+    <span class="s1">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="s1">&#39;debian&#39;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s1">&#39;Debian&#39;</span>
+    }
+    <span class="s1">&#39;SLES&#39;</span><span class="p">,</span> <span class="s1">&#39;SLED&#39;</span><span class="p">,</span> <span class="s1">&#39;OpenSuSE&#39;</span><span class="p">,</span> <span class="s1">&#39;SuSE&#39;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s1">&#39;Suse&#39;</span>
+    }
+    <span class="s1">&#39;Solaris&#39;</span><span class="p">,</span> <span class="s1">&#39;Nexenta&#39;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="s1">&#39;Solaris&#39;</span>
+    }
+    <span class="kr">default</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nv">$osfamily</span> <span class="o">=</span> <span class="nv">$::operatingsystem</span>  
+    }
+  <span class="p">}</span>
+}
+</code></pre></div>
 <p>It defines <code>$::osfamily</code> if not available.</p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">Stefan Jenkner</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-27T11:36:00+01:00" pubdate data-updated="true">Mar 27<span>th</span>, 2013</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/puppet/'>Puppet</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/" data-via="sedden" data-counturl="http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/" >Tweet</a>
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/03/26/openwrt-ipv6-forwarding/" title="Previous Post: Forwarding IPv6 Traffic from WAN to LAN with OpenWRT">&laquo; Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</a>
-      
-      
-    </p>
-  </footer>
-</article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
 
 </div>
 
-<aside class="sidebar">
-  
-    <section>
-  <ul id="recent_posts">
-      <li class="post">
-      <a href="http://jenkner.org" alt="Home"><img src="/images/Home.png"></a>
-      <a href="http://jenkner.org/archives/" alt="Archives"><img src="/images/Calendar.png"></a>
-      
-      <a href="http://jenkner.org/atom.xml" alt="subscribe feed"><img src="/images/rss.png"></a>
-      </li>
-  </ul>
-</section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/">Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/26/openwrt-ipv6-forwarding/">Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/25/run-puppet-via-cron/">Run Puppet via Cron</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/sedden">@sedden</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'sedden',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>My Pinboard</h1>
-  <ul id="pinboard_linkroll">Fetching linkroll...</ul>
-  <p><a href="http://pinboard.in/u:jenkner">My Pinboard Bookmarks &raquo;</a></p>
-</section>
-<script type="text/javascript">
-  var linkroll = 'pinboard_linkroll'; //id target for pinboard list
-  var pinboard_user = "jenkner"; //id target for pinboard list
-  var pinboard_count = 3; //id target for pinboard list
-  (function(){
-    var pinboardInit = document.createElement('script');
-    pinboardInit.type = 'text/javascript';
-    pinboardInit.async = true;
-    pinboardInit.src = '/javascripts/pinboard.js';
-    document.getElementsByTagName('head')[0].appendChild(pinboardInit);
-  })();
-</script>
+<div>
 
 
 
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Stefan Jenkner -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'jenknerorg';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/';
-        var disqus_url = 'http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
+	<p><a href="/blog/2013/03/26/openwrt-ipv6-forwarding">« Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</a></p>
 
 
 
+	<p><a href="/blog/2014/05/01/from-octopress-jekyll">Howto migrate from Octopress to Jekyll »</a></p>
 
 
+</div>
 
 
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Stefan Jenkner<br />
+                stefan@jenkner.org
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/sedden">github.com/sedden</a><br />
+                <a href="https://twitter.com/sedden">twitter.com/sedden</a> 
+                <a href="https://alpha.app.net/sedden">alpha.app.net/sedden</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
 
-
-
-
-
-</body>
+    </body>
 </html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Howto migrate from Octopress to Jekyll</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">A developers notebook</a></h1>
+            <a class="extra" href="/">home</a>
+            <a class="extra" href="/about/">about</a>
+            <a class="extra" href="/atom.xml">feed</a>
+          </div>
+
+          <h2>Howto migrate from Octopress to Jekyll</h2>
+<p class="meta">01 May 2014</p>
+
+<div class="post">
+<p>Here are a few tipps on how to migrate from <a href="http://octopress.org">Octopress</a> to <a href="http://jekyllrb.com">Jekyll</a>. </p>
+
+<h4>Permalinks</h4>
+
+<p>Permalinks somehow defaults to <code>/mycategory/2014/05/01/title</code>.<br>
+Set <code>permalink: /blog/:year/:month/:day/:title</code> in <code>_config.yml</code> to use a fixed prefix.</p>
+
+<h4>XML-Sitemap</h4>
+
+<p>There is a plugin to generate a <code>sitemap.xml</code> - <a href="https://github.com/kinnetica/jekyll-plugins">https://github.com/kinnetica/jekyll-plugins</a></p>
+
+<h4>robots.txt</h4>
+
+<p>The <code>robots.txt</code> can easily be adopted from the Octopress installation.</p>
+
+<div class="highlight"><pre><code class="yaml"><span class="nn">---</span>
+<span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">nil</span>
+<span class="nn">---</span>
+<span class="l-Scalar-Plain">User-agent</span><span class="p-Indicator">:</span> <span class="err">*</span>
+<span class="l-Scalar-Plain">Disallow</span><span class="p-Indicator">:</span> 
+
+<span class="l-Scalar-Plain">Sitemap</span><span class="p-Indicator">:</span> <span class="p-Indicator">{{</span> <span class="nv">site.url</span> <span class="p-Indicator">}}</span><span class="l-Scalar-Plain">/sitemap.xml</span> 
+</code></pre></div>
+
+<p>Ensure that <code>url: http://yoursite.com</code> has been set in <code>_config.yml</code>.</p>
+
+<h4>Provide Atom feed</h4>
+
+<p>This <code>atom.xml</code> provides atom feed functionality.</p>
+
+<div class="highlight"><pre><code class="xml">---
+layout: nil
+---
+<span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;feed</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2005/Atom&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>{{ site.name }}<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;{{ site.url }}/atom.xml&quot;</span> <span class="na">rel=</span><span class="s">&quot;self&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;{{ site.url }}&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;updated&gt;</span>{{site.time | date_to_xmlschema }}<span class="nt">&lt;/updated&gt;</span>
+  <span class="nt">&lt;id&gt;</span>{{ site.url }}<span class="nt">&lt;/id&gt;</span>
+  <span class="nt">&lt;author&gt;</span>
+    <span class="nt">&lt;name&gt;</span>{{ site.author }}<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;email&gt;&lt;/email&gt;</span>
+  <span class="nt">&lt;/author&gt;</span>
+  {% for post in site.posts %}
+  <span class="nt">&lt;entry&gt;</span>
+    <span class="nt">&lt;title&gt;</span>{{ post.title }}<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;{{ site.url }}&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;updated&gt;</span>{{post.date | date_to_xmlschema }}<span class="nt">&lt;/updated&gt;</span>
+    <span class="nt">&lt;id&gt;</span>{{ site.url }}{{ post.url }}<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;content</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span>{{ post.content | xml_escape }}<span class="nt">&lt;/content&gt;</span>
+  <span class="nt">&lt;/entry&gt;</span>
+  {% endfor %}
+<span class="nt">&lt;/feed&gt;</span>
+</code></pre></div>
+
+<p>As mentioned above, <code>url: http://yoursite.com</code> and <code>author: Your Name</code> must be set in <code>_config.yml</code>.</p>
+
+<h4>Linking previous/next posts</h4>
+
+<p>Append this to <code>_layouts/post.html</code> for linking previous/next posts:</p>
+
+<div class="highlight"><pre><code class="html">{% if page.previous %}
+    <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ page.previous.url }}&quot;</span><span class="nt">&gt;</span>« {{ page.previous.title }}<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
+{% endif %}
+{% if page.next %}
+    <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ page.next.url }}&quot;</span><span class="nt">&gt;</span>{{ page.next.title }} »<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
+{% endif %}
+</code></pre></div>
+
+<p>Other useful variables can be found here: <a href="http://jekyllrb.com/docs/variables/">http://jekyllrb.com/docs/variables/</a>.</p>
+
+</div>
+
+<div>
+
+
+
+	<p><a href="/blog/2013/03/27/use-osfamily-instead-of-operatingsystem">« Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</a></p>
+
+
+
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Stefan Jenkner<br />
+                stefan@jenkner.org
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/sedden">github.com/sedden</a><br />
+                <a href="https://twitter.com/sedden">twitter.com/sedden</a> 
+                <a href="https://alpha.app.net/sedden">alpha.app.net/sedden</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

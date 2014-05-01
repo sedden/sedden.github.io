@@ -1,342 +1,96 @@
-
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Forwarding IPv6 Traffic from WAN to LAN with OpenWRT - Stefan Jenkner</title>
-  <meta name="author" content="Stefan Jenkner">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</title>
+        <meta name="viewport" content="width=device-width">
 
-  
-  <meta name="description" content="We&#8217;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on: Aiccu/Installing on OpenWRT
-IPv6 &hellip;">
-  
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
 
-  
-  <link rel="canonical" href="http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Stefan Jenkner" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
 
-<!-- OpenID -->
-<link rel="openid2.provider" href="https://openid.stackexchange.com/openid/provider">
-<link rel="openid2.local_id" href="https://openid.stackexchange.com/user/2cd92ecb-186e-42d2-839e-e1b36cc3d6fb">
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">A developers notebook</a></h1>
+            <a class="extra" href="/">home</a>
+            <a class="extra" href="/about/">about</a>
+            <a class="extra" href="/atom.xml">feed</a>
+          </div>
 
-  
+          <h2>Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</h2>
+<p class="meta">26 Mar 2013</p>
 
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-</hgroup>
-
-</header>
-  <!-- <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:jenkner.org" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav> -->
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
-    
-      <h1 class="entry-title">Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-26T09:58:00+01:00" pubdate data-updated="true">Mar 26<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><p>We&#8217;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:</p>
+<div class="post">
+<p>We&#39;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:</p>
 
 <ul>
 <li><a href="http://www.sixxs.net/wiki/Aiccu/Installing_on_OpenWRT">Aiccu/Installing on OpenWRT</a></li>
 <li><a href="http://wiki.openwrt.org/doc/howto/ipv6">IPv6 HowTo on Backfire and later</a></li>
 </ul>
 
-
 <p>OpenWRT Attitude Adjustment 2012.09 warning: There is an ongoing discussion regarding the AICCU init script. If you can, stay with OpenWRT Backfire 2010.3.</p>
 
-<p>I&#8217;m using SixxS tunnels to enable IPv6. My <code>/etc/config/network</code> looks like this:</p>
+<p>I&#39;m using SixxS tunnels to enable IPv6. My <code>/etc/config/network</code> looks like this:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">config interface &#39;lan&#39;
+    # ...
+    option ip6addr &#39;2001:my:subnet:prefix::1/64&#39;
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>config interface 'lan'
-</span><span class='line'>  # ...
-</span><span class='line'>  option ip6addr '2001:my:subnet:prefix::1/64'
-</span><span class='line'>
-</span><span class='line'>config 'interface' 'wan6'
-</span><span class='line'>  # ...
-</span><span class='line'>  option 'ip6addr' '2001:my:end:point::2'</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To enable that your local server is reachable via SSH (port 22) add this rule to <code>/etc/config/firewall</code> straight after the standard IPv6 rules:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>config rule
-</span><span class='line'>       option 'src' 'wan6'
-</span><span class='line'>       option 'proto' 'tcp'
-</span><span class='line'>       option 'dest_port' '22'
-</span><span class='line'>       option 'dest_ip' '2001:your:servers:global:ipv6:address:####:####'
-</span><span class='line'>       option 'family' 'ipv6'
-</span><span class='line'>       option 'target' 'ACCEPT'
-</span><span class='line'>       option 'dest' 'lan' </span></code></pre></td></tr></table></div></figure>
-
-
+config &#39;interface&#39; &#39;wan6&#39;
+    # ...
+    option &#39;ip6addr&#39; &#39;2001:my:end:point::2&#39;
+</code></pre></div>
+<p>To enable that your local server is reachable via SSH (port 22) add this rule to <code>/etc/config/firewall</code> straight after the standard IPv6 rules: </p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">config rule
+       option &#39;src&#39; &#39;wan6&#39;
+       option &#39;proto&#39; &#39;tcp&#39;
+       option &#39;dest_port&#39; &#39;22&#39;
+       option &#39;dest_ip&#39; &#39;2001:your:servers:global:ipv6:address:####:####&#39;
+       option &#39;family&#39; &#39;ipv6&#39;
+       option &#39;target&#39; &#39;ACCEPT&#39;
+       option &#39;dest&#39; &#39;lan&#39; 
+</code></pre></div>
 <p>Also make sure that you installed the <code>ip6tables</code> Package,
 then restart the firewall with <code>/etc/init.d/firewall restart</code>
 and test your setup.</p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">Stefan Jenkner</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-26T09:58:00+01:00" pubdate data-updated="true">Mar 26<span>th</span>, 2013</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/ipv6/'>IPv6</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/" data-via="sedden" data-counturl="http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/" >Tweet</a>
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/03/25/run-puppet-via-cron/" title="Previous Post: Run Puppet via Cron">&laquo; Run Puppet via Cron</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/" title="Next Post: Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact">Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
 
 </div>
 
-<aside class="sidebar">
-  
-    <section>
-  <ul id="recent_posts">
-      <li class="post">
-      <a href="http://jenkner.org" alt="Home"><img src="/images/Home.png"></a>
-      <a href="http://jenkner.org/archives/" alt="Archives"><img src="/images/Calendar.png"></a>
-      
-      <a href="http://jenkner.org/atom.xml" alt="subscribe feed"><img src="/images/rss.png"></a>
-      </li>
-  </ul>
-</section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/">Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/26/openwrt-ipv6-forwarding/">Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/25/run-puppet-via-cron/">Run Puppet via Cron</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/sedden">@sedden</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'sedden',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>My Pinboard</h1>
-  <ul id="pinboard_linkroll">Fetching linkroll...</ul>
-  <p><a href="http://pinboard.in/u:jenkner">My Pinboard Bookmarks &raquo;</a></p>
-</section>
-<script type="text/javascript">
-  var linkroll = 'pinboard_linkroll'; //id target for pinboard list
-  var pinboard_user = "jenkner"; //id target for pinboard list
-  var pinboard_count = 3; //id target for pinboard list
-  (function(){
-    var pinboardInit = document.createElement('script');
-    pinboardInit.type = 'text/javascript';
-    pinboardInit.async = true;
-    pinboardInit.src = '/javascripts/pinboard.js';
-    document.getElementsByTagName('head')[0].appendChild(pinboardInit);
-  })();
-</script>
+<div>
 
 
 
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Stefan Jenkner -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'jenknerorg';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/';
-        var disqus_url = 'http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
+	<p><a href="/blog/2013/03/25/run-puppet-via-cron">« Run Puppet via Cron</a></p>
 
 
 
+	<p><a href="/blog/2013/03/27/use-osfamily-instead-of-operatingsystem">Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact »</a></p>
 
 
+</div>
 
 
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Stefan Jenkner<br />
+                stefan@jenkner.org
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/sedden">github.com/sedden</a><br />
+                <a href="https://twitter.com/sedden">twitter.com/sedden</a> 
+                <a href="https://alpha.app.net/sedden">alpha.app.net/sedden</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
 
-
-
-
-
-</body>
+    </body>
 </html>

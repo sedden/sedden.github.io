@@ -1,43 +1,35 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://jenkner.org/blog/2013/03/25/run-puppet-via-cron/</loc>
-        <lastmod>2013-03-28T14:32:28+01:00</lastmod>
+        <loc>http://jenkner.org/blog/2013/03/25/run-puppet-via-cron</loc>
+        <lastmod>2014-05-01T16:09:57+02:00</lastmod>
     </url>
     <url>
-        <loc>http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding/</loc>
-        <lastmod>2013-03-28T14:32:28+01:00</lastmod>
+        <loc>http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding</loc>
+        <lastmod>2014-05-01T16:09:57+02:00</lastmod>
     </url>
     <url>
-        <loc>http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/</loc>
-        <lastmod>2013-03-28T14:32:28+01:00</lastmod>
+        <loc>http://jenkner.org/blog/2013/03/27/use-osfamily-instead-of-operatingsystem</loc>
+        <lastmod>2014-05-01T16:09:57+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jenkner.org/blog/2014/05/01/from-octopress-jekyll</loc>
+        <lastmod>2014-05-01T18:11:22+02:00</lastmod>
     </url>
     <url>
         <loc>http://jenkner.org/404.html</loc>
-        <lastmod>2013-03-28T14:32:28+01:00</lastmod>
+        <lastmod>2014-05-01T18:34:52+02:00</lastmod>
     </url>
     <url>
-        <loc>http://jenkner.org/archives/</loc>
-        <lastmod>2013-03-28T14:32:28+01:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jenkner.org/blog/archives/</loc>
-        <lastmod>2013-03-28T14:32:28+01:00</lastmod>
+        <loc>http://jenkner.org/about/</loc>
+        <lastmod>2014-05-01T15:32:58+02:00</lastmod>
     </url>
     <url>
         <loc>http://jenkner.org/</loc>
-        <lastmod>2013-03-28T14:32:28+01:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jenkner.org/person/</loc>
-        <lastmod>2013-03-28T14:32:28+01:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jenkner.org/projekte/</loc>
-        <lastmod>2013-03-28T14:32:28+01:00</lastmod>
+        <lastmod>2014-05-01T18:11:22+02:00</lastmod>
     </url>
     <url>
         <loc>http://jenkner.org/robots.txt</loc>
-        <lastmod>2013-03-17T00:20:52+01:00</lastmod>
+        <lastmod>2014-05-01T16:13:59+02:00</lastmod>
     </url>
 </urlset>
