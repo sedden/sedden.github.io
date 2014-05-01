@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>A developers notebook</title>
+  <title>A developer's notebook</title>
   <link href="http://jenkner.org/atom.xml" rel="self"/>
   <link href="http://jenkner.org"/>
-  <updated>2014-05-01T19:02:49+02:00</updated>
+  <updated>2014-05-01T19:27:01+02:00</updated>
   <id>http://jenkner.org</id>
   <author>
     <name>Stefan Jenkner</name>
@@ -14,7 +14,7 @@
     <title>Howto migrate from Octopress to Jekyll</title>
     <link href="http://jenkner.org"/>
     <updated>2014-05-01T16:11:52+02:00</updated>
-    <id>http://jenkner.org/blog/2014/05/01/from-octopress-jekyll</id>
+    <id>http://jenkner.org/blog/2014/05/01/from-octopress-to-jekyll</id>
     <content type="html">&lt;p&gt;Here are a few tipps on how to migrate from &lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt; to &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;. &lt;/p&gt;
 
 &lt;h4&gt;Permalinks&lt;/h4&gt;
