@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Fabric, duplicity, AWS credentials and System Keyring</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+        <!-- Favicon -->
+        <link href="/favicon.png" rel="icon">
+
+        <!-- OpenID -->
+        <link rel="openid2.provider" href="https://openid.stackexchange.com/openid/provider">
+        <link rel="openid2.local_id" href="https://openid.stackexchange.com/user/2cd92ecb-186e-42d2-839e-e1b36cc3d6fb">
+
+        <!-- Feed -->
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml"/>
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">A developer's notebook</a></h1>
+            <a class="extra" href="/">home</a>
+            <a class="extra" href="/about/">about</a>
+            <a class="extra" href="/atom.xml">feed</a>
+          </div>
+
+          <h2>Fabric, duplicity, AWS credentials and System Keyring</h2>
+<p class="meta">11 Jun 2014</p>
+
+<div class="post">
+<p>I still use <a href="http://www.fabfile.org/">Fabric</a> for some deployment and systems administration tasks.
+Passing secrets or credentials is commonly part of those tasks and it brings up some issues that has been on my mind for quite a long time:</p>
+
+<ul>
+<li>Fabric&#39;s configuration file <code>fabfile.py</code> is under version control</li>
+<li>credentials must be kept out of version control</li>
+<li>credentials must not be stored in plain text on any computer</li>
+</ul>
+
+<p>Setting environment variables is commonly required when dealing with <a href="http://aws.amazon.com/">AWS</a>.
+<a href="http://duplicity.nongu.org/">Duplicity</a> (my backup tool of choice) makes use of them, especially when using the Amazon S3 backend.
+The affected variables are <code>AWS_ACCESS_KEY_ID</code>, <code>AWS_SECRET_ACCESS_KEY</code> and <code>PASSPHRASE</code> (for symmetric encryption via GPG).
+So the goal was to keep those credentials out of version control, retrieve them from the system keyring service and set the environment variables before command execution.</p>
+
+<h4>A simple backup task</h4>
+
+<p>This simple task creates a backup with <a href="http://duplicity.nongu.org/">duplicity</a> using it&#39;s S3 backend:</p>
+
+<div class="highlight"><pre><code class="python"><span class="nd">@task</span>
+<span class="nd">@hosts</span><span class="p">(</span><span class="s">&#39;admin@host1.local&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">backup_host1</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Backup host1.local to S3 via duplicity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base_url</span> <span class="o">=</span> <span class="s">&#39;s3://s3-eu-west-1.amazonaws.com/duplicity-host1.local&#39;</span>
+    <span class="k">with</span> <span class="n">duplicity_env</span><span class="p">(</span><span class="s">&#39;host1.local&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">local_dir</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;/etc&#39;</span><span class="p">,</span> <span class="s">&#39;/home&#39;</span><span class="p">,</span> <span class="s">&#39;/var/www&#39;</span><span class="p">]:</span>
+            <span class="n">remote_url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s">&#39;/&#39;</span> <span class="o">+</span> <span class="n">local_dir</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">,</span><span class="s">&#39;_&#39;</span><span class="p">)</span>
+            <span class="n">sudo</span><span class="p">(</span><span class="s">&quot;duplicity remove-older-than 60D -v3 --force </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">remote_url</span><span class="p">))</span>
+            <span class="n">sudo</span><span class="p">(</span><span class="s">&quot;duplicity --full-if-older-than 30D -v3 </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_dir</span><span class="p">,</span> <span class="n">remote_url</span><span class="p">))</span></code></pre></div>
+
+<p>The task makes use of a custom <a href="http://docs.fabfile.org/en/latest/api/core/context_managers.html">Context Manager</a> <code>duplicity_env</code> which will be explained below.</p>
+
+<h4>Context Managers to the Rescue!</h4>
+
+<p><a href="http://docs.fabfile.org/en/latest/api/core/context_managers.html">Context Managers</a> for use with Python&#39;s <code>with</code> statement are one of my favorite Fabric-features.
+The <code>with</code> statement ensures the execution of a specific setup and teardown block, regardless of whether the intended block fails or not. Classes only need to implement <code>__enter__()</code> and <code>__exit__()</code>.
+As Fabric already comes along with it&#39;s own context manager for setting environment variables (called <code>shell_env</code>), I decided to wrap the (internal) <code>_setenv</code> method, instead of starting to implement the context manager as a class.
+The <a href="https://pypi.python.org/pypi/keyring">python keyring library</a> enables easy access to the system keyring service.
+It works pretty well with OS X Keychain and GNOME Keyring, but should also work with the Windows Credential Vault (untestet by me).</p>
+
+<div class="highlight"><pre><code class="python"><span class="k">def</span> <span class="nf">duplicity_env</span><span class="p">(</span><span class="n">hostname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set shell environment variables for duplicity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">fabric.context_managers</span> <span class="kn">import</span> <span class="n">_setenv</span>
+    <span class="kn">import</span> <span class="nn">keyring</span><span class="o">,</span> <span class="nn">sys</span>
+    <span class="n">kw</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">to_env</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;Duplicity&#39;</span><span class="p">:</span> <span class="s">&#39;PASSPHRASE&#39;</span><span class="p">,</span>
+        <span class="s">&#39;Access Key Id&#39;</span><span class="p">:</span> <span class="s">&#39;AWS_ACCESS_KEY_ID&#39;</span><span class="p">,</span>
+        <span class="s">&#39;Secret Access Key&#39;</span><span class="p">:</span> <span class="s">&#39;AWS_SECRET_ACCESS_KEY&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">to_env</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">secret</span> <span class="o">=</span> <span class="n">keyring</span><span class="o">.</span><span class="n">get_password</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">secret</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;&quot;&quot;Run: python -c </span><span class="se">\&quot;</span><span class="s">import keyring;</span>
+<span class="s">            keyring.set_password(&#39;</span><span class="si">%s</span><span class="s">&#39;, &#39;</span><span class="si">%s</span><span class="s">&#39;, &#39;PASSWORD&#39;)</span><span class="se">\&quot;</span><span class="s">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">kw</span><span class="p">[</span><span class="n">to_env</span><span class="p">[</span><span class="n">key</span><span class="p">]]</span> <span class="o">=</span> <span class="n">secret</span>
+    <span class="k">return</span> <span class="n">_setenv</span><span class="p">({</span><span class="s">&#39;shell_env&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">})</span></code></pre></div>
+
+<p>The code above defines a dictionary <code>to_env</code> that maps keychain identifiers to environment variables.
+If the keyring does not contain the entry, it give some hints on how to add it.</p>
+
+<h4>OS X Keychain</h4>
+
+<p>The <a href="https://pypi.python.org/pypi/keyring">keyring library</a> wraps OS X keychain entries like this:</p>
+
+<ul>
+<li>Field <em>Name</em> is the display name and can be changed</li>
+<li>Field <em>Account</em> matches <code>username</code>, the second argument of <code>keyring.get_password(...)</code></li>
+<li>Field <em>Where</em> matches <code>servicename</code>, the first argument of <code>keyring.get_password(...)</code></li>
+</ul>
+
+<p>OS X may also bring up a popup to ask for keychain access.</p>
+
+</div>
+
+<div>
+
+
+
+	<p><a href="/blog/2014/05/02/pomodoro-timesheet">« Time tracking with the Pomodoro.app</a></p>
+
+
+
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Stefan Jenkner<br />
+                stefan@jenkner.org
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/sedden">github.com/sedden</a><br />
+                <a href="https://twitter.com/sedden">twitter.com/sedden</a> 
+                <a href="https://alpha.app.net/sedden">alpha.app.net/sedden</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

@@ -3,12 +3,97 @@
   <title>A developer's notebook</title>
   <link href="http://jenkner.org/atom.xml" rel="self"/>
   <link href="http://jenkner.org"/>
-  <updated>2014-06-10T06:15:04+02:00</updated>
+  <updated>2014-06-11T01:07:54+02:00</updated>
   <id>http://jenkner.org</id>
   <author>
     <name>Stefan Jenkner</name>
     <email></email>
   </author>
+  
+  <entry>
+    <title>Fabric, duplicity, AWS credentials and System Keyring</title>
+    <link href="http://jenkner.org"/>
+    <updated>2014-06-11T02:38:28+02:00</updated>
+    <id>http://jenkner.org/blog/2014/06/11/fabric-keyring-duplicity-aws</id>
+    <content type="html">&lt;p&gt;I still use &lt;a href=&quot;http://www.fabfile.org/&quot;&gt;Fabric&lt;/a&gt; for some deployment and systems administration tasks.
+Passing secrets or credentials is commonly part of those tasks and it brings up some issues that has been on my mind for quite a long time:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fabric&amp;#39;s configuration file &lt;code&gt;fabfile.py&lt;/code&gt; is under version control&lt;/li&gt;
+&lt;li&gt;credentials must be kept out of version control&lt;/li&gt;
+&lt;li&gt;credentials must not be stored in plain text on any computer&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Setting environment variables is commonly required when dealing with &lt;a href=&quot;http://aws.amazon.com/&quot;&gt;AWS&lt;/a&gt;.
+&lt;a href=&quot;http://duplicity.nongu.org/&quot;&gt;Duplicity&lt;/a&gt; (my backup tool of choice) makes use of them, especially when using the Amazon S3 backend.
+The affected variables are &lt;code&gt;AWS_ACCESS_KEY_ID&lt;/code&gt;, &lt;code&gt;AWS_SECRET_ACCESS_KEY&lt;/code&gt; and &lt;code&gt;PASSPHRASE&lt;/code&gt; (for symmetric encryption via GPG).
+So the goal was to keep those credentials out of version control, retrieve them from the system keyring service and set the environment variables before command execution.&lt;/p&gt;
+
+&lt;h4&gt;A simple backup task&lt;/h4&gt;
+
+&lt;p&gt;This simple task creates a backup with &lt;a href=&quot;http://duplicity.nongu.org/&quot;&gt;duplicity&lt;/a&gt; using it&amp;#39;s S3 backend:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@task&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@hosts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;admin@host1.local&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;backup_host1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    Backup host1.local to S3 via duplicity.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;base_url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;s3://s3-eu-west-1.amazonaws.com/duplicity-host1.local&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;duplicity_env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;host1.local&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;local_dir&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;/etc&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;/home&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;/var/www&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;remote_url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base_url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;local_dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;_&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;duplicity remove-older-than 60D -v3 --force &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remote_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;duplicity --full-if-older-than 30D -v3 &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;local_dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remote_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The task makes use of a custom &lt;a href=&quot;http://docs.fabfile.org/en/latest/api/core/context_managers.html&quot;&gt;Context Manager&lt;/a&gt; &lt;code&gt;duplicity_env&lt;/code&gt; which will be explained below.&lt;/p&gt;
+
+&lt;h4&gt;Context Managers to the Rescue!&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://docs.fabfile.org/en/latest/api/core/context_managers.html&quot;&gt;Context Managers&lt;/a&gt; for use with Python&amp;#39;s &lt;code&gt;with&lt;/code&gt; statement are one of my favorite Fabric-features.
+The &lt;code&gt;with&lt;/code&gt; statement ensures the execution of a specific setup and teardown block, regardless of whether the intended block fails or not. Classes only need to implement &lt;code&gt;__enter__()&lt;/code&gt; and &lt;code&gt;__exit__()&lt;/code&gt;.
+As Fabric already comes along with it&amp;#39;s own context manager for setting environment variables (called &lt;code&gt;shell_env&lt;/code&gt;), I decided to wrap the (internal) &lt;code&gt;_setenv&lt;/code&gt; method, instead of starting to implement the context manager as a class.
+The &lt;a href=&quot;https://pypi.python.org/pypi/keyring&quot;&gt;python keyring library&lt;/a&gt; enables easy access to the system keyring service.
+It works pretty well with OS X Keychain and GNOME Keyring, but should also work with the Windows Credential Vault (untestet by me).&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;duplicity_env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    Set shell environment variables for duplicity.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;fabric.context_managers&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_setenv&lt;/span&gt;
+    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;keyring&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;to_env&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&amp;#39;Duplicity&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;PASSPHRASE&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&amp;#39;Access Key Id&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;AWS_ACCESS_KEY_ID&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&amp;#39;Secret Access Key&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;AWS_SECRET_ACCESS_KEY&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;secret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keyring&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;secret&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&amp;quot;Run: python -c &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;import keyring;&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;            keyring.set_password(&amp;#39;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;, &amp;#39;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;, &amp;#39;PASSWORD&amp;#39;)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;secret&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_setenv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;shell_env&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The code above defines a dictionary &lt;code&gt;to_env&lt;/code&gt; that maps keychain identifiers to environment variables.
+If the keyring does not contain the entry, it give some hints on how to add it.&lt;/p&gt;
+
+&lt;h4&gt;OS X Keychain&lt;/h4&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://pypi.python.org/pypi/keyring&quot;&gt;keyring library&lt;/a&gt; wraps OS X keychain entries like this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Field &lt;em&gt;Name&lt;/em&gt; is the display name and can be changed&lt;/li&gt;
+&lt;li&gt;Field &lt;em&gt;Account&lt;/em&gt; matches &lt;code&gt;username&lt;/code&gt;, the second argument of &lt;code&gt;keyring.get_password(...)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Field &lt;em&gt;Where&lt;/em&gt; matches &lt;code&gt;servicename&lt;/code&gt;, the first argument of &lt;code&gt;keyring.get_password(...)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;OS X may also bring up a popup to ask for keychain access.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Time tracking with the Pomodoro.app</title>
