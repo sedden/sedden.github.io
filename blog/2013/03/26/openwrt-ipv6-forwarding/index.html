@@ -47,7 +47,7 @@
 <p>OpenWRT Attitude Adjustment 2012.09 warning: There is an ongoing discussion regarding the AICCU init script. If you can, stay with OpenWRT Backfire 2010.3.</p>
 
 <p>I&#39;m using SixxS tunnels to enable IPv6. My <code>/etc/config/network</code> looks like this:</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">config interface &#39;lan&#39;
+<div class="highlight"><pre><code class="language-text" data-lang="text">config interface &#39;lan&#39;
     # ...
     option ip6addr &#39;2001:my:subnet:prefix::1/64&#39;
 
@@ -56,7 +56,7 @@ config &#39;interface&#39; &#39;wan6&#39;
     option &#39;ip6addr&#39; &#39;2001:my:end:point::2&#39;
 </code></pre></div>
 <p>To enable that your local server is reachable via SSH (port 22) add this rule to <code>/etc/config/firewall</code> straight after the standard IPv6 rules: </p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">config rule
+<div class="highlight"><pre><code class="language-text" data-lang="text">config rule
        option &#39;src&#39; &#39;wan6&#39;
        option &#39;proto&#39; &#39;tcp&#39;
        option &#39;dest_port&#39; &#39;22&#39;

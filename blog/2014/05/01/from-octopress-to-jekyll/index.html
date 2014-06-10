@@ -58,8 +58,7 @@ Set <code>permalink: /blog/:year/:month/:day/:title</code> in <code>_config.yml<
 <span class="l-Scalar-Plain">User-agent</span><span class="p-Indicator">:</span> <span class="err">*</span>
 <span class="l-Scalar-Plain">Disallow</span><span class="p-Indicator">:</span> 
 
-<span class="l-Scalar-Plain">Sitemap</span><span class="p-Indicator">:</span> <span class="p-Indicator">{{</span> <span class="nv">site.url</span> <span class="p-Indicator">}}</span><span class="l-Scalar-Plain">/sitemap.xml</span> 
-</code></pre></div>
+<span class="l-Scalar-Plain">Sitemap</span><span class="p-Indicator">:</span> <span class="p-Indicator">{{</span> <span class="nv">site.url</span> <span class="p-Indicator">}}</span><span class="l-Scalar-Plain">/sitemap.xml</span></code></pre></div>
 
 <p>Ensure that <code>url: http://yoursite.com</code> has been set in <code>_config.yml</code>.</p>
 
@@ -90,8 +89,7 @@ layout: nil
     <span class="nt">&lt;content</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span>{{ post.content | xml_escape }}<span class="nt">&lt;/content&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>
   {% endfor %}
-<span class="nt">&lt;/feed&gt;</span>
-</code></pre></div>
+<span class="nt">&lt;/feed&gt;</span></code></pre></div>
 
 <p>As mentioned above, <code>url: http://yoursite.com</code> and <code>author: Your Name</code> must be set in <code>_config.yml</code>.</p>
 
@@ -104,8 +102,7 @@ layout: nil
 {% endif %}
 {% if page.next %}
     <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ page.next.url }}&quot;</span><span class="nt">&gt;</span>{{ page.next.title }} »<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
-{% endif %}
-</code></pre></div>
+{% endif %}</code></pre></div>
 
 <p>Other useful variables can be found here: <a href="http://jekyllrb.com/docs/variables/">http://jekyllrb.com/docs/variables/</a>.</p>
 

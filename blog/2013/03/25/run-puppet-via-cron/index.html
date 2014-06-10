@@ -46,18 +46,18 @@
 </ul>
 
 <p>A common workaround is to run the Puppet agent via Cron. Take a look at the <a href="http://projects.puppetlabs.com/projects/1/wiki/Cron_Patterns">Cron Patterns</a> Wiki page, but don&#39;t get too confused. Until Puppet 2.6, simply run: </p>
-<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">/usr/sbin/puppetd --no-daemonize --onetime
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">/usr/sbin/puppetd --no-daemonize --onetime
 </code></pre></div>
 <p>With Puppet 2.7 it slightly changed to:</p>
-<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">/usr/bin/puppet agent --no-daemonize --onetime
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">/usr/bin/puppet agent --no-daemonize --onetime
 </code></pre></div>
 <p>Furthermore you won&#39;t run all the agents at the same time. So the next step is to plan the execution time. To run Puppet every 30 minutes, use <code>fqdn_rand(30)</code> to generate a value between 0 and 29 for the first, and add 30 more to get the second point of time:</p>
-<div class="highlight"><pre><code class="puppet language-puppet" data-lang="puppet"><span class="nv">$min1</span> <span class="o">=</span> <span class="nf">fqdn_rand</span><span class="p">(</span><span class="m">30</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-puppet" data-lang="puppet"><span class="nv">$min1</span> <span class="o">=</span> <span class="nf">fqdn_rand</span><span class="p">(</span><span class="m">30</span><span class="p">)</span>
 <span class="nv">$min2</span> <span class="o">=</span> <span class="nv">$min1</span> <span class="o">+</span> <span class="m">30</span>
 </code></pre></div>
 <p>The <code>fqdn_rand</code> function will generate the same value each time you call it, dependent on the FQDN of the actual host.
 Finally, the file resource will look like this: </p>
-<div class="highlight"><pre><code class="puppet language-puppet" data-lang="puppet"><span class="nc">file</span> <span class="p">{</span> <span class="s1">&#39;/etc/cron.d/puppet-cron&#39;</span><span class="p">:</span>
+<div class="highlight"><pre><code class="language-puppet" data-lang="puppet"><span class="nc">file</span> <span class="p">{</span> <span class="s1">&#39;/etc/cron.d/puppet-cron&#39;</span><span class="p">:</span>
   <span class="nt">ensure</span>  <span class="p">=&gt;</span> <span class="s1">&#39;present&#39;</span><span class="p">,</span>
   <span class="nt">content</span> <span class="p">=&gt;</span> <span class="s2">&quot;$min1,$min2 * * * * root /usr/bin/puppet agent --no-daemonize --onetime</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
   <span class="nt">mode</span>    <span class="p">=&gt;</span> <span class="s1">&#39;0644&#39;</span><span class="p">,</span>
