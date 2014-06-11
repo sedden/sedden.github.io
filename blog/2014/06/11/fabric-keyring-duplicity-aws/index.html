@@ -90,14 +90,14 @@ It works pretty well with OS X Keychain and GNOME Keyring, but should also work 
         <span class="s">&#39;Access Key Id&#39;</span><span class="p">:</span> <span class="s">&#39;AWS_ACCESS_KEY_ID&#39;</span><span class="p">,</span>
         <span class="s">&#39;Secret Access Key&#39;</span><span class="p">:</span> <span class="s">&#39;AWS_SECRET_ACCESS_KEY&#39;</span><span class="p">,</span>
     <span class="p">}</span>
-    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">to_env</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">var</span> <span class="ow">in</span> <span class="n">to_env</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">secret</span> <span class="o">=</span> <span class="n">keyring</span><span class="o">.</span><span class="n">get_password</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">secret</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">&quot;&quot;&quot;Run: python -c </span><span class="se">\&quot;</span><span class="s">import keyring;</span>
 <span class="s">            keyring.set_password(&#39;</span><span class="si">%s</span><span class="s">&#39;, &#39;</span><span class="si">%s</span><span class="s">&#39;, &#39;PASSWORD&#39;)</span><span class="se">\&quot;</span><span class="s">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">kw</span><span class="p">[</span><span class="n">to_env</span><span class="p">[</span><span class="n">key</span><span class="p">]]</span> <span class="o">=</span> <span class="n">secret</span>
+            <span class="n">kw</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">secret</span>
     <span class="k">return</span> <span class="n">_setenv</span><span class="p">({</span><span class="s">&#39;shell_env&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">})</span></code></pre></div>
 
 <p>The code above defines a dictionary <code>to_env</code> that maps keychain identifiers to environment variables.
