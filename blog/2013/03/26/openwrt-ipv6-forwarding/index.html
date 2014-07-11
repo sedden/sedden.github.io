@@ -22,6 +22,19 @@
         <!-- Feed -->
         <link type="application/atom+xml" rel="alternate" href="/atom.xml"/>
 
+		<!-- Flattr -->
+		<script type="text/javascript">
+        /* <![CDATA[ */
+		(function() {
+			var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+			s.type = 'text/javascript';
+			s.async = true;
+			s.src = '//api.flattr.com/js/0.6/load.js?mode=auto&button=compact&uid=test&category=text';
+			t.parentNode.insertBefore(s, t);
+		})();
+		/* ]]> */
+		</script>
+
     </head>
     <body>
 
@@ -69,6 +82,14 @@ config &#39;interface&#39; &#39;wan6&#39;
 then restart the firewall with <code>/etc/init.d/firewall restart</code>
 and test your setup.</p>
 
+</div>
+
+<div>
+    <a class="FlattrButton" style="display:none;"
+        title="Forwarding IPv6 Traffic from WAN to LAN with OpenWRT"
+        rel="flattr;uid:sedden;popout:0;category:text"
+        href="http://jenkner.org/blog/2013/03/26/openwrt-ipv6-forwarding">
+    </a>
 </div>
 
 <div>
