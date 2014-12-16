@@ -68,7 +68,7 @@ So the goal was to keep those credentials out of version control, retrieve them 
 
 <p>This simple task creates a backup with <a href="http://duplicity.nongu.org/">duplicity</a> using it&#39;s S3 backend:</p>
 
-<div class="highlight"><pre><code class="python"><span class="nd">@task</span>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nd">@task</span>
 <span class="nd">@hosts</span><span class="p">(</span><span class="s">&#39;admin@host1.local&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">backup_host1</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -91,7 +91,7 @@ As Fabric already comes along with it&#39;s own context manager for setting envi
 The <a href="https://pypi.python.org/pypi/keyring">python keyring library</a> enables easy access to the system keyring service.
 It works pretty well with OS X Keychain and GNOME Keyring, but should also work with the Windows Credential Vault (untestet by me).</p>
 
-<div class="highlight"><pre><code class="python"><span class="k">def</span> <span class="nf">duplicity_env</span><span class="p">(</span><span class="n">hostname</span><span class="p">):</span>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">duplicity_env</span><span class="p">(</span><span class="n">hostname</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Set shell environment variables for duplicity.</span>
 <span class="sd">    &quot;&quot;&quot;</span>

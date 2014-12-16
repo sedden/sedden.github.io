@@ -65,7 +65,7 @@ Set <code>permalink: /blog/:year/:month/:day/:title</code> in <code>_config.yml<
 
 <p>The <code>robots.txt</code> can easily be adopted from the Octopress installation.</p>
 
-<div class="highlight"><pre><code class="yaml"><span class="nn">---</span>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
 <span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">nil</span>
 <span class="nn">---</span>
 <span class="l-Scalar-Plain">User-agent</span><span class="p-Indicator">:</span> <span class="err">*</span>
@@ -79,7 +79,7 @@ Set <code>permalink: /blog/:year/:month/:day/:title</code> in <code>_config.yml<
 
 <p>This <code>atom.xml</code> provides atom feed functionality.</p>
 
-<div class="highlight"><pre><code class="xml">---
+<div class="highlight"><pre><code class="language-xml" data-lang="xml">---
 layout: nil
 ---
 <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
@@ -110,7 +110,7 @@ layout: nil
 
 <p>Append this to <code>_layouts/post.html</code> for linking previous/next posts:</p>
 
-<div class="highlight"><pre><code class="html">{% if page.previous %}
+<div class="highlight"><pre><code class="language-html" data-lang="html">{% if page.previous %}
     <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ page.previous.url }}&quot;</span><span class="nt">&gt;</span>« {{ page.previous.title }}<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
 {% endif %}
 {% if page.next %}
