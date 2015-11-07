@@ -3,7 +3,7 @@
   <title>A developer's notebook</title>
   <link href="http://sedden.github.io/atom.xml" rel="self"/>
   <link href="http://sedden.github.io"/>
-  <updated>2015-11-07T01:00:14+01:00</updated>
+  <updated>2015-11-07T11:59:04+00:00</updated>
   <id>http://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
@@ -13,7 +13,7 @@
   <entry>
     <title>Fabric, duplicity, AWS credentials and System Keyring</title>
     <link href="http://sedden.github.io"/>
-    <updated>2014-06-11T02:38:28+02:00</updated>
+    <updated>2014-06-11T00:38:28+00:00</updated>
     <id>http://sedden.github.io/blog/2014/06/11/fabric-keyring-duplicity-aws</id>
     <content type="html">&lt;p&gt;I still use &lt;a href=&quot;http://www.fabfile.org/&quot;&gt;Fabric&lt;/a&gt; for some deployment and systems administration tasks.
 Passing secrets or credentials is commonly part of those tasks and it brings up some issues that has been on my mind for quite a long time:&lt;/p&gt;
@@ -98,7 +98,7 @@ If the keyring does not contain the entry, it give some hints on how to add it.&
   <entry>
     <title>Time tracking with the Pomodoro.app</title>
     <link href="http://sedden.github.io"/>
-    <updated>2014-05-02T09:11:11+02:00</updated>
+    <updated>2014-05-02T07:11:11+00:00</updated>
     <id>http://sedden.github.io/blog/2014/05/02/pomodoro-timesheet</id>
     <content type="html">&lt;p&gt;I&amp;#39;m a huge fan of the &lt;a href=&quot;https://github.com/ugol/pomodoro&quot;&gt;Pomodoro.app&lt;/a&gt;. 
 It helps me to focus on my work and it controlls my messenger status (Adium) to tell my colleagues when I&amp;#39;m busy.
@@ -171,7 +171,7 @@ It automatically detects changes on the database file and refreshes the current 
   <entry>
     <title>Howto migrate from Octopress to Jekyll</title>
     <link href="http://sedden.github.io"/>
-    <updated>2014-05-01T16:11:52+02:00</updated>
+    <updated>2014-05-01T14:11:52+00:00</updated>
     <id>http://sedden.github.io/blog/2014/05/01/from-octopress-to-jekyll</id>
     <content type="html">&lt;p&gt;Here are a few tipps on how to migrate from &lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt; to &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;. &lt;/p&gt;
 
@@ -247,7 +247,7 @@ layout: nil
   <entry>
     <title>Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</title>
     <link href="http://sedden.github.io"/>
-    <updated>2013-03-27T11:36:00+01:00</updated>
+    <updated>2013-03-27T11:36:00+00:00</updated>
     <id>http://sedden.github.io/blog/2013/03/27/use-osfamily-instead-of-operatingsystem</id>
     <content type="html">&lt;p&gt;Once you read the &lt;a href=&quot;http://docs.puppetlabs.com/guides/style_guide.html&quot;&gt;Puppet Style Guide&lt;/a&gt;, you should know how to write well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
 Well, I think there are lots of other things you &lt;del&gt;better&lt;/del&gt; should care. 
@@ -319,7 +319,7 @@ But my experience is that most people are using the EPEL repositories anyway. So
   <entry>
     <title>Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</title>
     <link href="http://sedden.github.io"/>
-    <updated>2013-03-26T09:58:00+01:00</updated>
+    <updated>2013-03-26T09:58:00+00:00</updated>
     <id>http://sedden.github.io/blog/2013/03/26/openwrt-ipv6-forwarding</id>
     <content type="html">&lt;p&gt;We&amp;#39;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:&lt;/p&gt;
 
@@ -358,7 +358,7 @@ and test your setup.&lt;/p&gt;
   <entry>
     <title>Run Puppet via Cron</title>
     <link href="http://sedden.github.io"/>
-    <updated>2013-03-25T13:37:00+01:00</updated>
+    <updated>2013-03-25T13:37:00+00:00</updated>
     <id>http://sedden.github.io/blog/2013/03/25/run-puppet-via-cron</id>
     <content type="html">&lt;p&gt;While deploying &lt;a href=&quot;http://puppetlabs.com&quot;&gt;Puppet&lt;/a&gt; on several Ubuntu machines, everything was fine until Nagios started sending out warnings about high memory and high CPU usage, caused by the Puppet agent process. Related Bug-reports are:&lt;/p&gt;
 
@@ -369,14 +369,25 @@ and test your setup.&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;A common workaround is to run the Puppet agent via Cron. Take a look at the &lt;a href=&quot;http://projects.puppetlabs.com/projects/1/wiki/Cron_Patterns&quot;&gt;Cron Patterns&lt;/a&gt; Wiki page, but don&amp;#39;t get too confused. Until Puppet 2.6, simply run: &lt;/p&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;/usr/sbin/puppetd --no-daemonize --onetime
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;With Puppet 2.7 it slightly changed to:&lt;/p&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;/usr/bin/puppet agent --no-daemonize --onetime
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Furthermore you won&amp;#39;t run all the agents at the same time. So the next step is to plan the execution time. To run Puppet every 30 minutes, use &lt;code&gt;fqdn_rand(30)&lt;/code&gt; to generate a value between 0 and 29 for the first, and add 30 more to get the second point of time:&lt;/p&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-puppet&quot; data-lang=&quot;puppet&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$min1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fqdn_rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$min2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$min1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The &lt;code&gt;fqdn_rand&lt;/code&gt; function will generate the same value each time you call it, dependent on the FQDN of the actual host.
 Finally, the file resource will look like this: &lt;/p&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-puppet&quot; data-lang=&quot;puppet&quot;&gt;&lt;span class=&quot;k&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;/etc/cron.d/puppet-cron&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ensure&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;present&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;$min1,$min2 * * * * root /usr/bin/puppet agent --no-daemonize --onetime\n&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;mode&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;0644&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;owner&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;root&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;group&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;root&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;As a side effect, this will solve another problem for you.
 Have you ever tried to reconfigure Puppet via Puppet?
 Currently there is no way telling Puppet to stop, re-read it&amp;#39;s configuration and start again (e.g. via sending the SIGHUP signal). This related Bug-report was added two years ago:&lt;/p&gt;
