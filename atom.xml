@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>A developer's notebook</title>
-  <link href="http://sedden.github.io/atom.xml" rel="self"/>
-  <link href="http://sedden.github.io"/>
-  <updated>2015-11-07T11:59:04+00:00</updated>
-  <id>http://sedden.github.io</id>
+  <link href="https://sedden.github.io/atom.xml" rel="self"/>
+  <link href="https://sedden.github.io"/>
+  <updated>2015-11-07T12:05:05+00:00</updated>
+  <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
     <email></email>
@@ -12,9 +12,9 @@
   
   <entry>
     <title>Fabric, duplicity, AWS credentials and System Keyring</title>
-    <link href="http://sedden.github.io"/>
+    <link href="https://sedden.github.io"/>
     <updated>2014-06-11T00:38:28+00:00</updated>
-    <id>http://sedden.github.io/blog/2014/06/11/fabric-keyring-duplicity-aws</id>
+    <id>https://sedden.github.io/blog/2014/06/11/fabric-keyring-duplicity-aws</id>
     <content type="html">&lt;p&gt;I still use &lt;a href=&quot;http://www.fabfile.org/&quot;&gt;Fabric&lt;/a&gt; for some deployment and systems administration tasks.
 Passing secrets or credentials is commonly part of those tasks and it brings up some issues that has been on my mind for quite a long time:&lt;/p&gt;
 
@@ -97,9 +97,9 @@ If the keyring does not contain the entry, it give some hints on how to add it.&
   
   <entry>
     <title>Time tracking with the Pomodoro.app</title>
-    <link href="http://sedden.github.io"/>
+    <link href="https://sedden.github.io"/>
     <updated>2014-05-02T07:11:11+00:00</updated>
-    <id>http://sedden.github.io/blog/2014/05/02/pomodoro-timesheet</id>
+    <id>https://sedden.github.io/blog/2014/05/02/pomodoro-timesheet</id>
     <content type="html">&lt;p&gt;I&amp;#39;m a huge fan of the &lt;a href=&quot;https://github.com/ugol/pomodoro&quot;&gt;Pomodoro.app&lt;/a&gt;. 
 It helps me to focus on my work and it controlls my messenger status (Adium) to tell my colleagues when I&amp;#39;m busy.
 Now I even use it to log my activies and put them into a SQLite database for reporting. &lt;/p&gt;
@@ -170,9 +170,9 @@ It automatically detects changes on the database file and refreshes the current 
   
   <entry>
     <title>Howto migrate from Octopress to Jekyll</title>
-    <link href="http://sedden.github.io"/>
+    <link href="https://sedden.github.io"/>
     <updated>2014-05-01T14:11:52+00:00</updated>
-    <id>http://sedden.github.io/blog/2014/05/01/from-octopress-to-jekyll</id>
+    <id>https://sedden.github.io/blog/2014/05/01/from-octopress-to-jekyll</id>
     <content type="html">&lt;p&gt;Here are a few tipps on how to migrate from &lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt; to &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;. &lt;/p&gt;
 
 &lt;h4&gt;Permalinks&lt;/h4&gt;
@@ -246,9 +246,9 @@ layout: nil
   
   <entry>
     <title>Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</title>
-    <link href="http://sedden.github.io"/>
+    <link href="https://sedden.github.io"/>
     <updated>2013-03-27T11:36:00+00:00</updated>
-    <id>http://sedden.github.io/blog/2013/03/27/use-osfamily-instead-of-operatingsystem</id>
+    <id>https://sedden.github.io/blog/2013/03/27/use-osfamily-instead-of-operatingsystem</id>
     <content type="html">&lt;p&gt;Once you read the &lt;a href=&quot;http://docs.puppetlabs.com/guides/style_guide.html&quot;&gt;Puppet Style Guide&lt;/a&gt;, you should know how to write well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
 Well, I think there are lots of other things you &lt;del&gt;better&lt;/del&gt; should care. 
 For this time, it&amp;#39;s about when to use &lt;code&gt;$::osfamily&lt;/code&gt; and when better to stay with the &lt;code&gt;$::operatingsystem&lt;/code&gt; fact.&lt;/p&gt;
@@ -318,9 +318,9 @@ But my experience is that most people are using the EPEL repositories anyway. So
   
   <entry>
     <title>Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</title>
-    <link href="http://sedden.github.io"/>
+    <link href="https://sedden.github.io"/>
     <updated>2013-03-26T09:58:00+00:00</updated>
-    <id>http://sedden.github.io/blog/2013/03/26/openwrt-ipv6-forwarding</id>
+    <id>https://sedden.github.io/blog/2013/03/26/openwrt-ipv6-forwarding</id>
     <content type="html">&lt;p&gt;We&amp;#39;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -357,9 +357,9 @@ and test your setup.&lt;/p&gt;
   
   <entry>
     <title>Run Puppet via Cron</title>
-    <link href="http://sedden.github.io"/>
+    <link href="https://sedden.github.io"/>
     <updated>2013-03-25T13:37:00+00:00</updated>
-    <id>http://sedden.github.io/blog/2013/03/25/run-puppet-via-cron</id>
+    <id>https://sedden.github.io/blog/2013/03/25/run-puppet-via-cron</id>
     <content type="html">&lt;p&gt;While deploying &lt;a href=&quot;http://puppetlabs.com&quot;&gt;Puppet&lt;/a&gt; on several Ubuntu machines, everything was fine until Nagios started sending out warnings about high memory and high CPU usage, caused by the Puppet agent process. Related Bug-reports are:&lt;/p&gt;
 
 &lt;ul&gt;
