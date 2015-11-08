@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Publish to GitHub user pages with Jekyll and Travis-CI</title>
+        <title>Publish to GitHub User Pages with Jekyll and Travis-CI</title>
         <meta name="viewport" content="width=device-width">
 
         <!-- syntax highlighting CSS -->
@@ -46,7 +46,7 @@
             <a class="extra" href="/atom.xml">feed</a>
           </div>
 
-          <h2>Publish to GitHub user pages with Jekyll and Travis-CI</h2>
+          <h2>Publish to GitHub User Pages with Jekyll and Travis-CI</h2>
 <p class="meta">08 Nov 2015</p>
 
 <div class="post">
@@ -58,8 +58,9 @@ are few important differences on how those kind of pages are served over HTTP(S)
 <li><strong>Project Pages</strong> are published with content of the <em>gh-pages</em>-Branch of a certain project repository.</li>
 </ul>
 
-<p>This short guide will show you how to automate this step for <strong>User and Organization Pages</strong> with <a href="https://www.travis-ci.org/">Travis-CI</a>.
-As this topic has already been discussed on stackoverflow, here comes the best-of.</p>
+<p>This short guide will show you how to automate publishing for <strong>User and Organization Pages</strong> with <a href="https://www.travis-ci.org/">Travis-CI</a> and <a href="http://jekyllrb.com/">Jekyll</a>.
+The topic has been discussed on <a href="http://stackoverflow.com/">stackoverflow</a> <a href="http://stackoverflow.com/a/33125422">many</a> times.
+This is kind of a best-of using an HTTPS API Token (via environment variable) and keeping the history of the published <em>master</em>-branch.</p>
 
 <h4>It&#39;s only five steps</h4>
 
@@ -67,8 +68,8 @@ As this topic has already been discussed on stackoverflow, here comes the best-o
 <li>Create a repository <em>&lt;username&gt;.github.io</em> with an empty commit on master.</li>
 <li>Create a <em>jekyll</em>-Branch based on the <em>master</em>-Branch and put your <a href="http://jekyllrb.com/">Jekyll</a>-site into it.</li>
 <li>Connect <a href="https://www.travis-ci.org/">Travis-CI</a> with GitHub and create an access token to allow <code>git push</code> for the build job.</li>
-<li>Activate the build job and add an <em>Environment Variable</em> with the name <code>GITHUB_ACCESS_TOKEN</code>.</li>
-<li>Last but not least, add <code>.travis.yml</code> file below to your <code>jekyll</code> branch, adjust it, commit and push.</li>
+<li>Go to the Travis-CI Dashboard, activate the build job for your repository and add an <em>Environment Variable</em> with the name <code>GITHUB_ACCESS_TOKEN</code> and the newly generated token.</li>
+<li>Last but not least, add the <code>.travis.yml</code> file below to your <code>jekyll</code> branch, adjust it, commit and push.</li>
 </ol>
 
 <div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
@@ -79,7 +80,7 @@ As this topic has already been discussed on stackoverflow, here comes the best-o
 <span class="l-Scalar-Plain">script</span><span class="p-Indicator">:</span>
   <span class="p-Indicator">-</span> <span class="s">&quot;bundle</span><span class="nv"> </span><span class="s">exec</span><span class="nv"> </span><span class="s">jekyll</span><span class="nv"> </span><span class="s">build&quot;</span>
 <span class="l-Scalar-Plain">after_success</span><span class="p-Indicator">:</span> <span class="p-Indicator">|</span>
-  <span class="no">if [ -n &quot;${GITHUB_ACCESS_TOKEN}&quot; ] &amp;&amp; [ &quot;${TRAVIS_BRANCH}&quot; = &#39;jekyll&#39; ] &amp;&amp; [ &quot;${TRAVIS_PULL_REQUEST}&quot; = &#39;false&#39; ]</span>
+  <span class="no">if [ -n &quot;${GITHUB_ACCESS_TOKEN}&quot; ] &amp;&amp; [ &quot;${TRAVIS_PULL_REQUEST}&quot; = &#39;false&#39; ]</span>
   <span class="no">then</span>
     <span class="no">cd &quot;${TRAVIS_BUILD_DIR}/_site&quot;</span>
     <span class="no">git init</span>
@@ -100,7 +101,7 @@ As this topic has already been discussed on stackoverflow, here comes the best-o
 
 <div>
     <a class="FlattrButton" style="display:none;"
-        title="Publish to GitHub user pages with Jekyll and Travis-CI"
+        title="Publish to GitHub User Pages with Jekyll and Travis-CI"
         rel="flattr;uid:sedden;popout:0;category:text"
         href="https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci">
     </a>
