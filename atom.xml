@@ -3,12 +3,65 @@
   <title>A developer's notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2015-11-07T16:29:35+00:00</updated>
+  <updated>2015-11-08T22:59:46+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
     <email></email>
   </author>
+  
+  <entry>
+    <title>Publish to GitHub user pages with Jekyll and Travis-CI</title>
+    <link href="https://sedden.github.io"/>
+    <updated>2015-11-08T23:38:31+00:00</updated>
+    <id>https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci</id>
+    <content type="html">&lt;p&gt;According GitHub&amp;#39;s Help on &lt;a href=&quot;https://help.github.com/articles/user-organization-and-project-pages/&quot;&gt;User, Organization, and Project Pages&lt;/a&gt;, there
+are few important differences on how those kind of pages are served over HTTP(S).&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;User and Organization Pages&lt;/strong&gt; will be published with content of the &lt;em&gt;master&lt;/em&gt;-Branch, while the repository must match the schema &lt;em&gt;&amp;lt;username&amp;gt;.github.io&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Project Pages&lt;/strong&gt; are published with content of the &lt;em&gt;gh-pages&lt;/em&gt;-Branch of a certain project repository.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This short guide will show you how to automate this step for &lt;strong&gt;User and Organization Pages&lt;/strong&gt; with &lt;a href=&quot;https://www.travis-ci.org/&quot;&gt;Travis-CI&lt;/a&gt;.
+As this topic has already been discussed on stackoverflow, here comes the best-of.&lt;/p&gt;
+
+&lt;h4&gt;It&amp;#39;s only five steps&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a repository &lt;em&gt;&amp;lt;username&amp;gt;.github.io&lt;/em&gt; with an empty commit on master.&lt;/li&gt;
+&lt;li&gt;Create a &lt;em&gt;jekyll&lt;/em&gt;-Branch based on the &lt;em&gt;master&lt;/em&gt;-Branch and put your &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;-site into it.&lt;/li&gt;
+&lt;li&gt;Connect &lt;a href=&quot;https://www.travis-ci.org/&quot;&gt;Travis-CI&lt;/a&gt; with GitHub and create an access token to allow &lt;code&gt;git push&lt;/code&gt; for the build job.&lt;/li&gt;
+&lt;li&gt;Activate the build job and add an &lt;em&gt;Environment Variable&lt;/em&gt; with the name &lt;code&gt;GITHUB_ACCESS_TOKEN&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Last but not least, add &lt;code&gt;.travis.yml&lt;/code&gt; file below to your &lt;code&gt;jekyll&lt;/code&gt; branch, adjust it, commit and push.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;ruby&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;jekyll&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;bundle&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;jekyll&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;build&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;after_success&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;if [ -n &amp;quot;${GITHUB_ACCESS_TOKEN}&amp;quot; ] &amp;amp;&amp;amp; [ &amp;quot;${TRAVIS_BRANCH}&amp;quot; = &amp;#39;jekyll&amp;#39; ] &amp;amp;&amp;amp; [ &amp;quot;${TRAVIS_PULL_REQUEST}&amp;quot; = &amp;#39;false&amp;#39; ]&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;then&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;cd &amp;quot;${TRAVIS_BUILD_DIR}/_site&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;git init&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;git remote add origin &amp;quot;https://sedden:${GITHUB_ACCESS_TOKEN}@github.com/sedden/sedden.github.io&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;git config user.name &amp;quot;Stefan Jenkner&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;git config user.email &amp;quot;stefan@jenkner.org&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;git fetch&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;git reset origin/master&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;git add .&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;git commit -a -m &amp;quot;Travis CI build ${TRAVIS_BUILD_NUMBER}.&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;git push origin HEAD:master &amp;gt;/dev/null 2&amp;gt;&amp;amp;1&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;cd &amp;quot;${TRAVIS_BUILD_DIR}&amp;quot;&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Ensure to redirect any output of &lt;code&gt;git push&lt;/code&gt; to &lt;code&gt;/dev/null&lt;/code&gt;! Otherwise it will leak your access token!&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Fabric, duplicity, AWS credentials and System Keyring</title>

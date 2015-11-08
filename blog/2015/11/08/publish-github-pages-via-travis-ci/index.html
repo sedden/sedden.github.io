@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Publish to GitHub user pages with Jekyll and Travis-CI</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+        <!-- Favicon -->
+        <link href="/favicon.png" rel="icon">
+
+        <!-- OpenID -->
+        <link rel="openid2.provider" href="https://openid.stackexchange.com/openid/provider">
+        <link rel="openid2.local_id" href="https://openid.stackexchange.com/user/2cd92ecb-186e-42d2-839e-e1b36cc3d6fb">
+
+        <!-- Feed -->
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml"/>
+
+		<!-- Flattr -->
+		<script type="text/javascript">
+        /* <![CDATA[ */
+		(function() {
+			var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+			s.type = 'text/javascript';
+			s.async = true;
+			s.src = '//api.flattr.com/js/0.6/load.js?mode=auto&button=compact&uid=test&category=text';
+			t.parentNode.insertBefore(s, t);
+		})();
+		/* ]]> */
+		</script>
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">A developer's notebook</a></h1>
+            <a class="extra" href="/">home</a>
+            <a class="extra" href="/about/">about</a>
+            <a class="extra" href="/atom.xml">feed</a>
+          </div>
+
+          <h2>Publish to GitHub user pages with Jekyll and Travis-CI</h2>
+<p class="meta">08 Nov 2015</p>
+
+<div class="post">
+<p>According GitHub&#39;s Help on <a href="https://help.github.com/articles/user-organization-and-project-pages/">User, Organization, and Project Pages</a>, there
+are few important differences on how those kind of pages are served over HTTP(S).</p>
+
+<ul>
+<li><strong>User and Organization Pages</strong> will be published with content of the <em>master</em>-Branch, while the repository must match the schema <em>&lt;username&gt;.github.io</em>.</li>
+<li><strong>Project Pages</strong> are published with content of the <em>gh-pages</em>-Branch of a certain project repository.</li>
+</ul>
+
+<p>This short guide will show you how to automate this step for <strong>User and Organization Pages</strong> with <a href="https://www.travis-ci.org/">Travis-CI</a>.
+As this topic has already been discussed on stackoverflow, here comes the best-of.</p>
+
+<h4>It&#39;s only five steps</h4>
+
+<ol>
+<li>Create a repository <em>&lt;username&gt;.github.io</em> with an empty commit on master.</li>
+<li>Create a <em>jekyll</em>-Branch based on the <em>master</em>-Branch and put your <a href="http://jekyllrb.com/">Jekyll</a>-site into it.</li>
+<li>Connect <a href="https://www.travis-ci.org/">Travis-CI</a> with GitHub and create an access token to allow <code>git push</code> for the build job.</li>
+<li>Activate the build job and add an <em>Environment Variable</em> with the name <code>GITHUB_ACCESS_TOKEN</code>.</li>
+<li>Last but not least, add <code>.travis.yml</code> file below to your <code>jekyll</code> branch, adjust it, commit and push.</li>
+</ol>
+
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">language</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ruby</span>
+<span class="l-Scalar-Plain">branches</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">only</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">jekyll</span>
+<span class="l-Scalar-Plain">script</span><span class="p-Indicator">:</span>
+  <span class="p-Indicator">-</span> <span class="s">&quot;bundle</span><span class="nv"> </span><span class="s">exec</span><span class="nv"> </span><span class="s">jekyll</span><span class="nv"> </span><span class="s">build&quot;</span>
+<span class="l-Scalar-Plain">after_success</span><span class="p-Indicator">:</span> <span class="p-Indicator">|</span>
+  <span class="no">if [ -n &quot;${GITHUB_ACCESS_TOKEN}&quot; ] &amp;&amp; [ &quot;${TRAVIS_BRANCH}&quot; = &#39;jekyll&#39; ] &amp;&amp; [ &quot;${TRAVIS_PULL_REQUEST}&quot; = &#39;false&#39; ]</span>
+  <span class="no">then</span>
+    <span class="no">cd &quot;${TRAVIS_BUILD_DIR}/_site&quot;</span>
+    <span class="no">git init</span>
+    <span class="no">git remote add origin &quot;https://sedden:${GITHUB_ACCESS_TOKEN}@github.com/sedden/sedden.github.io&quot;</span>
+    <span class="no">git config user.name &quot;Stefan Jenkner&quot;</span>
+    <span class="no">git config user.email &quot;stefan@jenkner.org&quot;</span>
+    <span class="no">git fetch</span>
+    <span class="no">git reset origin/master</span>
+    <span class="no">git add .</span>
+    <span class="no">git commit -a -m &quot;Travis CI build ${TRAVIS_BUILD_NUMBER}.&quot;</span>
+    <span class="no">git push origin HEAD:master &gt;/dev/null 2&gt;&amp;1</span>
+    <span class="no">cd &quot;${TRAVIS_BUILD_DIR}&quot;</span>
+  <span class="no">fi</span></code></pre></div>
+
+<p>Ensure to redirect any output of <code>git push</code> to <code>/dev/null</code>! Otherwise it will leak your access token!</p>
+
+</div>
+
+<div>
+    <a class="FlattrButton" style="display:none;"
+        title="Publish to GitHub user pages with Jekyll and Travis-CI"
+        rel="flattr;uid:sedden;popout:0;category:text"
+        href="https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci">
+    </a>
+</div>
+
+<div>
+
+
+
+	<p><a href="/blog/2014/06/11/fabric-keyring-duplicity-aws">« Fabric, duplicity, AWS credentials and System Keyring</a></p>
+
+
+
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Stefan Jenkner<br />
+                stefan@jenkner.org
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/sedden">github.com/sedden</a><br />
+                <a href="https://twitter.com/sedden">twitter.com/sedden</a> 
+                <a href="https://alpha.app.net/sedden">alpha.app.net/sedden</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>
