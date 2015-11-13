@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://sedden.github.io/blog/2015/11/11/backup-to-amazon-s3-glacier-with-duplicity</loc>
+    <lastmod>2015-11-11T07:38:31+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci</loc>
     <lastmod>2015-11-08T23:38:31+00:00</lastmod>
     <priority>0.8</priority>
@@ -37,13 +42,13 @@
   </url>
   <url>
     <loc>https://sedden.github.io/</loc>
-    <lastmod>2015-11-08T23:35:19+00:00</lastmod>
+    <lastmod>2015-11-13T00:01:01+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://sedden.github.io/about/</loc>
-    <lastmod>2015-11-08T23:35:19+00:00</lastmod>
+    <lastmod>2015-11-13T00:01:01+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

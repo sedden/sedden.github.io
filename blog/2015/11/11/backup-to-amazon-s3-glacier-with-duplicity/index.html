@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Backup to Amazon Glacier with Duplicity and Duply</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+        <!-- Favicon -->
+        <link href="/favicon.png" rel="icon">
+
+        <!-- OpenID -->
+        <link rel="openid2.provider" href="https://openid.stackexchange.com/openid/provider">
+        <link rel="openid2.local_id" href="https://openid.stackexchange.com/user/2cd92ecb-186e-42d2-839e-e1b36cc3d6fb">
+
+        <!-- Feed -->
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml"/>
+
+		<!-- Flattr -->
+		<script type="text/javascript">
+        /* <![CDATA[ */
+		(function() {
+			var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+			s.type = 'text/javascript';
+			s.async = true;
+			s.src = '//api.flattr.com/js/0.6/load.js?mode=auto&button=compact&uid=test&category=text';
+			t.parentNode.insertBefore(s, t);
+		})();
+		/* ]]> */
+		</script>
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">A developer's notebook</a></h1>
+            <a class="extra" href="/">home</a>
+            <a class="extra" href="/about/">about</a>
+            <a class="extra" href="/atom.xml">feed</a>
+          </div>
+
+          <h2>Backup to Amazon Glacier with Duplicity and Duply</h2>
+<p class="meta">11 Nov 2015</p>
+
+<div class="post">
+<p>This is kind of a cheat sheet on how to create a fully encrypted backup on
+<a href="https://aws.amazon.com/glacier/">Amazon Glacier</a> with <a href="http://duplicity.nongu.org/">Duplicity</a> and <a href="http://duply.net/">Duply</a> (a
+frontend/wrapper for Duplicity) for as little as EUR 0,01 per gigabyte (plus
+transfer fees). </p>
+
+<ol>
+<li>Get Duplicity version 0.6.26+, Duply version 1.9.1+, GnuPG and python-keyring</li>
+<li>Create a Bucket, setup permissions and create lifecycle rules</li>
+<li>Create a Duply profile</li>
+<li>Store the passwords in the keyring</li>
+</ol>
+
+<p>Additionally, an <a href="https://aws.amazon.com/">AWS</a> account is needed.</p>
+
+<h4>Step 1: Get Duplicity version 0.6.26+, Duply version 1.9.1+, GnuPG and python-keyring</h4>
+
+<p>On Mac OS X with Homebrew:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">brew install gnupg duplicity duply python
+pip install keyring</code></pre></div>
+
+<p>On Debian/Ubuntu:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install gnupg duplicity duply python-keyring</code></pre></div>
+
+<p>Package names may differ depending on the version of your distributions. Please
+try <code>gnupg2</code> and <code>python3-keyring</code> if one of these packages cannot be found.</p>
+
+<h4>Step 2: Create a Bucket, setup permissions and create lifecycle rules</h4>
+
+<p>Don&#39;t forget to remember the region when creating a new Bucket on the S3 Management Console.
+This time I chose Ireland (eu-west-1).</p>
+
+<p>When attach a lifecycle rule to the bucket. </p>
+
+<ul>
+<li>Target: Objects with the prefix <code>_my_folder_to_backup/archive_</code></li>
+<li>Configuration: Archive to the Glacier Storage Class 1 days after the object&#39;s creation date.</li>
+</ul>
+
+<p>Following this, create a new user and attach this custom policy:</p>
+
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;s3:ListBucket&quot;</span> <span class="p">],</span>
+      <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:s3:::my_bucket&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span> <span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span> <span class="s2">&quot;s3:DeleteObject&quot;</span><span class="p">],</span>
+      <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:s3:::my_bucket/*&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+<p>There is one thing missing here. Once the archived files (not the index files,
+not the signatures) moved to Glacier class storage via lifecyle rules, this user is
+not (yet) able to move them back to standard class storage for restore.</p>
+
+<h4>Step 3: Create a Duply profile</h4>
+
+<p>Create the Duply profile with <code>duply my_profile create</code> and adjust the configuration
+in profile in <code>~/.duply/my_profile/conf</code>.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">SOURCE</span><span class="o">=</span>/my/folder/to/backup
+
+<span class="nv">TARGET</span><span class="o">=</span><span class="s1">&#39;s3://s3-eu-west-1.amazonaws.com/my_bucket/_my_folder_to_backup&#39;</span>
+<span class="nv">TARGET_USER</span><span class="o">=</span><span class="sb">`</span>keyring get <span class="s1">&#39;duplicity my_profile&#39;</span> AWS_ACCESS_KEY_ID<span class="sb">`</span>
+<span class="nv">TARGET_PASS</span><span class="o">=</span><span class="sb">`</span>keyring get <span class="s1">&#39;duplicity my_profile&#39;</span> AWS_SECRET_ACCESS_KEY<span class="sb">`</span>
+
+<span class="c"># Uncomment if you prefere the more secure public/private key encryption</span>
+<span class="nv">GPG_PW</span><span class="o">=</span><span class="sb">`</span>keyring get <span class="s1">&#39;duplicity my_profile&#39;</span> PASSPHRASE<span class="sb">`</span>
+
+<span class="nv">DUPL_PARAMS</span><span class="o">=</span><span class="s2">&quot;$DUPL_PARAMS --volsize 25 &quot;</span>
+
+<span class="nv">DUPL_PARAMS</span><span class="o">=</span><span class="s2">&quot;$DUPL_PARAMS --file-prefix-manifest manifest_ &quot;</span>
+<span class="nv">DUPL_PARAMS</span><span class="o">=</span><span class="s2">&quot;$DUPL_PARAMS --file-prefix-archive archive_ &quot;</span>
+<span class="nv">DUPL_PARAMS</span><span class="o">=</span><span class="s2">&quot;$DUPL_PARAMS --file-prefix-signature signature_&quot;</span></code></pre></div>
+
+<p>Please check the permissions of the created profile in <code>~/.duply/my_profile/</code>.</p>
+
+<h4>Step 4: Store the passwords in the keyring</h4>
+
+<p>The <a href="https://pypi.python.org/pypi/keyring">keyring</a> commandline utility supports multiple backends: the
+Mac OS X Keychain, the Linux Secret Service and the Windows Credential Vault.
+There are defaults for each platform, but you can also <a href="https://pypi.python.org/pypi/keyring#configure-your-keyring-lib">define which backend to
+use</a> (or even
+write your own).</p>
+
+<p>To store the AWS Access Key from Step 2:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">keyring <span class="nb">set</span> <span class="s1">&#39;duplicity my_profile&#39;</span> AWS_ACCESS_KEY_ID</code></pre></div>
+
+<p>To store the AWS Access Secret from Step 2:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">keyring <span class="nb">set</span> <span class="s1">&#39;duplicity my_profile&#39;</span> AWS_SECRET_ACCESS_KEY</code></pre></div>
+
+<p>To store the key for symmetric GPG encryption:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">keyring <span class="nb">set</span> <span class="s1">&#39;duplicity my_profile&#39;</span> PASSPHRASE</code></pre></div>
+
+<p>These secrets will be retrieved via <code>keyring get ...</code> during the backup/restore
+process.</p>
+
+<h4>Test</h4>
+
+<p>Test the backup process via:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">duply my_profile backup</code></pre></div>
+
+<p>To restore a file or folder from backup:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">duply my_profile restore Makefile</code></pre></div>
+
+<p>To fetch a single file or folder from backup:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">duply my_profile fetch Makefile /tmp/Makefile</code></pre></div>
+
+<p>Also check out <code>duply --help</code> for a brief overview.</p>
+
+<h4>Résumé</h4>
+
+<p>I&#39;m pretty happy with this backup solution, but there are some annoying parts as well:</p>
+
+<ul>
+<li>Lifecyle rule needs to be created for each backup folder.</li>
+<li>The user policy is missing an action for moving Glacier class storage items back to standard class storage.</li>
+</ul>
+
+<p>In summary, it can be stated that this backup solution isn&#39;t perfect yet,
+but it&#39;s built upon Open-Source tools and it&#39;s easy to customize. </p>
+
+</div>
+
+<div>
+    <a class="FlattrButton" style="display:none;"
+        title="Backup to Amazon Glacier with Duplicity and Duply"
+        rel="flattr;uid:sedden;popout:0;category:text"
+        href="https://sedden.github.io/blog/2015/11/11/backup-to-amazon-s3-glacier-with-duplicity">
+    </a>
+</div>
+
+<div>
+
+
+
+	<p><a href="/blog/2015/11/08/publish-github-pages-via-travis-ci">« Publish to GitHub User Pages with Jekyll and Travis-CI</a></p>
+
+
+
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Stefan Jenkner<br />
+                stefan@jenkner.org
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/sedden">github.com/sedden</a><br />
+                <a href="https://twitter.com/sedden">twitter.com/sedden</a> 
+                <a href="https://alpha.app.net/sedden">alpha.app.net/sedden</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>
