@@ -99,6 +99,7 @@ This is kind of a best-of using an HTTPS API Token (via environment variable) an
 
 </div>
 
+<!-- Flattr -->
 <div>
     <a class="FlattrButton" style="display:none;"
         title="Publish to GitHub User Pages with Jekyll and Travis-CI"
@@ -107,8 +108,22 @@ This is kind of a best-of using an HTTPS API Token (via environment variable) an
     </a>
 </div>
 
-<div>
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {
+  this.page.url = 'https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci';
+  this.page.identifier = '/blog/2015/11/08/publish-github-pages-via-travis-ci';
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//sedden.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
 
+<div>
 
 
 	<p><a href="/blog/2014/06/11/fabric-keyring-duplicity-aws">« Fabric, duplicity, AWS credentials and System Keyring</a></p>

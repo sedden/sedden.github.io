@@ -118,6 +118,7 @@ It automatically detects changes on the database file and refreshes the current 
 
 </div>
 
+<!-- Flattr -->
 <div>
     <a class="FlattrButton" style="display:none;"
         title="Time tracking with the Pomodoro.app"
@@ -126,8 +127,22 @@ It automatically detects changes on the database file and refreshes the current 
     </a>
 </div>
 
-<div>
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {
+  this.page.url = 'https://sedden.github.io/blog/2014/05/02/pomodoro-timesheet';
+  this.page.identifier = '/blog/2014/05/02/pomodoro-timesheet';
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//sedden.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
 
+<div>
 
 
 	<p><a href="/blog/2014/05/01/from-octopress-to-jekyll">« Howto migrate from Octopress to Jekyll</a></p>
