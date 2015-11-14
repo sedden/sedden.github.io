@@ -65,13 +65,13 @@ Set <code>permalink: /blog/:year/:month/:day/:title</code> in <code>_config.yml<
 
 <p>The <code>robots.txt</code> can easily be adopted from the Octopress installation.</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
 <span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">nil</span>
 <span class="nn">---</span>
 <span class="l-Scalar-Plain">User-agent</span><span class="p-Indicator">:</span> <span class="err">*</span>
 <span class="l-Scalar-Plain">Disallow</span><span class="p-Indicator">:</span> 
 
-<span class="l-Scalar-Plain">Sitemap</span><span class="p-Indicator">:</span> <span class="p-Indicator">{{</span> <span class="nv">site.url</span> <span class="p-Indicator">}}</span><span class="l-Scalar-Plain">/sitemap.xml</span></code></pre></div>
+<span class="l-Scalar-Plain">Sitemap</span><span class="p-Indicator">:</span> <span class="p-Indicator">{{</span> <span class="nv">site.url</span> <span class="p-Indicator">}}</span><span class="l-Scalar-Plain">/sitemap.xml</span> </code></pre></figure>
 
 <p>Ensure that <code>url: http://yoursite.com</code> has been set in <code>_config.yml</code>.</p>
 
@@ -79,7 +79,7 @@ Set <code>permalink: /blog/:year/:month/:day/:title</code> in <code>_config.yml<
 
 <p>This <code>atom.xml</code> provides atom feed functionality.</p>
 
-<div class="highlight"><pre><code class="language-xml" data-lang="xml">---
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">---
 layout: nil
 ---
 <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
@@ -102,7 +102,7 @@ layout: nil
     <span class="nt">&lt;content</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span>{{ post.content | xml_escape }}<span class="nt">&lt;/content&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>
   {% endfor %}
-<span class="nt">&lt;/feed&gt;</span></code></pre></div>
+<span class="nt">&lt;/feed&gt;</span></code></pre></figure>
 
 <p>As mentioned above, <code>url: http://yoursite.com</code> and <code>author: Your Name</code> must be set in <code>_config.yml</code>.</p>
 
@@ -110,12 +110,12 @@ layout: nil
 
 <p>Append this to <code>_layouts/post.html</code> for linking previous/next posts:</p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html">{% if page.previous %}
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% if page.previous %}
     <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ page.previous.url }}&quot;</span><span class="nt">&gt;</span>« {{ page.previous.title }}<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
 {% endif %}
 {% if page.next %}
     <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ page.next.url }}&quot;</span><span class="nt">&gt;</span>{{ page.next.title }} »<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
-{% endif %}</code></pre></div>
+{% endif %}</code></pre></figure>
 
 <p>Other useful variables can be found here: <a href="http://jekyllrb.com/docs/variables/">http://jekyllrb.com/docs/variables/</a>.</p>
 

@@ -68,12 +68,12 @@ transfer fees). </p>
 
 <p>On Mac OS X with Homebrew:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">brew install gnupg duplicity duply python
-pip install keyring</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">brew install gnupg duplicity duply python
+pip install keyring</code></pre></figure>
 
 <p>On Debian/Ubuntu:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install gnupg duplicity duply python-keyring</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install gnupg duplicity duply python-keyring</code></pre></figure>
 
 <p>Package names may differ depending on the version of your distributions. Please
 try <code>gnupg2</code> and <code>python3-keyring</code> if one of these packages cannot be found.</p>
@@ -92,7 +92,7 @@ This time I chose Ireland (eu-west-1).</p>
 
 <p>Following this, create a new user and attach this custom policy:</p>
 
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
   <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -106,7 +106,7 @@ This time I chose Ireland (eu-west-1).</p>
       <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:s3:::my_bucket/*&quot;</span>
     <span class="p">}</span>
   <span class="p">]</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
 <p>There is one thing missing here. Once the archived files (not the index files,
 not the signatures) moved to Glacier class storage via lifecyle rules, this user is
@@ -117,7 +117,7 @@ not (yet) able to move them back to standard class storage for restore.</p>
 <p>Create the Duply profile with <code>duply my_profile create</code> and adjust the configuration
 in profile in <code>~/.duply/my_profile/conf</code>.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">SOURCE</span><span class="o">=</span>/my/folder/to/backup
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">SOURCE</span><span class="o">=</span>/my/folder/to/backup
 
 <span class="nv">TARGET</span><span class="o">=</span><span class="s1">&#39;s3://s3-eu-west-1.amazonaws.com/my_bucket/_my_folder_to_backup&#39;</span>
 <span class="nv">TARGET_USER</span><span class="o">=</span><span class="sb">`</span>keyring get <span class="s1">&#39;duplicity my_profile&#39;</span> AWS_ACCESS_KEY_ID<span class="sb">`</span>
@@ -130,7 +130,7 @@ in profile in <code>~/.duply/my_profile/conf</code>.</p>
 
 <span class="nv">DUPL_PARAMS</span><span class="o">=</span><span class="s2">&quot;$DUPL_PARAMS --file-prefix-manifest manifest_ &quot;</span>
 <span class="nv">DUPL_PARAMS</span><span class="o">=</span><span class="s2">&quot;$DUPL_PARAMS --file-prefix-archive archive_ &quot;</span>
-<span class="nv">DUPL_PARAMS</span><span class="o">=</span><span class="s2">&quot;$DUPL_PARAMS --file-prefix-signature signature_&quot;</span></code></pre></div>
+<span class="nv">DUPL_PARAMS</span><span class="o">=</span><span class="s2">&quot;$DUPL_PARAMS --file-prefix-signature signature_&quot;</span></code></pre></figure>
 
 <p>Please check the permissions of the created profile in <code>~/.duply/my_profile/</code>.</p>
 
@@ -144,15 +144,15 @@ write your own).</p>
 
 <p>To store the AWS Access Key from Step 2:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">keyring <span class="nb">set</span> <span class="s1">&#39;duplicity my_profile&#39;</span> AWS_ACCESS_KEY_ID</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">keyring <span class="nb">set</span> <span class="s1">&#39;duplicity my_profile&#39;</span> AWS_ACCESS_KEY_ID</code></pre></figure>
 
 <p>To store the AWS Access Secret from Step 2:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">keyring <span class="nb">set</span> <span class="s1">&#39;duplicity my_profile&#39;</span> AWS_SECRET_ACCESS_KEY</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">keyring <span class="nb">set</span> <span class="s1">&#39;duplicity my_profile&#39;</span> AWS_SECRET_ACCESS_KEY</code></pre></figure>
 
 <p>To store the key for symmetric GPG encryption:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">keyring <span class="nb">set</span> <span class="s1">&#39;duplicity my_profile&#39;</span> PASSPHRASE</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">keyring <span class="nb">set</span> <span class="s1">&#39;duplicity my_profile&#39;</span> PASSPHRASE</code></pre></figure>
 
 <p>These secrets will be retrieved via <code>keyring get ...</code> during the backup/restore
 process.</p>
@@ -161,15 +161,15 @@ process.</p>
 
 <p>Test the backup process via:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">duply my_profile backup</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">duply my_profile backup</code></pre></figure>
 
 <p>To restore a file or folder from backup:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">duply my_profile restore Makefile</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">duply my_profile restore Makefile</code></pre></figure>
 
 <p>To fetch a single file or folder from backup:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">duply my_profile fetch Makefile /tmp/Makefile</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">duply my_profile fetch Makefile /tmp/Makefile</code></pre></figure>
 
 <p>Also check out <code>duply --help</code> for a brief overview.</p>
 

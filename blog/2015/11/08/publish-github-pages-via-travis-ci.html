@@ -72,7 +72,7 @@ This is kind of a best-of using an HTTPS API Token (via environment variable) an
 <li>Last but not least, add the <code>.travis.yml</code> file below to your <code>jekyll</code> branch, adjust it, commit and push.</li>
 </ol>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
 <span class="l-Scalar-Plain">language</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ruby</span>
 <span class="l-Scalar-Plain">branches</span><span class="p-Indicator">:</span>
   <span class="l-Scalar-Plain">only</span><span class="p-Indicator">:</span>
@@ -93,7 +93,7 @@ This is kind of a best-of using an HTTPS API Token (via environment variable) an
     <span class="no">git commit -a -m &quot;Travis CI build ${TRAVIS_BUILD_NUMBER}.&quot;</span>
     <span class="no">git push origin HEAD:master &gt;/dev/null 2&gt;&amp;1</span>
     <span class="no">cd &quot;${TRAVIS_BUILD_DIR}&quot;</span>
-  <span class="no">fi</span></code></pre></div>
+  <span class="no">fi</span></code></pre></figure>
 
 <p>Ensure to redirect any output of <code>git push</code> to <code>/dev/null</code>! Otherwise it will leak your access token!</p>
 

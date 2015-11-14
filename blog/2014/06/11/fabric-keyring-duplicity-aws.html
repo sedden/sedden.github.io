@@ -68,7 +68,7 @@ So the goal was to keep those credentials out of version control, retrieve them 
 
 <p>This simple task creates a backup with <a href="http://duplicity.nongu.org/">duplicity</a> using it&#39;s S3 backend:</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nd">@task</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="nd">@task</span>
 <span class="nd">@hosts</span><span class="p">(</span><span class="s">&#39;admin@host1.local&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">backup_host1</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -79,7 +79,7 @@ So the goal was to keep those credentials out of version control, retrieve them 
         <span class="k">for</span> <span class="n">local_dir</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;/etc&#39;</span><span class="p">,</span> <span class="s">&#39;/home&#39;</span><span class="p">,</span> <span class="s">&#39;/var/www&#39;</span><span class="p">]:</span>
             <span class="n">remote_url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s">&#39;/&#39;</span> <span class="o">+</span> <span class="n">local_dir</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">,</span><span class="s">&#39;_&#39;</span><span class="p">)</span>
             <span class="n">sudo</span><span class="p">(</span><span class="s">&quot;duplicity remove-older-than 60D -v3 --force </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">remote_url</span><span class="p">))</span>
-            <span class="n">sudo</span><span class="p">(</span><span class="s">&quot;duplicity --full-if-older-than 30D -v3 </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_dir</span><span class="p">,</span> <span class="n">remote_url</span><span class="p">))</span></code></pre></div>
+            <span class="n">sudo</span><span class="p">(</span><span class="s">&quot;duplicity --full-if-older-than 30D -v3 </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_dir</span><span class="p">,</span> <span class="n">remote_url</span><span class="p">))</span></code></pre></figure>
 
 <p>The task makes use of a custom <a href="http://docs.fabfile.org/en/latest/api/core/context_managers.html">Context Manager</a> <code>duplicity_env</code> which will be explained below.</p>
 
@@ -91,7 +91,7 @@ As Fabric already comes along with it&#39;s own context manager for setting envi
 The <a href="https://pypi.python.org/pypi/keyring">python keyring library</a> enables easy access to the system keyring service.
 It works pretty well with OS X Keychain and GNOME Keyring, but should also work with the Windows Credential Vault (untestet by me).</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">duplicity_env</span><span class="p">(</span><span class="n">hostname</span><span class="p">):</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">duplicity_env</span><span class="p">(</span><span class="n">hostname</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Set shell environment variables for duplicity.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -111,7 +111,7 @@ It works pretty well with OS X Keychain and GNOME Keyring, but should also work 
             <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">kw</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">secret</span>
-    <span class="k">return</span> <span class="n">_setenv</span><span class="p">({</span><span class="s">&#39;shell_env&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">})</span></code></pre></div>
+    <span class="k">return</span> <span class="n">_setenv</span><span class="p">({</span><span class="s">&#39;shell_env&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">})</span></code></pre></figure>
 
 <p>The code above defines a dictionary <code>to_env</code> that maps keychain identifiers to environment variables.
 If the keyring does not contain the entry, it give some hints on how to add it.</p>

@@ -3,53 +3,63 @@
   <url>
     <loc>https://sedden.github.io/blog/2015/11/11/backup-to-amazon-s3-glacier-with-duplicity</loc>
     <lastmod>2015-11-11T07:38:31+00:00</lastmod>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci</loc>
     <lastmod>2015-11-08T23:38:31+00:00</lastmod>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sedden.github.io/blog/2014/06/11/fabric-keyring-duplicity-aws</loc>
     <lastmod>2014-06-11T00:38:28+00:00</lastmod>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sedden.github.io/blog/2014/05/02/pomodoro-timesheet</loc>
     <lastmod>2014-05-02T07:11:11+00:00</lastmod>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sedden.github.io/blog/2014/05/01/from-octopress-to-jekyll</loc>
     <lastmod>2014-05-01T14:11:52+00:00</lastmod>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sedden.github.io/blog/2013/03/27/use-osfamily-instead-of-operatingsystem</loc>
     <lastmod>2013-03-27T11:36:00+00:00</lastmod>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sedden.github.io/blog/2013/03/26/openwrt-ipv6-forwarding</loc>
     <lastmod>2013-03-26T09:58:00+00:00</lastmod>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sedden.github.io/blog/2013/03/25/run-puppet-via-cron</loc>
     <lastmod>2013-03-25T13:37:00+00:00</lastmod>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sedden.github.io/</loc>
-    <lastmod>2015-11-14T00:06:10+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://sedden.github.io/about/</loc>
-    <lastmod>2015-11-14T00:06:10+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
   </url>
+    <url>
+      <loc>https://sedden.github.io/blog/2013/03/25/run-puppet-via-cron</loc>
+    </url>
+    <url>
+      <loc>https://sedden.github.io/blog/2013/03/26/openwrt-ipv6-forwarding</loc>
+    </url>
+    <url>
+      <loc>https://sedden.github.io/blog/2013/03/27/use-osfamily-instead-of-operatingsystem</loc>
+    </url>
+    <url>
+      <loc>https://sedden.github.io/blog/2014/05/01/from-octopress-to-jekyll</loc>
+    </url>
+    <url>
+      <loc>https://sedden.github.io/blog/2014/05/02/pomodoro-timesheet</loc>
+    </url>
+    <url>
+      <loc>https://sedden.github.io/blog/2014/06/11/fabric-keyring-duplicity-aws</loc>
+    </url>
+    <url>
+      <loc>https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci</loc>
+    </url>
+    <url>
+      <loc>https://sedden.github.io/blog/2015/11/11/backup-to-amazon-s3-glacier-with-duplicity</loc>
+    </url>
 </urlset>
