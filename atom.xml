@@ -3,7 +3,7 @@
   <title>A developer's notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2015-11-14T23:40:21+00:00</updated>
+  <updated>2015-11-14T23:58:01+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
@@ -14,7 +14,7 @@
     <title>Backup to Amazon Glacier with Duplicity and Duply</title>
     <link href="https://sedden.github.io"/>
     <updated>2015-11-11T07:38:31+00:00</updated>
-    <id>https://sedden.github.io/blog/2015/11/11/backup-to-amazon-s3-glacier-with-duplicity</id>
+    <id>https://sedden.github.io/blog/2015/11/11/backup-to-amazon-s3-glacier-with-duplicity/</id>
     <content type="html">&lt;p&gt;This is kind of a cheat sheet on how to create a fully encrypted backup on
 &lt;a href=&quot;https://aws.amazon.com/glacier/&quot;&gt;Amazon Glacier&lt;/a&gt; with &lt;a href=&quot;http://duplicity.nongu.org/&quot;&gt;Duplicity&lt;/a&gt; and &lt;a href=&quot;http://duply.net/&quot;&gt;Duply&lt;/a&gt; (a
 frontend/wrapper for Duplicity) for as little as EUR 0,01 per gigabyte (plus
@@ -156,7 +156,7 @@ but it&amp;#39;s built upon Open-Source tools and it&amp;#39;s easy to customize
     <title>Publish to GitHub User Pages with Jekyll and Travis-CI</title>
     <link href="https://sedden.github.io"/>
     <updated>2015-11-08T23:38:31+00:00</updated>
-    <id>https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci</id>
+    <id>https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci/</id>
     <content type="html">&lt;p&gt;According GitHub&amp;#39;s Help on &lt;a href=&quot;https://help.github.com/articles/user-organization-and-project-pages/&quot;&gt;User, Organization, and Project Pages&lt;/a&gt;, there
 are few important differences on how those kind of pages are served over HTTP(S).&lt;/p&gt;
 
@@ -210,7 +210,7 @@ This is kind of a best-of using an HTTPS API Token (via environment variable) an
     <title>Fabric, duplicity, AWS credentials and System Keyring</title>
     <link href="https://sedden.github.io"/>
     <updated>2014-06-11T00:38:28+00:00</updated>
-    <id>https://sedden.github.io/blog/2014/06/11/fabric-keyring-duplicity-aws</id>
+    <id>https://sedden.github.io/blog/2014/06/11/fabric-keyring-duplicity-aws/</id>
     <content type="html">&lt;p&gt;I still use &lt;a href=&quot;http://www.fabfile.org/&quot;&gt;Fabric&lt;/a&gt; for some deployment and systems administration tasks.
 Passing secrets or credentials is commonly part of those tasks and it brings up some issues that has been on my mind for quite a long time:&lt;/p&gt;
 
@@ -295,7 +295,7 @@ If the keyring does not contain the entry, it give some hints on how to add it.&
     <title>Time tracking with the Pomodoro.app</title>
     <link href="https://sedden.github.io"/>
     <updated>2014-05-02T07:11:11+00:00</updated>
-    <id>https://sedden.github.io/blog/2014/05/02/pomodoro-timesheet</id>
+    <id>https://sedden.github.io/blog/2014/05/02/pomodoro-timesheet/</id>
     <content type="html">&lt;p&gt;I&amp;#39;m a huge fan of the &lt;a href=&quot;https://github.com/ugol/pomodoro&quot;&gt;Pomodoro.app&lt;/a&gt;. 
 It helps me to focus on my work and it controlls my messenger status (Adium) to tell my colleagues when I&amp;#39;m busy.
 Now I even use it to log my activies and put them into a SQLite database for reporting. &lt;/p&gt;
@@ -368,7 +368,7 @@ It automatically detects changes on the database file and refreshes the current 
     <title>Howto migrate from Octopress to Jekyll</title>
     <link href="https://sedden.github.io"/>
     <updated>2014-05-01T14:11:52+00:00</updated>
-    <id>https://sedden.github.io/blog/2014/05/01/from-octopress-to-jekyll</id>
+    <id>https://sedden.github.io/blog/2014/05/01/from-octopress-to-jekyll/</id>
     <content type="html">&lt;p&gt;Here are a few tipps on how to migrate from &lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt; to &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;. &lt;/p&gt;
 
 &lt;h4&gt;Permalinks&lt;/h4&gt;
@@ -444,7 +444,7 @@ layout: nil
     <title>Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</title>
     <link href="https://sedden.github.io"/>
     <updated>2013-03-27T11:36:00+00:00</updated>
-    <id>https://sedden.github.io/blog/2013/03/27/use-osfamily-instead-of-operatingsystem</id>
+    <id>https://sedden.github.io/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/</id>
     <content type="html">&lt;p&gt;Once you read the &lt;a href=&quot;http://docs.puppetlabs.com/guides/style_guide.html&quot;&gt;Puppet Style Guide&lt;/a&gt;, you should know how to write well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
 Well, I think there are lots of other things you &lt;del&gt;better&lt;/del&gt; should care. 
 For this time, it&amp;#39;s about when to use &lt;code&gt;$::osfamily&lt;/code&gt; and when better to stay with the &lt;code&gt;$::operatingsystem&lt;/code&gt; fact.&lt;/p&gt;
@@ -516,7 +516,7 @@ But my experience is that most people are using the EPEL repositories anyway. So
     <title>Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</title>
     <link href="https://sedden.github.io"/>
     <updated>2013-03-26T09:58:00+00:00</updated>
-    <id>https://sedden.github.io/blog/2013/03/26/openwrt-ipv6-forwarding</id>
+    <id>https://sedden.github.io/blog/2013/03/26/openwrt-ipv6-forwarding/</id>
     <content type="html">&lt;p&gt;We&amp;#39;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -555,7 +555,7 @@ and test your setup.&lt;/p&gt;
     <title>Run Puppet via Cron</title>
     <link href="https://sedden.github.io"/>
     <updated>2013-03-25T13:37:00+00:00</updated>
-    <id>https://sedden.github.io/blog/2013/03/25/run-puppet-via-cron</id>
+    <id>https://sedden.github.io/blog/2013/03/25/run-puppet-via-cron/</id>
     <content type="html">&lt;p&gt;While deploying &lt;a href=&quot;http://puppetlabs.com&quot;&gt;Puppet&lt;/a&gt; on several Ubuntu machines, everything was fine until Nagios started sending out warnings about high memory and high CPU usage, caused by the Puppet agent process. Related Bug-reports are:&lt;/p&gt;
 
 &lt;ul&gt;
