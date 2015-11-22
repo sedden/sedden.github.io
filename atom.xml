@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>A developer's notebook</title>
+  <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2015-11-20T08:21:08+00:00</updated>
+  <updated>2015-11-22T10:43:08+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
