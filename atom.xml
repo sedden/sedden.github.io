@@ -3,12 +3,156 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2015-11-24T23:22:25+00:00</updated>
+  <updated>2015-11-25T01:26:32+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
     <email></email>
   </author>
+  
+  <entry>
+    <title>Getting started with Docker Machine on Amazon EC2</title>
+    <link href="https://sedden.github.io"/>
+    <updated>2015-11-24T23:13:23+00:00</updated>
+    <id>https://sedden.github.io/blog/2015/11/24/getting-started-with-docker-machine-on-ec2/</id>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/machine/&quot;&gt;Docker Machine&lt;/a&gt; is one part of the Docker Toolbox which
+helps you to manage and setup &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; environments.
+There are drivers for various cloud platforms and virtualization products.&lt;/p&gt;
+
+&lt;p&gt;Getting started with &lt;a href=&quot;https://docs.docker.com/machine/&quot;&gt;Docker Machine&lt;/a&gt; on &lt;a href=&quot;https://aws.amazon.com/ec2/&quot;&gt;EC2&lt;/a&gt; is
+straight forward: a &lt;a href=&quot;https://docs.docker.com/machine/drivers/aws/&quot;&gt;brief section&lt;/a&gt;
+of the official documentation covers all command line options and environment
+variables which are relevant to &lt;code&gt;docker-machine --driver amazonec2 create ...&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The required steps are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create an new IAM user and attach a &lt;em&gt;Custom Policy&lt;/em&gt; to the user&lt;/li&gt;
+&lt;li&gt;Find out the VPC ID&lt;/li&gt;
+&lt;li&gt;Create your first instance with &lt;a href=&quot;https://docs.docker.com/machine/&quot;&gt;Docker Machine&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This guide applies to &lt;a href=&quot;https://docs.docker.com/machine/&quot;&gt;Docker Machine&lt;/a&gt; version 0.5.0 on OS X.&lt;/p&gt;
+
+&lt;h4&gt;Create an new IAM user and attach a Custom Policy to the user&lt;/h4&gt;
+
+&lt;p&gt;Login to the AWS console and navigate to Services / IAM / Users.&lt;/p&gt;
+
+&lt;p&gt;Create a new user (e.g. docker-machine), note the access key and secret and
+populate the environment variables:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;AWS_ACCESS_KEY_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;AKI...
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;AWS_SECRET_ACCESS_KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;...&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Then select the user, switch to the &lt;em&gt;Permissions&lt;/em&gt; tab and add new
+&lt;em&gt;Custom Policy&lt;/em&gt; (expand Inline Policy to do so).
+The following policy was shared by
+&lt;a href=&quot;https://github.com/bmangold&quot;&gt;Brandon Mangold&lt;/a&gt; on
+&lt;a href=&quot;https://github.com/docker/machine/issues/1655#issuecomment-128872611&quot;&gt;docker-machine Issue 1655 (Minimal IAM policy)&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A slightly extended it with permissions for creating security groups:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;quot;Version&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;2012-10-17&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;quot;Statement&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;quot;Sid&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;TheseActionsDontSupportResourceLevelPermissions&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;quot;Effect&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Allow&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;quot;Action&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;ec2:CreateKeyPair&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;ec2:DeleteKeyPair&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;ec2:ImportKeyPair&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;ec2:Describe*&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;ec2:CreateTags&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;ec2:CreateSecurityGroup&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;ec2:AuthorizeSecurityGroupIngress&amp;quot;&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;quot;Resource&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;*&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;quot;Sid&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;ThisActionsSupportResourceLevelPermissions&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;quot;Effect&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Allow&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;quot;Action&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;ec2:RunInstances&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;quot;Resource&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;arn:aws:ec2:eu-west-1::image/ami-*&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:instance/*&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:key-pair/*&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:network-interface/*&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:placement-group/*&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:security-group/*&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:subnet/*&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:volume/*&amp;quot;&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;quot;Sid&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;TheseActionsSupportResourceLevelPermissions&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;quot;Effect&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Allow&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;quot;Action&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;ec2:TerminateInstances&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;ec2:StopInstances&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;ec2:StartInstances&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;ec2:RebootInstances&amp;quot;&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;quot;Resource&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;s2&quot;&gt;&amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:instance/*&amp;quot;&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Replace &lt;code&gt;%AWS_ACCOUNT_ID%&lt;/code&gt; with your account ID. Get it from: AWS console / My Account.
+I also changed the region to &lt;code&gt;eu-west-1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4&gt;Find out the VPC ID&lt;/h4&gt;
+
+&lt;p&gt;This step is also covered in the official drivers documentation.
+Login to the AWS console and navigate to Services / VPC / Your VPCs.
+Get the VPC ID from the VPC column and set the environment variable like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;AWS_VPC_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;vpc-....&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4&gt;Create your first instance with&lt;/h4&gt;
+
+&lt;p&gt;Four environment variables have been populated:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;AWS_ACCESS_KEY_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;AKI... &lt;span class=&quot;c&quot;&gt;# first step&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;AWS_SECRET_ACCESS_KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;... &lt;span class=&quot;c&quot;&gt;# first step&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;AWS_VPC_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;vpc-.... &lt;span class=&quot;c&quot;&gt;# second step&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As mentioned in the previous step, I changed to region to &lt;code&gt;eu-west-1&lt;/code&gt;.
+It must match the region in the IAM policy:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;AWS_DEFAULT_REGION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;eu-west-1 &lt;span class=&quot;c&quot;&gt;# Ireland&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Create the &lt;em&gt;aws01&lt;/em&gt; machine with &lt;code&gt;-D&lt;/code&gt; option for debugging:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;docker-machine -D create --driver amazonec2 aws01&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Everything is fine, if the command above completes with the message:
+&lt;em&gt;&amp;quot;To see how to connect Docker to this machine, run: docker-machine env aws01&amp;quot;&lt;/em&gt;
+If not so, check out the troubleshooting section below.&lt;/p&gt;
+
+&lt;p&gt;As the new docker machine on EC2 is ready now, it&amp;#39;s time to verfy the setup:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;$(docker-machine env aws01)&amp;quot;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# setup DOCKER_* environment variables&lt;/span&gt;
+docker ps                          &lt;span class=&quot;c&quot;&gt;# list running containers&lt;/span&gt;
+docker images                      &lt;span class=&quot;c&quot;&gt;# list images&lt;/span&gt;
+docker-machine ls                  &lt;span class=&quot;c&quot;&gt;# list docker machines&lt;/span&gt;
+docker-machine ssh aws01           &lt;span class=&quot;c&quot;&gt;# ssh into instance aws01&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Use the docker-machine command to interact with the newly created EC2 instance.&lt;/p&gt;
+
+&lt;h4&gt;Troubleshooting&lt;/h4&gt;
+
+&lt;p&gt;If the creation of instances via &lt;code&gt;docker create&lt;/code&gt; fails:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Check the IAM policy: region matches / AWS ID matches?&lt;/li&gt;
+&lt;li&gt;Go to AWS console / Services / EC2 / Security Groups and check if the group already exists.&lt;/li&gt;
+&lt;li&gt;You may have to remove the &lt;em&gt;aws01&lt;/em&gt; key pair if the first run of &lt;code&gt;docker-machine create&lt;/code&gt; fails: Go to AWS console / Services / EC2 / Key paris.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Backup to Amazon Glacier with Duplicity and Duply</title>
