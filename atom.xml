@@ -3,7 +3,7 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2015-11-26T17:11:49+00:00</updated>
+  <updated>2015-11-28T00:41:45+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
@@ -29,7 +29,7 @@ variables which are relevant to &lt;code&gt;docker-machine --driver amazonec2 cr
 &lt;ol&gt;
 &lt;li&gt;Create an new IAM user and attach a &lt;em&gt;Custom Policy&lt;/em&gt; to the user&lt;/li&gt;
 &lt;li&gt;Find out the VPC ID&lt;/li&gt;
-&lt;li&gt;Create your first instance with &lt;a href=&quot;https://docs.docker.com/machine/&quot;&gt;Docker Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Create the &lt;a href=&quot;https://docs.docker.com/machine/&quot;&gt;Docker Machine&lt;/a&gt; instance&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;This guide applies to &lt;a href=&quot;https://docs.docker.com/machine/&quot;&gt;Docker Machine&lt;/a&gt; version 0.5.0 on OS X.&lt;/p&gt;
@@ -44,7 +44,7 @@ populate the environment variables:&lt;/p&gt;
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;AWS_ACCESS_KEY_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;AKI...
 &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;AWS_SECRET_ACCESS_KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;...&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Then select the user, switch to the &lt;em&gt;Permissions&lt;/em&gt; tab and add new
+&lt;p&gt;Then select the user, switch to the &lt;em&gt;Permissions&lt;/em&gt; tab and add a new
 &lt;em&gt;Custom Policy&lt;/em&gt; (expand Inline Policy to do so).
 The following policy was shared by
 &lt;a href=&quot;https://github.com/bmangold&quot;&gt;Brandon Mangold&lt;/a&gt; on
@@ -111,7 +111,7 @@ Get the VPC ID from the VPC column and set the environment variable like this:&l
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;AWS_VPC_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;vpc-....&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h4&gt;Create your first instance with&lt;/h4&gt;
+&lt;h4&gt;Create the docker machine&lt;/h4&gt;
 
 &lt;p&gt;Four environment variables have been populated:&lt;/p&gt;
 
@@ -132,7 +132,7 @@ It must match the region in the IAM policy:&lt;/p&gt;
 &lt;em&gt;&amp;quot;To see how to connect Docker to this machine, run: docker-machine env aws01&amp;quot;&lt;/em&gt;
 If not so, check out the troubleshooting section below.&lt;/p&gt;
 
-&lt;p&gt;As the new docker machine on EC2 is ready now, it&amp;#39;s time to verfy the setup:&lt;/p&gt;
+&lt;p&gt;To verify the setup, just run:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;$(docker-machine env aws01)&amp;quot;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# setup DOCKER_* environment variables&lt;/span&gt;
 docker ps                          &lt;span class=&quot;c&quot;&gt;# list running containers&lt;/span&gt;

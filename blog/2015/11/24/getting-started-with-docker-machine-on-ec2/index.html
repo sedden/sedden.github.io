@@ -103,7 +103,7 @@ variables which are relevant to <code>docker-machine --driver amazonec2 create .
 <ol>
 <li>Create an new IAM user and attach a <em>Custom Policy</em> to the user</li>
 <li>Find out the VPC ID</li>
-<li>Create your first instance with <a href="https://docs.docker.com/machine/">Docker Machine</a></li>
+<li>Create the <a href="https://docs.docker.com/machine/">Docker Machine</a> instance</li>
 </ol>
 
 <p>This guide applies to <a href="https://docs.docker.com/machine/">Docker Machine</a> version 0.5.0 on OS X.</p>
@@ -118,7 +118,7 @@ populate the environment variables:</p>
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>AKI...
 <span class="nb">export </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>...</code></pre></figure>
 
-<p>Then select the user, switch to the <em>Permissions</em> tab and add new
+<p>Then select the user, switch to the <em>Permissions</em> tab and add a new
 <em>Custom Policy</em> (expand Inline Policy to do so).
 The following policy was shared by
 <a href="https://github.com/bmangold">Brandon Mangold</a> on
@@ -185,7 +185,7 @@ Get the VPC ID from the VPC column and set the environment variable like this:</
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">AWS_VPC_ID</span><span class="o">=</span>vpc-....</code></pre></figure>
 
-<h4>Create your first instance with</h4>
+<h4>Create the docker machine</h4>
 
 <p>Four environment variables have been populated:</p>
 
@@ -206,7 +206,7 @@ It must match the region in the IAM policy:</p>
 <em>&quot;To see how to connect Docker to this machine, run: docker-machine env aws01&quot;</em>
 If not so, check out the troubleshooting section below.</p>
 
-<p>As the new docker machine on EC2 is ready now, it&#39;s time to verfy the setup:</p>
+<p>To verify the setup, just run:</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">eval</span> <span class="s2">&quot;$(docker-machine env aws01)&quot;</span> <span class="c"># setup DOCKER_* environment variables</span>
 docker ps                          <span class="c"># list running containers</span>
