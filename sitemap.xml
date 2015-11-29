@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://sedden.github.io/blog/2015/11/29/postgresql-xml-functions/</loc>
+    <lastmod>2015-11-29T20:59:23+00:00</lastmod>
+  </url>
+  <url>
     <loc>https://sedden.github.io/blog/2015/11/24/getting-started-with-docker-machine-on-ec2/</loc>
     <lastmod>2015-11-24T23:13:23+00:00</lastmod>
   </url>
@@ -68,5 +72,8 @@
     </url>
     <url>
       <loc>https://sedden.github.io/blog/2015/11/24/getting-started-with-docker-machine-on-ec2/</loc>
+    </url>
+    <url>
+      <loc>https://sedden.github.io/blog/2015/11/29/postgresql-xml-functions/</loc>
     </url>
 </urlset>
