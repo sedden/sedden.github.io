@@ -3,7 +3,7 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2015-11-28T00:41:45+00:00</updated>
+  <updated>2015-11-29T01:31:59+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
@@ -162,7 +162,9 @@ docker-machine ssh aws01           &lt;span class=&quot;c&quot;&gt;# ssh into in
     <content type="html">&lt;p&gt;This is kind of a cheat sheet on how to create a fully encrypted backup on
 &lt;a href=&quot;https://aws.amazon.com/glacier/&quot;&gt;Amazon Glacier&lt;/a&gt; with &lt;a href=&quot;http://duplicity.nongu.org/&quot;&gt;Duplicity&lt;/a&gt; and &lt;a href=&quot;http://duply.net/&quot;&gt;Duply&lt;/a&gt; (a
 frontend/wrapper for Duplicity) for as little as EUR 0,01 per gigabyte (plus
-transfer fees). &lt;/p&gt;
+transfer fees).&lt;/p&gt;
+
+&lt;p&gt;The required steps are:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Get Duplicity version 0.6.26+, Duply version 1.9.1+, GnuPG and python-keyring&lt;/li&gt;
@@ -192,7 +194,7 @@ try &lt;code&gt;gnupg2&lt;/code&gt; and &lt;code&gt;python3-keyring&lt;/code&gt;
 &lt;p&gt;Don&amp;#39;t forget to remember the region when creating a new Bucket on the S3 Management Console.
 This time I chose Ireland (eu-west-1).&lt;/p&gt;
 
-&lt;p&gt;When attach a lifecycle rule to the bucket. &lt;/p&gt;
+&lt;p&gt;When attach a lifecycle rule to the bucket.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Target: Objects with the prefix &lt;code&gt;_my_folder_to_backup/archive_&lt;/code&gt;&lt;/li&gt;
@@ -292,7 +294,7 @@ process.&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;In summary, it can be stated that this backup solution isn&amp;#39;t perfect yet,
-but it&amp;#39;s built upon Open-Source tools and it&amp;#39;s easy to customize. &lt;/p&gt;
+but it&amp;#39;s built upon Open-Source tools and it&amp;#39;s easy to customize.&lt;/p&gt;
 </content>
   </entry>
   

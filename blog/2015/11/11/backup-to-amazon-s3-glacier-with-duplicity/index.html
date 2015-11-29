@@ -92,7 +92,9 @@
     <p>This is kind of a cheat sheet on how to create a fully encrypted backup on
 <a href="https://aws.amazon.com/glacier/">Amazon Glacier</a> with <a href="http://duplicity.nongu.org/">Duplicity</a> and <a href="http://duply.net/">Duply</a> (a
 frontend/wrapper for Duplicity) for as little as EUR 0,01 per gigabyte (plus
-transfer fees). </p>
+transfer fees).</p>
+
+<p>The required steps are:</p>
 
 <ol>
 <li>Get Duplicity version 0.6.26+, Duply version 1.9.1+, GnuPG and python-keyring</li>
@@ -122,7 +124,7 @@ try <code>gnupg2</code> and <code>python3-keyring</code> if one of these package
 <p>Don&#39;t forget to remember the region when creating a new Bucket on the S3 Management Console.
 This time I chose Ireland (eu-west-1).</p>
 
-<p>When attach a lifecycle rule to the bucket. </p>
+<p>When attach a lifecycle rule to the bucket.</p>
 
 <ul>
 <li>Target: Objects with the prefix <code>_my_folder_to_backup/archive_</code></li>
@@ -222,7 +224,7 @@ process.</p>
 </ul>
 
 <p>In summary, it can be stated that this backup solution isn&#39;t perfect yet,
-but it&#39;s built upon Open-Source tools and it&#39;s easy to customize. </p>
+but it&#39;s built upon Open-Source tools and it&#39;s easy to customize.</p>
 
   </div>
 
