@@ -3,7 +3,7 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2015-12-04T13:03:05+00:00</updated>
+  <updated>2015-12-10T00:36:20+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
@@ -91,9 +91,9 @@ multiple comments:&lt;/p&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wp:comment&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;For this case it&amp;#39;s necessary to use a &lt;code&gt;LEFT JOIN&lt;/code&gt; on comments and
+&lt;p&gt;It is necessary to use a &lt;code&gt;LEFT JOIN&lt;/code&gt; on comments and
 &lt;code&gt;GROUP BY p.id&lt;/code&gt; (ID of the article) to also include articles without comments.
-To make it clear - the second column (count) of this select statement can be zero:&lt;/p&gt;
+To make it clear - the second column (count) of the following select statement can be zero:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;posts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;
