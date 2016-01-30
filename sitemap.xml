@@ -1,79 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://sedden.github.io/blog/2015/11/29/postgresql-xml-functions/</loc>
-    <lastmod>2015-11-29T20:59:23+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://sedden.github.io/blog/2015/11/24/getting-started-with-docker-machine-on-ec2/</loc>
-    <lastmod>2015-11-24T23:13:23+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://sedden.github.io/blog/2015/11/11/backup-to-amazon-s3-glacier-with-duplicity/</loc>
-    <lastmod>2015-11-11T07:38:31+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci/</loc>
-    <lastmod>2015-11-08T23:38:31+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://sedden.github.io/blog/2014/06/11/fabric-keyring-duplicity-aws/</loc>
-    <lastmod>2014-06-11T00:38:28+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://sedden.github.io/blog/2014/05/02/pomodoro-timesheet/</loc>
-    <lastmod>2014-05-02T07:11:11+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://sedden.github.io/blog/2014/05/01/from-octopress-to-jekyll/</loc>
-    <lastmod>2014-05-01T14:11:52+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://sedden.github.io/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/</loc>
-    <lastmod>2013-03-27T11:36:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://sedden.github.io/blog/2013/03/26/openwrt-ipv6-forwarding/</loc>
-    <lastmod>2013-03-26T09:58:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://sedden.github.io/blog/2013/03/25/run-puppet-via-cron/</loc>
-    <lastmod>2013-03-25T13:37:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://sedden.github.io/</loc>
-  </url>
-  <url>
-    <loc>https://sedden.github.io/about/</loc>
-  </url>
-    <url>
-      <loc>https://sedden.github.io/blog/2013/03/25/run-puppet-via-cron/</loc>
-    </url>
-    <url>
-      <loc>https://sedden.github.io/blog/2013/03/26/openwrt-ipv6-forwarding/</loc>
-    </url>
-    <url>
-      <loc>https://sedden.github.io/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/</loc>
-    </url>
-    <url>
-      <loc>https://sedden.github.io/blog/2014/05/01/from-octopress-to-jekyll/</loc>
-    </url>
-    <url>
-      <loc>https://sedden.github.io/blog/2014/05/02/pomodoro-timesheet/</loc>
-    </url>
-    <url>
-      <loc>https://sedden.github.io/blog/2014/06/11/fabric-keyring-duplicity-aws/</loc>
-    </url>
-    <url>
-      <loc>https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci/</loc>
-    </url>
-    <url>
-      <loc>https://sedden.github.io/blog/2015/11/11/backup-to-amazon-s3-glacier-with-duplicity/</loc>
-    </url>
-    <url>
-      <loc>https://sedden.github.io/blog/2015/11/24/getting-started-with-docker-machine-on-ec2/</loc>
-    </url>
-    <url>
-      <loc>https://sedden.github.io/blog/2015/11/29/postgresql-xml-functions/</loc>
-    </url>
+<url>
+<loc>https://sedden.github.io/blog/2015/11/29/postgresql-xml-functions/</loc>
+<lastmod>2015-11-29T20:59:23+00:00</lastmod>
+</url>
+<url>
+<loc>https://sedden.github.io/blog/2015/11/24/getting-started-with-docker-machine-on-ec2/</loc>
+<lastmod>2015-11-24T23:13:23+00:00</lastmod>
+</url>
+<url>
+<loc>https://sedden.github.io/blog/2015/11/11/backup-to-amazon-s3-glacier-with-duplicity/</loc>
+<lastmod>2015-11-11T07:38:31+00:00</lastmod>
+</url>
+<url>
+<loc>https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci/</loc>
+<lastmod>2015-11-08T23:38:31+00:00</lastmod>
+</url>
+<url>
+<loc>https://sedden.github.io/blog/2014/06/11/fabric-keyring-duplicity-aws/</loc>
+<lastmod>2014-06-11T00:38:28+00:00</lastmod>
+</url>
+<url>
+<loc>https://sedden.github.io/blog/2014/05/02/pomodoro-timesheet/</loc>
+<lastmod>2014-05-02T07:11:11+00:00</lastmod>
+</url>
+<url>
+<loc>https://sedden.github.io/blog/2014/05/01/from-octopress-to-jekyll/</loc>
+<lastmod>2014-05-01T14:11:52+00:00</lastmod>
+</url>
+<url>
+<loc>https://sedden.github.io/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/</loc>
+<lastmod>2013-03-27T11:36:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://sedden.github.io/blog/2013/03/26/openwrt-ipv6-forwarding/</loc>
+<lastmod>2013-03-26T09:58:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://sedden.github.io/blog/2013/03/25/run-puppet-via-cron/</loc>
+<lastmod>2013-03-25T13:37:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://sedden.github.io/</loc>
+</url>
+<url>
+<loc>https://sedden.github.io/about/</loc>
+</url>
 </urlset>
