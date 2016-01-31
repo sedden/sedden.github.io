@@ -35,6 +35,16 @@
   /* ]]> */
   </script>
 
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@sedden">
+	<meta name="twitter:creator" content="@sedden">
+	<meta name="twitter:title" content="Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact">
+	<meta name="twitter:description" content="Once you read the Puppet Style Guide, you should know how to write well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.Well, I think there are lots o...">
+	
+	<meta name="twitter:image:src" content="https://sedden.github.iohttps://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67">
+	
+
 </head>
 
 
@@ -96,6 +106,7 @@ For this time, it&#39;s about when to use <code>$::osfamily</code> and when bett
 <h4>Pros</h4>
 
 <p>The key benefit of using <code>$::osfamily</code> is that you don&#39;t end up forking your favorite Puppet module on GitHub to add the eleventh RedHat derivate: </p>
+
 <div class="highlight"><pre><code class="language-puppet" data-lang="puppet"><span class="k">case</span> <span class="nv">$::operatingsystem</span> <span class="p">{</span>
    <span class="s">&#39;RedHat&#39;</span><span class="p">,</span> <span class="s">&#39;CentOS&#39;</span><span class="p">,</span> <span class="s">&#39;Scientific&#39;</span><span class="p">,</span> <span class="err">.</span> <span class="err">.</span> <span class="err">.</span> <span class="p">,</span> <span class="s">&#39;OracleLinux&#39;</span><span class="p">,</span> <span class="s">&#39;OEL&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
 <span class="c">     # do something RHEL specific</span>
@@ -108,7 +119,9 @@ For this time, it&#39;s about when to use <code>$::osfamily</code> and when bett
    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+
 <p>Instead you would use:</p>
+
 <div class="highlight"><pre><code class="language-puppet" data-lang="puppet"><span class="k">case</span> <span class="nv">$::osfamily</span> <span class="p">{</span>
    <span class="s">&#39;redhat&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c"></span>
 <span class="c">     # do something RHEL specific</span>
@@ -121,6 +134,7 @@ For this time, it&#39;s about when to use <code>$::osfamily</code> and when bett
    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+
 <p>It allows you to write cleaner manifests and works well for common tasks. 
 You still have the choice to handle details via <code>$::operatingsystem</code> the more complex your classes become.</p>
 
@@ -132,6 +146,7 @@ But my experience is that most people are using the EPEL repositories anyway. So
 <h4>Support for Facter &lt; 1.6.1</h4>
 
 <p>The <code>$::osfamily</code> fact was introduced with Facter 1.6.1. There is a simple workaround for older versions. I found this solution in the description of the <a href="https://github.com/puppetlabs/puppetlabs-mysql/">puppetlabs-mysql Module</a>. Just put this into your <code>site.pp</code> (before any node definition):</p>
+
 <div class="highlight"><pre><code class="language-puppet" data-lang="puppet"><span class="k">if</span> <span class="o">!</span> <span class="nv">$::osfamily</span> <span class="p">{</span>
   <span class="k">case</span> <span class="nv">$::operatingsystem</span> <span class="p">{</span>
     <span class="s">&#39;RedHat&#39;</span><span class="p">,</span> <span class="s">&#39;Fedora&#39;</span><span class="p">,</span> <span class="s">&#39;CentOS&#39;</span><span class="p">,</span> <span class="s">&#39;Scientific&#39;</span><span class="p">,</span> <span class="s">&#39;SLC&#39;</span><span class="p">,</span> <span class="s">&#39;Ascendos&#39;</span><span class="p">,</span> <span class="s">&#39;CloudLinux&#39;</span><span class="p">,</span> <span class="s">&#39;PSBM&#39;</span><span class="p">,</span> <span class="s">&#39;OracleLinux&#39;</span><span class="p">,</span> <span class="s">&#39;OVS&#39;</span><span class="p">,</span> <span class="s">&#39;OEL&#39;</span><span class="p">:</span> <span class="p">{</span>
@@ -152,6 +167,7 @@ But my experience is that most people are using the EPEL repositories anyway. So
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+
 <p>It defines <code>$::osfamily</code> if not available.</p>
 
   </div>

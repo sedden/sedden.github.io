@@ -3,7 +3,7 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2016-01-30T19:52:24+00:00</updated>
+  <updated>2016-01-31T22:54:11+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
@@ -691,7 +691,7 @@ Set &lt;code&gt;permalink: /blog/:year/:month/:day/:title&lt;/code&gt; in &lt;co
 &lt;span class=&quot;l-Scalar-Plain&quot;&gt;User-agent&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;
 &lt;span class=&quot;l-Scalar-Plain&quot;&gt;Disallow&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; 
 
-&lt;span class=&quot;l-Scalar-Plain&quot;&gt;Sitemap&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;{{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;site.url&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;}}&lt;/span&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;/sitemap.xml&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;Sitemap&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;&lt;/span&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;/sitemap.xml&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Ensure that &lt;code&gt;url: http://yoursite.com&lt;/code&gt; has been set in &lt;code&gt;_config.yml&lt;/code&gt;.&lt;/p&gt;
 
@@ -704,24 +704,919 @@ layout: nil
 ---
 &lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;feed&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://www.w3.org/2005/Atom&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;{{ site.name }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{{ site.url }}/atom.xml&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;self&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{{ site.url }}&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;{{site.time | date_to_xmlschema }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;{{ site.url }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;A developers notebook&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io/atom.xml&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;self&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-01-31T22:54:11+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;author&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;{{ site.author }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;Stefan Jenkner&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;email&amp;gt;&amp;lt;/email&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/author&amp;gt;&lt;/span&gt;
-  {% for post in site.posts %}
+  
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;{{ post.title }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{{ site.url }}&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;{{post.date | date_to_xmlschema }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;{{ site.url }}{{ post.url }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ post.content | xml_escape }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;PostgreSQL XML Functions&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2015-11-29T20:59:23+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2015/11/29/postgresql-xml-functions/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;Recently I needed to create XML straight from a relational database.
+The use case was to create an import file for &amp;lt;a href=&amp;quot;https://www.wordpress.com&amp;quot;&amp;gt;Wordpress&amp;lt;/a&amp;gt; (WRX)
+without writing any line of Python or Ruby code.
+The legacy blogging application was using a &amp;lt;a href=&amp;quot;https://www.postgresql.org&amp;quot;&amp;gt;PostgreSQL&amp;lt;/a&amp;gt; database
+that holds: users/authors, articles, comments and some other relations.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;It&amp;amp;#39;s not the intention to describe the whole process here.
+Much more, it attempts to make it adaptable to other situations.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Importing users/authors (no aggregation)&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;The easiest case was the users table without any relations and no need for
+aggregation. The goal was to create XML elements like this:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-xml&amp;quot; data-lang=&amp;quot;xml&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:author&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:author_id&amp;amp;gt;&amp;lt;/span&amp;gt;1&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:author_id&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:author_login&amp;amp;gt;&amp;lt;/span&amp;gt;stefan&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:author_login&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:author_email&amp;amp;gt;&amp;lt;/span&amp;gt;stefan@example.com&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:author_email&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:display_name&amp;amp;gt;&amp;lt;/span&amp;gt;Stefan&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:display_name&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:first_name&amp;amp;gt;&amp;lt;/span&amp;gt;Stefan&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:first_name&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:last_name&amp;amp;gt;&amp;lt;/span&amp;gt;Jenkner&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:last_name&amp;amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:author&amp;amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;This can be done with this select statement:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-sql&amp;quot; data-lang=&amp;quot;sql&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;SELECT&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;xmlelement&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;name&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:author&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;xmlforest&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;
+          &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:author_id&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+          &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;username&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:author_login&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+          &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;email&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:author_email&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+          &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;first_name&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:display_name&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+          &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;first_name&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:first_name&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+          &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;last_name&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:last_name&amp;amp;quot;&amp;lt;/span&amp;gt;
+          &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;FROM&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;users&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;ORDER&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;BY&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;The &amp;lt;code&amp;gt;xmlelement&amp;lt;/code&amp;gt; expression produces an XML element with the name &amp;lt;em&amp;gt;wp:author&amp;lt;/em&amp;gt;.
+Then instead of nesting six other &amp;lt;code&amp;gt;xmlelement&amp;lt;/code&amp;gt; statements (for &amp;lt;em&amp;gt;id&amp;lt;/em&amp;gt;, &amp;lt;em&amp;gt;username&amp;lt;/em&amp;gt;,
+...), it was easier (and even more readable) to make use of the &amp;lt;code&amp;gt;xmlforest&amp;lt;/code&amp;gt;
+expression and create a sequence of the given elements.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Articles and comments (covering XML aggregation)&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;The goal was to create XML elements like this. An item can have none or
+multiple comments:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-xml&amp;quot; data-lang=&amp;quot;xml&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;item&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;title&amp;amp;gt;&amp;lt;/span&amp;gt;PostgreSQL rocks!&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/title&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;link&amp;amp;gt;&amp;lt;/span&amp;gt;http://example.com/blog/2013/06/18/postgresql-rocks/&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/link&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;pubDate&amp;amp;gt;&amp;lt;/span&amp;gt;2013-06-18T10:53:25+00:00&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/pubDate&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;dc:creator&amp;amp;gt;&amp;lt;/span&amp;gt;stefan&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/dc:creator&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;guid&amp;amp;gt;&amp;lt;/span&amp;gt;http://example.com/?p=99&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/guid&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;description/&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;content:encoded&amp;amp;gt;&amp;lt;/span&amp;gt;...&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/content:encoded&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;excerpt:encoded&amp;amp;gt;&amp;lt;/span&amp;gt;...&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/excerpt:encoded&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:post_id&amp;amp;gt;&amp;lt;/span&amp;gt;99&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:post_id&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;&amp;amp;lt;!-- ... --&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:post_date&amp;amp;gt;&amp;lt;/span&amp;gt;2013-06-18T10:53:25+00:00&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:post_date&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;&amp;amp;lt;!-- first comment --&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:comment&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:comment_id&amp;amp;gt;&amp;lt;/span&amp;gt;551&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:comment_id&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:comment_author&amp;amp;gt;&amp;lt;/span&amp;gt;guest1&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:comment_author&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:comment_author_email&amp;amp;gt;&amp;lt;/span&amp;gt;guest1@example.com&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:comment_author_email&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;&amp;amp;lt;!-- ... --&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:comment_content&amp;amp;gt;&amp;lt;/span&amp;gt;I like it!&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:comment_content&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:comment_approved&amp;amp;gt;&amp;lt;/span&amp;gt;1&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:comment_approved&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:comment&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;&amp;amp;lt;!-- next comment --&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:comment&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:comment_id&amp;amp;gt;&amp;lt;/span&amp;gt;552&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:comment_id&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;&amp;amp;lt;!-- ... --&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:comment&amp;amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/item&amp;amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;It is necessary to use a &amp;lt;code&amp;gt;LEFT JOIN&amp;lt;/code&amp;gt; on comments and
+&amp;lt;code&amp;gt;GROUP BY p.id&amp;lt;/code&amp;gt; (ID of the article) to also include articles without comments.
+To make it clear - the second column (count) of the following select statement can be zero:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-sql&amp;quot; data-lang=&amp;quot;sql&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;SELECT&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;COUNT&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;FROM&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;posts&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;LEFT&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;JOIN&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;comments&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;ON&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;post_id&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;GROUP&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;BY&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;ORDER&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;BY&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Basically, the first part of the final statement is identical to the first
+example. The &amp;lt;code&amp;gt;xmlelement&amp;lt;/code&amp;gt; expression creates the &amp;lt;em&amp;gt;item&amp;lt;/em&amp;gt; node and the
+&amp;lt;code&amp;gt;xmlforest&amp;lt;/code&amp;gt; expression creates it&amp;amp;#39;s children.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;The &amp;lt;code&amp;gt;xmlagg&amp;lt;/code&amp;gt; expression expects an XML element at the first argument.
+It just concatenates the elements created by the &amp;lt;code&amp;gt;xmlelement&amp;lt;/code&amp;gt; expression
+and passes it to the aggregation call.&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-sql&amp;quot; data-lang=&amp;quot;sql&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;SELECT&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;xmlelement&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;name&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;item&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;xmlforest&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;title&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;title&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;http://example.com/blog/&amp;amp;#39;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;to_char&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;date&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;YYYY&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;/&amp;amp;#39;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;to_char&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;date&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;MM&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;/&amp;amp;#39;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;to_char&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;date&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;DD&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;/&amp;amp;#39;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;slug&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;link&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;date&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;pubDate&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;SELECT&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;username&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;FROM&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;users&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;u&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;WHERE&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;u&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;author_id&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;dc:creator&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;http://example.com/?p=&amp;amp;#39;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt;  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;guid&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;&amp;amp;#39;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;description&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;body&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;content:encoded&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;excerpt&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;excerpt:encoded&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:post_id&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;c1&amp;quot;&amp;gt;-- ... skipped&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;date&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:post_date&amp;amp;quot;&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;),&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;xmlagg&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;xmlelement&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;name&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:comment&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;xmlforest&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;
+                    &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:comment_id&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                    &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;user_name&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:comment_author&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                    &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;user_email&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:comment_author_email&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                    &amp;lt;span class=&amp;quot;c1&amp;quot;&amp;gt;-- skipped ...&amp;lt;/span&amp;gt;
+                    &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;comment&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:comment_content&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                    &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;/&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:comment_approved&amp;amp;quot;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;c1&amp;quot;&amp;gt;-- &amp;amp;#39;1&amp;amp;#39;&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;FROM&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;posts&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;LEFT&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;JOIN&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;comments&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;ON&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;post_id&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;GROUP&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;BY&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;ORDER&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;BY&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;p&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;I had some unexpected results when using constants like &amp;amp;#39;1&amp;amp;#39; or &amp;amp;#39;0&amp;amp;#39; within
+the &amp;lt;code&amp;gt;xmlagg&amp;lt;/code&amp;gt; functions. The following node was generated, even if an
+article does not have any comments.&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-xml&amp;quot; data-lang=&amp;quot;xml&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:comment&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;wp:wp:comment_approved&amp;amp;gt;&amp;lt;/span&amp;gt;1&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:wp:comment_approved&amp;amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/wp:comment&amp;amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/item&amp;amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;The solution was to express &amp;amp;#39;0&amp;amp;#39; and &amp;amp;#39;1&amp;amp;#39; by using the comment&amp;amp;#39;s ID:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-sql&amp;quot; data-lang=&amp;quot;sql&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;-&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:comment_parent&amp;amp;quot;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;c1&amp;quot;&amp;gt;-- &amp;amp;#39;0&amp;amp;#39;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;/&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;c&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;id&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ss&amp;quot;&amp;gt;&amp;amp;quot;wp:comment_approved&amp;amp;quot;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;c1&amp;quot;&amp;gt;-- &amp;amp;#39;1&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;h4&amp;gt;Further information&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;For additional information on &amp;lt;a href=&amp;quot;https://www.postgresql.org&amp;quot;&amp;gt;PostgreSQL&amp;lt;/a&amp;gt;&amp;amp;#39;s XML functions,
+check out &amp;lt;a href=&amp;quot;https://en.wikipedia.org/wiki/PostgreSQL&amp;quot;&amp;gt;this section&amp;lt;/a&amp;gt; of
+the manual.&amp;lt;/p&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Getting started with Docker Machine on Amazon EC2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2015-11-24T23:13:23+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2015/11/24/getting-started-with-docker-machine-on-ec2/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://docs.docker.com/machine/&amp;quot;&amp;gt;Docker Machine&amp;lt;/a&amp;gt; is one part of the Docker Toolbox which
+helps you to manage and setup &amp;lt;a href=&amp;quot;https://www.docker.com/&amp;quot;&amp;gt;Docker&amp;lt;/a&amp;gt; environments.
+There are drivers for various cloud platforms and virtualization products.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;Getting started with &amp;lt;a href=&amp;quot;https://docs.docker.com/machine/&amp;quot;&amp;gt;Docker Machine&amp;lt;/a&amp;gt; on &amp;lt;a href=&amp;quot;https://aws.amazon.com/ec2/&amp;quot;&amp;gt;EC2&amp;lt;/a&amp;gt; is
+straight forward: a &amp;lt;a href=&amp;quot;https://docs.docker.com/machine/drivers/aws/&amp;quot;&amp;gt;brief section&amp;lt;/a&amp;gt;
+of the official documentation covers all command line options and environment
+variables which are relevant to &amp;lt;code&amp;gt;docker-machine --driver amazonec2 create ...&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;The required steps are:&amp;lt;/p&amp;gt;
+
+&amp;lt;ol&amp;gt;
+&amp;lt;li&amp;gt;Create an new IAM user and attach a &amp;lt;em&amp;gt;Custom Policy&amp;lt;/em&amp;gt; to the user&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Find out the VPC ID&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Create the &amp;lt;a href=&amp;quot;https://docs.docker.com/machine/&amp;quot;&amp;gt;Docker Machine&amp;lt;/a&amp;gt; instance&amp;lt;/li&amp;gt;
+&amp;lt;/ol&amp;gt;
+
+&amp;lt;p&amp;gt;This guide applies to &amp;lt;a href=&amp;quot;https://docs.docker.com/machine/&amp;quot;&amp;gt;Docker Machine&amp;lt;/a&amp;gt; version 0.5.0 on OS X.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Create an new IAM user and attach a Custom Policy to the user&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;Login to the AWS console and navigate to Services / IAM / Users.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;Create a new user (e.g. docker-machine), note the access key and secret and
+populate the environment variables:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;export &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;AWS_ACCESS_KEY_ID&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;AKI...
+&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;export &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;AWS_SECRET_ACCESS_KEY&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;...&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Then select the user, switch to the &amp;lt;em&amp;gt;Permissions&amp;lt;/em&amp;gt; tab and add a new
+&amp;lt;em&amp;gt;Custom Policy&amp;lt;/em&amp;gt; (expand Inline Policy to do so).
+The following policy was shared by
+&amp;lt;a href=&amp;quot;https://github.com/bmangold&amp;quot;&amp;gt;Brandon Mangold&amp;lt;/a&amp;gt; on
+&amp;lt;a href=&amp;quot;https://github.com/docker/machine/issues/1655#issuecomment-128872611&amp;quot;&amp;gt;docker-machine Issue 1655 (Minimal IAM policy)&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;A slightly extended it with permissions for creating security groups:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-json&amp;quot; data-lang=&amp;quot;json&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Version&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;2012-10-17&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Statement&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;[&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Sid&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;TheseActionsDontSupportResourceLevelPermissions&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Effect&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;Allow&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Action&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;[&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ec2:CreateKeyPair&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ec2:DeleteKeyPair&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ec2:ImportKeyPair&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ec2:Describe*&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ec2:CreateTags&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ec2:CreateSecurityGroup&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ec2:AuthorizeSecurityGroupIngress&amp;amp;quot;&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;],&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Resource&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;*&amp;amp;quot;&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;},&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Sid&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ThisActionsSupportResourceLevelPermissions&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Effect&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;Allow&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Action&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ec2:RunInstances&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;],&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Resource&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;[&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;arn:aws:ec2:eu-west-1::image/ami-*&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:instance/*&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:key-pair/*&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:network-interface/*&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:placement-group/*&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:security-group/*&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:subnet/*&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:volume/*&amp;amp;quot;&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;]&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;},&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Sid&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;TheseActionsSupportResourceLevelPermissions&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Effect&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;Allow&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Action&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;[&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ec2:TerminateInstances&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ec2:StopInstances&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ec2:StartInstances&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;ec2:RebootInstances&amp;amp;quot;&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;],&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Resource&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;[&amp;lt;/span&amp;gt;
+                &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:instance/*&amp;amp;quot;&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;]&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;]&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Replace &amp;lt;code&amp;gt;%AWS_ACCOUNT_ID%&amp;lt;/code&amp;gt; with your account ID. Get it from: AWS console / My Account.
+I also changed the region to &amp;lt;code&amp;gt;eu-west-1&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Find out the VPC ID&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;This step is also covered in the official drivers documentation.
+Login to the AWS console and navigate to Services / VPC / Your VPCs.
+Get the VPC ID from the VPC column and set the environment variable like this:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;export &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;AWS_VPC_ID&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;vpc-....&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;h4&amp;gt;Create the docker machine&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;Four environment variables have been populated:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;export &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;AWS_ACCESS_KEY_ID&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;AKI... &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;# first step&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;export &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;AWS_SECRET_ACCESS_KEY&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;... &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;# first step&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;export &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;AWS_VPC_ID&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;vpc-.... &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;# second step&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;As mentioned in the previous step, I changed to region to &amp;lt;code&amp;gt;eu-west-1&amp;lt;/code&amp;gt;.
+It must match the region in the IAM policy:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;export &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;AWS_DEFAULT_REGION&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;eu-west-1 &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;# Ireland&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Create the &amp;lt;em&amp;gt;aws01&amp;lt;/em&amp;gt; machine with &amp;lt;code&amp;gt;-D&amp;lt;/code&amp;gt; option for debugging:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;docker-machine -D create --driver amazonec2 aws01&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Everything is fine, if the command above completes with the message:
+&amp;lt;em&amp;gt;&amp;amp;quot;To see how to connect Docker to this machine, run: docker-machine env aws01&amp;amp;quot;&amp;lt;/em&amp;gt;
+If not so, check out the troubleshooting section below.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;To verify the setup, just run:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;eval&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;$(docker-machine env aws01)&amp;amp;quot;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;# setup DOCKER_* environment variables&amp;lt;/span&amp;gt;
+docker ps                          &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;# list running containers&amp;lt;/span&amp;gt;
+docker images                      &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;# list images&amp;lt;/span&amp;gt;
+docker-machine ls                  &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;# list docker machines&amp;lt;/span&amp;gt;
+docker-machine ssh aws01           &amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;# ssh into instance aws01&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Use the docker-machine command to interact with the newly created EC2 instance.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Troubleshooting&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;If the creation of instances via &amp;lt;code&amp;gt;docker create&amp;lt;/code&amp;gt; fails:&amp;lt;/p&amp;gt;
+
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Check the IAM policy: region matches / AWS ID matches?&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Go to AWS console / Services / EC2 / Security Groups and check if the group already exists.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;You may have to remove the &amp;lt;em&amp;gt;aws01&amp;lt;/em&amp;gt; key pair if the first run of &amp;lt;code&amp;gt;docker-machine create&amp;lt;/code&amp;gt; fails: Go to AWS console / Services / EC2 / Key paris.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Backup to Amazon Glacier with Duplicity and Duply&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2015-11-11T07:38:31+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2015/11/11/backup-to-amazon-s3-glacier-with-duplicity/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;This is kind of a cheat sheet on how to create a fully encrypted backup on
+&amp;lt;a href=&amp;quot;https://aws.amazon.com/glacier/&amp;quot;&amp;gt;Amazon Glacier&amp;lt;/a&amp;gt; with &amp;lt;a href=&amp;quot;http://duplicity.nongu.org/&amp;quot;&amp;gt;Duplicity&amp;lt;/a&amp;gt; and &amp;lt;a href=&amp;quot;http://duply.net/&amp;quot;&amp;gt;Duply&amp;lt;/a&amp;gt; (a
+frontend/wrapper for Duplicity) for as little as EUR 0,01 per gigabyte (plus
+transfer fees).&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;The required steps are:&amp;lt;/p&amp;gt;
+
+&amp;lt;ol&amp;gt;
+&amp;lt;li&amp;gt;Get Duplicity version 0.6.26+, Duply version 1.9.1+, GnuPG and python-keyring&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Create a Bucket, setup permissions and create lifecycle rules&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Create a Duply profile&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Store the passwords in the keyring&amp;lt;/li&amp;gt;
+&amp;lt;/ol&amp;gt;
+
+&amp;lt;p&amp;gt;Additionally, an &amp;lt;a href=&amp;quot;https://aws.amazon.com/&amp;quot;&amp;gt;AWS&amp;lt;/a&amp;gt; account is needed.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Step 1: Get Duplicity version 0.6.26+, Duply version 1.9.1+, GnuPG and python-keyring&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;On Mac OS X with Homebrew:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;brew install gnupg duplicity duply python
+pip install keyring&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;On Debian/Ubuntu:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;sudo apt-get install gnupg duplicity duply python-keyring&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Package names may differ depending on the version of your distributions. Please
+try &amp;lt;code&amp;gt;gnupg2&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;python3-keyring&amp;lt;/code&amp;gt; if one of these packages cannot be found.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Step 2: Create a Bucket, setup permissions and create lifecycle rules&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;Don&amp;amp;#39;t forget to remember the region when creating a new Bucket on the S3 Management Console.
+This time I chose Ireland (eu-west-1).&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;When attach a lifecycle rule to the bucket.&amp;lt;/p&amp;gt;
+
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Target: Objects with the prefix &amp;lt;code&amp;gt;_my_folder_to_backup/archive_&amp;lt;/code&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Configuration: Archive to the Glacier Storage Class 1 days after the object&amp;amp;#39;s creation date.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+
+&amp;lt;p&amp;gt;Following this, create a new user and attach this custom policy:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-json&amp;quot; data-lang=&amp;quot;json&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Version&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;2012-10-17&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Statement&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;[&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+      &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Effect&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;Allow&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+      &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Action&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;s3:ListBucket&amp;amp;quot;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;],&amp;lt;/span&amp;gt;
+      &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Resource&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;arn:aws:s3:::my_bucket&amp;amp;quot;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;},&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+      &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Effect&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;Allow&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+      &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Action&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;[&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;s3:PutObject&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;s3:GetObject&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;s3:DeleteObject&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;],&amp;lt;/span&amp;gt;
+      &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;quot;Resource&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;arn:aws:s3:::my_bucket/*&amp;amp;quot;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;]&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;There is one thing missing here. Once the archived files (not the index files,
+not the signatures) moved to Glacier class storage via lifecyle rules, this user is
+not (yet) able to move them back to standard class storage for restore.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Step 3: Create a Duply profile&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;Create the Duply profile with &amp;lt;code&amp;gt;duply my_profile create&amp;lt;/code&amp;gt; and adjust the configuration
+in profile in &amp;lt;code&amp;gt;~/.duply/my_profile/conf&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;SOURCE&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;/my/folder/to/backup
+
+&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;TARGET&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;s3://s3-eu-west-1.amazonaws.com/my_bucket/_my_folder_to_backup&amp;amp;#39;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;TARGET_USER&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;sb&amp;quot;&amp;gt;`&amp;lt;/span&amp;gt;keyring get &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;duplicity my_profile&amp;amp;#39;&amp;lt;/span&amp;gt; AWS_ACCESS_KEY_ID&amp;lt;span class=&amp;quot;sb&amp;quot;&amp;gt;`&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;TARGET_PASS&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;sb&amp;quot;&amp;gt;`&amp;lt;/span&amp;gt;keyring get &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;duplicity my_profile&amp;amp;#39;&amp;lt;/span&amp;gt; AWS_SECRET_ACCESS_KEY&amp;lt;span class=&amp;quot;sb&amp;quot;&amp;gt;`&amp;lt;/span&amp;gt;
+
+&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;# Uncomment if you prefere the more secure public/private key encryption&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;GPG_PW&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;sb&amp;quot;&amp;gt;`&amp;lt;/span&amp;gt;keyring get &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;duplicity my_profile&amp;amp;#39;&amp;lt;/span&amp;gt; PASSPHRASE&amp;lt;span class=&amp;quot;sb&amp;quot;&amp;gt;`&amp;lt;/span&amp;gt;
+
+&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;DUPL_PARAMS&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;$DUPL_PARAMS --volsize 25 &amp;amp;quot;&amp;lt;/span&amp;gt;
+
+&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;DUPL_PARAMS&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;$DUPL_PARAMS --file-prefix-manifest manifest_ &amp;amp;quot;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;DUPL_PARAMS&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;$DUPL_PARAMS --file-prefix-archive archive_ &amp;amp;quot;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;DUPL_PARAMS&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;$DUPL_PARAMS --file-prefix-signature signature_&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Please check the permissions of the created profile in &amp;lt;code&amp;gt;~/.duply/my_profile/&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Step 4: Store the passwords in the keyring&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;The &amp;lt;a href=&amp;quot;https://pypi.python.org/pypi/keyring&amp;quot;&amp;gt;keyring&amp;lt;/a&amp;gt; commandline utility supports multiple backends: the
+Mac OS X Keychain, the Linux Secret Service and the Windows Credential Vault.
+There are defaults for each platform, but you can also &amp;lt;a href=&amp;quot;https://pypi.python.org/pypi/keyring#configure-your-keyring-lib&amp;quot;&amp;gt;define which backend to
+use&amp;lt;/a&amp;gt; (or even
+write your own).&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;To store the AWS Access Key from Step 2:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;keyring &amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;set&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;duplicity my_profile&amp;amp;#39;&amp;lt;/span&amp;gt; AWS_ACCESS_KEY_ID&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;To store the AWS Access Secret from Step 2:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;keyring &amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;set&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;duplicity my_profile&amp;amp;#39;&amp;lt;/span&amp;gt; AWS_SECRET_ACCESS_KEY&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;To store the key for symmetric GPG encryption:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;keyring &amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;set&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;duplicity my_profile&amp;amp;#39;&amp;lt;/span&amp;gt; PASSPHRASE&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;These secrets will be retrieved via &amp;lt;code&amp;gt;keyring get ...&amp;lt;/code&amp;gt; during the backup/restore
+process.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Test&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;Test the backup process via:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;duply my_profile backup&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;To restore a file or folder from backup:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;duply my_profile restore Makefile&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;To fetch a single file or folder from backup:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;duply my_profile fetch Makefile /tmp/Makefile&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Also check out &amp;lt;code&amp;gt;duply --help&amp;lt;/code&amp;gt; for a brief overview.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Résumé&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;I&amp;amp;#39;m pretty happy with this backup solution, but there are some annoying parts as well:&amp;lt;/p&amp;gt;
+
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Lifecyle rule needs to be created for each backup folder.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;The user policy is missing an action for moving Glacier class storage items back to standard class storage.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+
+&amp;lt;p&amp;gt;In summary, it can be stated that this backup solution isn&amp;amp;#39;t perfect yet,
+but it&amp;amp;#39;s built upon Open-Source tools and it&amp;amp;#39;s easy to customize.&amp;lt;/p&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Publish to GitHub User Pages with Jekyll and Travis-CI&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2015-11-08T23:38:31+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2015/11/08/publish-github-pages-via-travis-ci/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;According GitHub&amp;amp;#39;s Help on &amp;lt;a href=&amp;quot;https://help.github.com/articles/user-organization-and-project-pages/&amp;quot;&amp;gt;User, Organization, and Project Pages&amp;lt;/a&amp;gt;, there
+are few important differences on how those kind of pages are served over HTTP(S).&amp;lt;/p&amp;gt;
+
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;User and Organization Pages&amp;lt;/strong&amp;gt; will be published with content of the &amp;lt;em&amp;gt;master&amp;lt;/em&amp;gt;-Branch, while the repository must match the schema &amp;lt;em&amp;gt;&amp;amp;lt;username&amp;amp;gt;.github.io&amp;lt;/em&amp;gt;.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Project Pages&amp;lt;/strong&amp;gt; are published with content of the &amp;lt;em&amp;gt;gh-pages&amp;lt;/em&amp;gt;-Branch of a certain project repository.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+
+&amp;lt;p&amp;gt;This short guide will show you how to automate publishing for &amp;lt;strong&amp;gt;User and Organization Pages&amp;lt;/strong&amp;gt; with &amp;lt;a href=&amp;quot;https://www.travis-ci.org/&amp;quot;&amp;gt;Travis-CI&amp;lt;/a&amp;gt; and &amp;lt;a href=&amp;quot;http://jekyllrb.com/&amp;quot;&amp;gt;Jekyll&amp;lt;/a&amp;gt;.
+The topic has been discussed on &amp;lt;a href=&amp;quot;http://stackoverflow.com/&amp;quot;&amp;gt;stackoverflow&amp;lt;/a&amp;gt; &amp;lt;a href=&amp;quot;http://stackoverflow.com/a/33125422&amp;quot;&amp;gt;many&amp;lt;/a&amp;gt; times.
+This is kind of a best-of using an HTTPS API Token (via environment variable) and keeping the history of the published &amp;lt;em&amp;gt;master&amp;lt;/em&amp;gt;-branch.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;It&amp;amp;#39;s only five steps&amp;lt;/h4&amp;gt;
+
+&amp;lt;ol&amp;gt;
+&amp;lt;li&amp;gt;Create a repository &amp;lt;em&amp;gt;&amp;amp;lt;username&amp;amp;gt;.github.io&amp;lt;/em&amp;gt; with an empty commit on master.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Create a &amp;lt;em&amp;gt;jekyll&amp;lt;/em&amp;gt;-Branch based on the &amp;lt;em&amp;gt;master&amp;lt;/em&amp;gt;-Branch and put your &amp;lt;a href=&amp;quot;http://jekyllrb.com/&amp;quot;&amp;gt;Jekyll&amp;lt;/a&amp;gt;-site into it.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Connect &amp;lt;a href=&amp;quot;https://www.travis-ci.org/&amp;quot;&amp;gt;Travis-CI&amp;lt;/a&amp;gt; with GitHub and create an access token to allow &amp;lt;code&amp;gt;git push&amp;lt;/code&amp;gt; for the build job.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Go to the Travis-CI Dashboard, activate the build job for your repository and add an &amp;lt;em&amp;gt;Environment Variable&amp;lt;/em&amp;gt; with the name &amp;lt;code&amp;gt;GITHUB_ACCESS_TOKEN&amp;lt;/code&amp;gt; and the newly generated token.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Last but not least, add the &amp;lt;code&amp;gt;.travis.yml&amp;lt;/code&amp;gt; file below to your &amp;lt;code&amp;gt;jekyll&amp;lt;/code&amp;gt; branch, adjust it, commit and push.&amp;lt;/li&amp;gt;
+&amp;lt;/ol&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-yaml&amp;quot; data-lang=&amp;quot;yaml&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;sudo&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;false&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;language&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;ruby&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;branches&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;only&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;-&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;jekyll&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;script&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;-&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;bundle&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt; &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;exec&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt; &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;jekyll&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt; &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;build&amp;amp;quot;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;after_success&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;|&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;if [ -n &amp;amp;quot;${GITHUB_ACCESS_TOKEN}&amp;amp;quot; ] &amp;amp;amp;&amp;amp;amp; [ &amp;amp;quot;${TRAVIS_PULL_REQUEST}&amp;amp;quot; = &amp;amp;#39;false&amp;amp;#39; ]&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;then&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;cd &amp;amp;quot;${TRAVIS_BUILD_DIR}/_site&amp;amp;quot;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;git init&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;git remote add origin &amp;amp;quot;https://sedden:${GITHUB_ACCESS_TOKEN}@github.com/sedden/sedden.github.io&amp;amp;quot;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;git config user.name &amp;amp;quot;Stefan Jenkner&amp;amp;quot;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;git config user.email &amp;amp;quot;stefan@jenkner.org&amp;amp;quot;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;git fetch&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;git reset origin/master&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;git add .&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;git commit -a -m &amp;amp;quot;Travis CI build ${TRAVIS_BUILD_NUMBER}.&amp;amp;quot;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;git push origin HEAD:master &amp;amp;gt;/dev/null 2&amp;amp;gt;&amp;amp;amp;1&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;cd &amp;amp;quot;${TRAVIS_BUILD_DIR}&amp;amp;quot;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;no&amp;quot;&amp;gt;fi&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Ensure to redirect any output of &amp;lt;code&amp;gt;git push&amp;lt;/code&amp;gt; to &amp;lt;code&amp;gt;/dev/null&amp;lt;/code&amp;gt;! Otherwise it will leak your access token!&amp;lt;/p&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Fabric, duplicity, AWS credentials and System Keyring&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2014-06-11T00:38:28+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2014/06/11/fabric-keyring-duplicity-aws/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;I still use &amp;lt;a href=&amp;quot;http://www.fabfile.org/&amp;quot;&amp;gt;Fabric&amp;lt;/a&amp;gt; for some deployment and systems administration tasks.
+Passing secrets or credentials is commonly part of those tasks and it brings up some issues that has been on my mind for quite a long time:&amp;lt;/p&amp;gt;
+
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Fabric&amp;amp;#39;s configuration file &amp;lt;code&amp;gt;fabfile.py&amp;lt;/code&amp;gt; is under version control&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;credentials must be kept out of version control&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;credentials must not be stored in plain text on any computer&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+
+&amp;lt;p&amp;gt;Setting environment variables is commonly required when dealing with &amp;lt;a href=&amp;quot;http://aws.amazon.com/&amp;quot;&amp;gt;AWS&amp;lt;/a&amp;gt;.
+&amp;lt;a href=&amp;quot;http://duplicity.nongu.org/&amp;quot;&amp;gt;Duplicity&amp;lt;/a&amp;gt; (my backup tool of choice) makes use of them, especially when using the Amazon S3 backend.
+The affected variables are &amp;lt;code&amp;gt;AWS_ACCESS_KEY_ID&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;AWS_SECRET_ACCESS_KEY&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;PASSPHRASE&amp;lt;/code&amp;gt; (for symmetric encryption via GPG).
+So the goal was to keep those credentials out of version control, retrieve them from the system keyring service and set the environment variables before command execution.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;A simple backup task&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;This simple task creates a backup with &amp;lt;a href=&amp;quot;http://duplicity.nongu.org/&amp;quot;&amp;gt;duplicity&amp;lt;/a&amp;gt; using it&amp;amp;#39;s S3 backend:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-python&amp;quot; data-lang=&amp;quot;python&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;nd&amp;quot;&amp;gt;@task&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nd&amp;quot;&amp;gt;@hosts&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;admin@host1.local&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;def&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nf&amp;quot;&amp;gt;backup_host1&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;():&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;sd&amp;quot;&amp;gt;&amp;amp;quot;&amp;amp;quot;&amp;amp;quot;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;sd&amp;quot;&amp;gt;    Backup host1.local to S3 via duplicity.&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;sd&amp;quot;&amp;gt;    &amp;amp;quot;&amp;amp;quot;&amp;amp;quot;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;base_url&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;s3://s3-eu-west-1.amazonaws.com/duplicity-host1.local&amp;amp;#39;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;with&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;duplicity_env&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;host1.local&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;):&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;for&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;local_dir&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ow&amp;quot;&amp;gt;in&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;/etc&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;/home&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;/var/www&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;]:&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;remote_url&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;base_url&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;+&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;/&amp;amp;#39;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;+&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;local_dir&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;replace&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;/&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;_&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;sudo&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;duplicity remove-older-than 60D -v3 --force &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;si&amp;quot;&amp;gt;%s&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;%&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;remote_url&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;))&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;sudo&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;duplicity --full-if-older-than 30D -v3 &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;si&amp;quot;&amp;gt;%s&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt; &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;si&amp;quot;&amp;gt;%s&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;%&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;local_dir&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;remote_url&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;))&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;The task makes use of a custom &amp;lt;a href=&amp;quot;http://docs.fabfile.org/en/latest/api/core/context_managers.html&amp;quot;&amp;gt;Context Manager&amp;lt;/a&amp;gt; &amp;lt;code&amp;gt;duplicity_env&amp;lt;/code&amp;gt; which will be explained below.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Context Managers to the Rescue!&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://docs.fabfile.org/en/latest/api/core/context_managers.html&amp;quot;&amp;gt;Context Managers&amp;lt;/a&amp;gt; for use with Python&amp;amp;#39;s &amp;lt;code&amp;gt;with&amp;lt;/code&amp;gt; statement are one of my favorite Fabric-features.
+The &amp;lt;code&amp;gt;with&amp;lt;/code&amp;gt; statement ensures the execution of a specific setup and teardown block, regardless of whether the intended block fails or not. Classes only need to implement &amp;lt;code&amp;gt;__enter__()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;__exit__()&amp;lt;/code&amp;gt;.
+As Fabric already comes along with it&amp;amp;#39;s own context manager for setting environment variables (called &amp;lt;code&amp;gt;shell_env&amp;lt;/code&amp;gt;), I decided to wrap the (internal) &amp;lt;code&amp;gt;_setenv&amp;lt;/code&amp;gt; method, instead of starting to implement the context manager as a class.
+The &amp;lt;a href=&amp;quot;https://pypi.python.org/pypi/keyring&amp;quot;&amp;gt;python keyring library&amp;lt;/a&amp;gt; enables easy access to the system keyring service.
+It works pretty well with OS X Keychain and GNOME Keyring, but should also work with the Windows Credential Vault (untestet by me).&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-python&amp;quot; data-lang=&amp;quot;python&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;def&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nf&amp;quot;&amp;gt;duplicity_env&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;hostname&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;):&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;sd&amp;quot;&amp;gt;&amp;amp;quot;&amp;amp;quot;&amp;amp;quot;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;sd&amp;quot;&amp;gt;    Set shell environment variables for duplicity.&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;sd&amp;quot;&amp;gt;    &amp;amp;quot;&amp;amp;quot;&amp;amp;quot;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;kn&amp;quot;&amp;gt;from&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nn&amp;quot;&amp;gt;fabric.context_managers&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;kn&amp;quot;&amp;gt;import&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;_setenv&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;kn&amp;quot;&amp;gt;import&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nn&amp;quot;&amp;gt;keyring&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nn&amp;quot;&amp;gt;sys&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;kw&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{}&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;to_env&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;Duplicity&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;PASSPHRASE&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;Access Key Id&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;AWS_ACCESS_KEY_ID&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;Secret Access Key&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;AWS_SECRET_ACCESS_KEY&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;for&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;key&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;var&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ow&amp;quot;&amp;gt;in&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;to_env&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;items&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;():&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;secret&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;keyring&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;get_password&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;hostname&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;key&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;if&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;secret&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;ow&amp;quot;&amp;gt;is&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;bp&amp;quot;&amp;gt;None&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;print&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;&amp;amp;quot;&amp;amp;quot;Run: python -c &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;se&amp;quot;&amp;gt;\&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;import keyring;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;            keyring.set_password(&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;si&amp;quot;&amp;gt;%s&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;, &amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;si&amp;quot;&amp;gt;%s&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;, &amp;amp;#39;PASSWORD&amp;amp;#39;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;se&amp;quot;&amp;gt;\&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;&amp;amp;quot;&amp;amp;quot;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;%&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;hostname&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;key&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;sys&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;exit&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;1&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;else&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;kw&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;var&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;]&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;secret&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;return&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;_setenv&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;({&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;shell_env&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;kw&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;})&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;The code above defines a dictionary &amp;lt;code&amp;gt;to_env&amp;lt;/code&amp;gt; that maps keychain identifiers to environment variables.
+If the keyring does not contain the entry, it give some hints on how to add it.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;OS X Keychain&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;The &amp;lt;a href=&amp;quot;https://pypi.python.org/pypi/keyring&amp;quot;&amp;gt;keyring library&amp;lt;/a&amp;gt; wraps OS X keychain entries like this:&amp;lt;/p&amp;gt;
+
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Field &amp;lt;em&amp;gt;Name&amp;lt;/em&amp;gt; is the display name and can be changed&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Field &amp;lt;em&amp;gt;Account&amp;lt;/em&amp;gt; matches &amp;lt;code&amp;gt;username&amp;lt;/code&amp;gt;, the second argument of &amp;lt;code&amp;gt;keyring.get_password(...)&amp;lt;/code&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Field &amp;lt;em&amp;gt;Where&amp;lt;/em&amp;gt; matches &amp;lt;code&amp;gt;servicename&amp;lt;/code&amp;gt;, the first argument of &amp;lt;code&amp;gt;keyring.get_password(...)&amp;lt;/code&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+
+&amp;lt;p&amp;gt;OS X may also bring up a popup to ask for keychain access.&amp;lt;/p&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Time tracking with the Pomodoro.app&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2014-05-02T07:11:11+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2014/05/02/pomodoro-timesheet/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;I&amp;amp;#39;m a huge fan of the &amp;lt;a href=&amp;quot;https://github.com/ugol/pomodoro&amp;quot;&amp;gt;Pomodoro.app&amp;lt;/a&amp;gt;. 
+It helps me to focus on my work and it controlls my messenger status (Adium) to tell my colleagues when I&amp;amp;#39;m busy.
+Now I even use it to log my activies and put them into a SQLite database for reporting. &amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Clue code&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;The &amp;lt;a href=&amp;quot;https://github.com/ugol/pomodoro&amp;quot;&amp;gt;Pomodoro.app&amp;lt;/a&amp;gt; can invoke AppleScripts on certain events. 
+I&amp;amp;#39;m not a big fan of the AppleScript-Language but I know how to make it run external programs. 
+For that reason I wrote a &amp;lt;a href=&amp;quot;https://gist.github.com/sedden/19391359f6c0e4baf8ed&amp;quot;&amp;gt;few lines of Python&amp;lt;/a&amp;gt; to insert the activities into the database. &amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;Frist put the &amp;lt;a href=&amp;quot;https://gist.github.com/sedden/19391359f6c0e4baf8ed&amp;quot;&amp;gt;Python-Script&amp;lt;/a&amp;gt; somewhere.
+Then launch &amp;lt;em&amp;gt;Pomodoro&amp;lt;/em&amp;gt; , go to &amp;lt;em&amp;gt;Preferences&amp;lt;/em&amp;gt; / &amp;lt;em&amp;gt;Scripts&amp;lt;/em&amp;gt;, check &amp;lt;em&amp;gt;End&amp;lt;/em&amp;gt; and put this script into the field:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-applescript&amp;quot; data-lang=&amp;quot;applescript&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;-- Applescript:&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;do shell script&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s2&amp;quot;&amp;gt;&amp;amp;quot;/Users/stefan/timesheet_add.py -t \&amp;amp;quot;$pomodoroName\&amp;amp;quot; -m \&amp;amp;quot;$duration\&amp;amp;quot;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Just replace the path to &amp;lt;code&amp;gt;timesheet_add.py&amp;lt;/code&amp;gt;. The parameters &amp;lt;code&amp;gt;$pomodoroName&amp;lt;/code&amp;gt; (name of the activity) and &amp;lt;code&amp;gt;$duration&amp;lt;/code&amp;gt; (time in minutes) will be passed to the script.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Database&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;The table structure is as simple as:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-sql&amp;quot; data-lang=&amp;quot;sql&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;CREATE&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;TABLE&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;activities&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;day&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;text&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;activity&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;text&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;minutes&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;text&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;added&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;timestamp&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;);&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;This &amp;lt;code&amp;gt;timesheet&amp;lt;/code&amp;gt; view groups all activities with the same name on a certain day and shows the time &amp;lt;code&amp;gt;HH:MM&amp;lt;/code&amp;gt; formated:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-sql&amp;quot; data-lang=&amp;quot;sql&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;CREATE&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;VIEW&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;timesheet&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;AS&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;select&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;day&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;activity&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;sum&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;minutes&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;/&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;60&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;:&amp;amp;#39;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;sum&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;minutes&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;%&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;60&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;hours&amp;lt;/span&amp;gt; 
+   &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;from&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;activities&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;group&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;by&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;day&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;activity&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;The next one only selects activities of the current week:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-sql&amp;quot; data-lang=&amp;quot;sql&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;CREATE&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;VIEW&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;timesheet_current_week&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;AS&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;select&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;day&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;activity&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;sum&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;minutes&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;/&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;60&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;:&amp;amp;#39;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;sum&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;minutes&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;%&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;60&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;hours&amp;lt;/span&amp;gt; 
+   &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;from&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;activities&amp;lt;/span&amp;gt; 
+   &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;where&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;strftime&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;%YW%W&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;day&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;strftime&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;%YW%W&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;date&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;now&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;))&amp;lt;/span&amp;gt; 
+   &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;group&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;by&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;day&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;activity&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;With a slightly altered &amp;lt;code&amp;gt;WHERE&amp;lt;/code&amp;gt; condition to select last weeks activities:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-sql&amp;quot; data-lang=&amp;quot;sql&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;CREATE&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;VIEW&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;timesheet_last_week&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;AS&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;select&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;day&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;activity&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;sum&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;minutes&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;/&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;60&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;:&amp;amp;#39;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;sum&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;minutes&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;%&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;60&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;hours&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;from&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;activities&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;where&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;strftime&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;%YW%W&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;day&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;strftime&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;%YW%W&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;date&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;now&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;-7 days&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;))&amp;lt;/span&amp;gt; 
+  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;group&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;by&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;day&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;activity&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;There is even a view that indicates if you worked too much (100% = 480 minutes = 8 hours):&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-sql&amp;quot; data-lang=&amp;quot;sql&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;CREATE&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;VIEW&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;completeness_current_week&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;AS&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;select&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;day&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;sum&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;minutes&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;/&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;60&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;:&amp;amp;#39;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;||&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;sum&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;minutes&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;%&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;60&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;hours&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;round&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(((&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;100&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;0&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;/&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;480&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;0&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;*&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;sum&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;minutes&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)),&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;2&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;as&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;percent&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;from&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;activities&amp;lt;/span&amp;gt; 
+  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;where&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;strftime&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;%YW%W&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;day&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;n&amp;quot;&amp;gt;strftime&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;%YW%W&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nb&amp;quot;&amp;gt;date&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s1&amp;quot;&amp;gt;&amp;amp;#39;now&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;))&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;group&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;by&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;day&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;I use &amp;lt;a href=&amp;quot;https://www.sqlitepro.com/&amp;quot;&amp;gt;SQLite Professional&amp;lt;/a&amp;gt; (at that time it was free) to display the views.
+It automatically detects changes on the database file and refreshes the current view.&amp;lt;/p&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Howto migrate from Octopress to Jekyll&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2014-05-01T14:11:52+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2014/05/01/from-octopress-to-jekyll/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;Here are a few tipps on how to migrate from &amp;lt;a href=&amp;quot;http://octopress.org&amp;quot;&amp;gt;Octopress&amp;lt;/a&amp;gt; to &amp;lt;a href=&amp;quot;http://jekyllrb.com&amp;quot;&amp;gt;Jekyll&amp;lt;/a&amp;gt;. &amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Permalinks&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;Permalinks somehow defaults to &amp;lt;code&amp;gt;/mycategory/2014/05/01/title&amp;lt;/code&amp;gt;.&amp;lt;br&amp;gt;
+Set &amp;lt;code&amp;gt;permalink: /blog/:year/:month/:day/:title&amp;lt;/code&amp;gt; in &amp;lt;code&amp;gt;_config.yml&amp;lt;/code&amp;gt; to use a fixed prefix.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;XML-Sitemap&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;There is a plugin to generate a &amp;lt;code&amp;gt;sitemap.xml&amp;lt;/code&amp;gt; - &amp;lt;a href=&amp;quot;https://github.com/kinnetica/jekyll-plugins&amp;quot;&amp;gt;https://github.com/kinnetica/jekyll-plugins&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;robots.txt&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;The &amp;lt;code&amp;gt;robots.txt&amp;lt;/code&amp;gt; can easily be adopted from the Octopress installation.&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-yaml&amp;quot; data-lang=&amp;quot;yaml&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;nn&amp;quot;&amp;gt;---&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;layout&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;nil&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nn&amp;quot;&amp;gt;---&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;User-agent&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;err&amp;quot;&amp;gt;*&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;Disallow&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; 
+
+&amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;Sitemap&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;{{&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;site.url&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p-Indicator&amp;quot;&amp;gt;}}&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;l-Scalar-Plain&amp;quot;&amp;gt;/sitemap.xml&amp;lt;/span&amp;gt; &amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Ensure that &amp;lt;code&amp;gt;url: http://yoursite.com&amp;lt;/code&amp;gt; has been set in &amp;lt;code&amp;gt;_config.yml&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Provide Atom feed&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;This &amp;lt;code&amp;gt;atom.xml&amp;lt;/code&amp;gt; provides atom feed functionality.&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-xml&amp;quot; data-lang=&amp;quot;xml&amp;quot;&amp;gt;---
+layout: nil
+---
+&amp;lt;span class=&amp;quot;cp&amp;quot;&amp;gt;&amp;amp;lt;?xml version=&amp;amp;quot;1.0&amp;amp;quot; encoding=&amp;amp;quot;utf-8&amp;amp;quot;?&amp;amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;feed&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;xmlns=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;http://www.w3.org/2005/Atom&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;title&amp;amp;gt;&amp;lt;/span&amp;gt;{{ site.name }}&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/title&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;link&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;href=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;{{ site.url }}/atom.xml&amp;amp;quot;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;rel=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;self&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;/&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;link&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;href=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;{{ site.url }}&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;/&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;updated&amp;amp;gt;&amp;lt;/span&amp;gt;{{site.time | date_to_xmlschema }}&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/updated&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;id&amp;amp;gt;&amp;lt;/span&amp;gt;{{ site.url }}&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/id&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;author&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;name&amp;amp;gt;&amp;lt;/span&amp;gt;{{ site.author }}&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/name&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;email&amp;amp;gt;&amp;amp;lt;/email&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/author&amp;amp;gt;&amp;lt;/span&amp;gt;
+  {% for post in site.posts %}
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;entry&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;title&amp;amp;gt;&amp;lt;/span&amp;gt;{{ post.title }}&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/title&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;link&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;href=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;{{ site.url }}&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;/&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;updated&amp;amp;gt;&amp;lt;/span&amp;gt;{{post.date | date_to_xmlschema }}&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/updated&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;id&amp;amp;gt;&amp;lt;/span&amp;gt;{{ site.url }}{{ post.url }}&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/id&amp;amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;content&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;type=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;html&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;gt;&amp;lt;/span&amp;gt;{{ post.content | xml_escape }}&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/content&amp;amp;gt;&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/entry&amp;amp;gt;&amp;lt;/span&amp;gt;
   {% endfor %}
+&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/feed&amp;amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;As mentioned above, &amp;lt;code&amp;gt;url: http://yoursite.com&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;author: Your Name&amp;lt;/code&amp;gt; must be set in &amp;lt;code&amp;gt;_config.yml&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Linking previous/next posts&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;Append this to &amp;lt;code&amp;gt;_layouts/post.html&amp;lt;/code&amp;gt; for linking previous/next posts:&amp;lt;/p&amp;gt;
+
+&amp;lt;figure class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-html&amp;quot; data-lang=&amp;quot;html&amp;quot;&amp;gt;{% if page.previous %}
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;p&amp;amp;gt;&amp;amp;lt;a&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;href=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;{{ page.previous.url }}&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;gt;&amp;lt;/span&amp;gt;« {{ page.previous.title }}&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/a&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;&amp;lt;/span&amp;gt;
+{% endif %}
+{% if page.next %}
+    &amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;p&amp;amp;gt;&amp;amp;lt;a&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;href=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;{{ page.next.url }}&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;gt;&amp;lt;/span&amp;gt;{{ page.next.title }} »&amp;lt;span class=&amp;quot;nt&amp;quot;&amp;gt;&amp;amp;lt;/a&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;&amp;lt;/span&amp;gt;
+{% endif %}&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/figure&amp;gt;
+
+&amp;lt;p&amp;gt;Other useful variables can be found here: &amp;lt;a href=&amp;quot;http://jekyllrb.com/docs/variables/&amp;quot;&amp;gt;http://jekyllrb.com/docs/variables/&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Pros and cons using Puppet&#39;s $::osfamily instead of $::operatingsystem Fact&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2013-03-27T11:36:00+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;Once you read the &amp;lt;a href=&amp;quot;http://docs.puppetlabs.com/guides/style_guide.html&amp;quot;&amp;gt;Puppet Style Guide&amp;lt;/a&amp;gt;, you should know how to write well structured manifests, with the modest indentation, spacing, arrow alignment, quoting and so on.
+Well, I think there are lots of other things you &amp;lt;del&amp;gt;better&amp;lt;/del&amp;gt; should care. 
+For this time, it&amp;amp;#39;s about when to use &amp;lt;code&amp;gt;$::osfamily&amp;lt;/code&amp;gt; and when better to stay with the &amp;lt;code&amp;gt;$::operatingsystem&amp;lt;/code&amp;gt; fact.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Pros&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;The key benefit of using &amp;lt;code&amp;gt;$::osfamily&amp;lt;/code&amp;gt; is that you don&amp;amp;#39;t end up forking your favorite Puppet module on GitHub to add the eleventh RedHat derivate: &amp;lt;/p&amp;gt;
+
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-puppet&amp;quot; data-lang=&amp;quot;puppet&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;case&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$::operatingsystem&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;RedHat&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;CentOS&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;Scientific&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;err&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;err&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;err&amp;quot;&amp;gt;.&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;OracleLinux&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;OEL&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;     # do something RHEL specific&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;ubuntu&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;debian&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;     # do something Debian specific &amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;default&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;     # ...&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;p&amp;gt;Instead you would use:&amp;lt;/p&amp;gt;
+
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-puppet&amp;quot; data-lang=&amp;quot;puppet&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;case&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$::osfamily&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;redhat&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;     # do something RHEL specific&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;debian&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;     # do something Debian specific &amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;default&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;c&amp;quot;&amp;gt;     # ...&amp;lt;/span&amp;gt;
+   &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;p&amp;gt;It allows you to write cleaner manifests and works well for common tasks. 
+You still have the choice to handle details via &amp;lt;code&amp;gt;$::operatingsystem&amp;lt;/code&amp;gt; the more complex your classes become.&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Cons&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;There are disadvantages of course: You claim tosupport an Operating-System you might haven&amp;amp;#39;t even heard of.
+But my experience is that most people are using the EPEL repositories anyway. So wouldn&amp;amp;#39;t it be enough to test your modules against EPEL? And yes: you really should test your manifests!&amp;lt;/p&amp;gt;
+
+&amp;lt;h4&amp;gt;Support for Facter &amp;amp;lt; 1.6.1&amp;lt;/h4&amp;gt;
+
+&amp;lt;p&amp;gt;The &amp;lt;code&amp;gt;$::osfamily&amp;lt;/code&amp;gt; fact was introduced with Facter 1.6.1. There is a simple workaround for older versions. I found this solution in the description of the &amp;lt;a href=&amp;quot;https://github.com/puppetlabs/puppetlabs-mysql/&amp;quot;&amp;gt;puppetlabs-mysql Module&amp;lt;/a&amp;gt;. Just put this into your &amp;lt;code&amp;gt;site.pp&amp;lt;/code&amp;gt; (before any node definition):&amp;lt;/p&amp;gt;
+
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-puppet&amp;quot; data-lang=&amp;quot;puppet&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;if&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;!&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$::osfamily&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;case&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$::operatingsystem&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;RedHat&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;Fedora&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;CentOS&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;Scientific&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;SLC&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;Ascendos&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;CloudLinux&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;PSBM&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;OracleLinux&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;OVS&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;OEL&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+      &amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$osfamily&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;RedHat&amp;amp;#39;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;ubuntu&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;debian&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+      &amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$osfamily&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;Debian&amp;amp;#39;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;SLES&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;SLED&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;OpenSuSE&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;SuSE&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+      &amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$osfamily&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;Suse&amp;amp;#39;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;Solaris&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;Nexenta&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+      &amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$osfamily&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;Solaris&amp;amp;#39;&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;default&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt;
+      &amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$osfamily&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$::operatingsystem&amp;lt;/span&amp;gt;  
+    &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt;
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;p&amp;gt;It defines &amp;lt;code&amp;gt;$::osfamily&amp;lt;/code&amp;gt; if not available.&amp;lt;/p&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Forwarding IPv6 Traffic from WAN to LAN with OpenWRT&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2013-03-26T09:58:00+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2013/03/26/openwrt-ipv6-forwarding/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;We&amp;amp;#39;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:&amp;lt;/p&amp;gt;
+
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;http://www.sixxs.net/wiki/Aiccu/Installing_on_OpenWRT&amp;quot;&amp;gt;Aiccu/Installing on OpenWRT&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;http://wiki.openwrt.org/doc/howto/ipv6&amp;quot;&amp;gt;IPv6 HowTo on Backfire and later&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+
+&amp;lt;p&amp;gt;OpenWRT Attitude Adjustment 2012.09 warning: There is an ongoing discussion regarding the AICCU init script. If you can, stay with OpenWRT Backfire 2010.3.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;I&amp;amp;#39;m using SixxS tunnels to enable IPv6. My &amp;lt;code&amp;gt;/etc/config/network&amp;lt;/code&amp;gt; looks like this:&amp;lt;/p&amp;gt;
+
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-text&amp;quot; data-lang=&amp;quot;text&amp;quot;&amp;gt;config interface &amp;amp;#39;lan&amp;amp;#39;
+    # ...
+    option ip6addr &amp;amp;#39;2001:my:subnet:prefix::1/64&amp;amp;#39;
+
+config &amp;amp;#39;interface&amp;amp;#39; &amp;amp;#39;wan6&amp;amp;#39;
+    # ...
+    option &amp;amp;#39;ip6addr&amp;amp;#39; &amp;amp;#39;2001:my:end:point::2&amp;amp;#39;
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;p&amp;gt;To enable that your local server is reachable via SSH (port 22) add this rule to &amp;lt;code&amp;gt;/etc/config/firewall&amp;lt;/code&amp;gt; straight after the standard IPv6 rules: &amp;lt;/p&amp;gt;
+
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-text&amp;quot; data-lang=&amp;quot;text&amp;quot;&amp;gt;config rule
+       option &amp;amp;#39;src&amp;amp;#39; &amp;amp;#39;wan6&amp;amp;#39;
+       option &amp;amp;#39;proto&amp;amp;#39; &amp;amp;#39;tcp&amp;amp;#39;
+       option &amp;amp;#39;dest_port&amp;amp;#39; &amp;amp;#39;22&amp;amp;#39;
+       option &amp;amp;#39;dest_ip&amp;amp;#39; &amp;amp;#39;2001:your:servers:global:ipv6:address:####:####&amp;amp;#39;
+       option &amp;amp;#39;family&amp;amp;#39; &amp;amp;#39;ipv6&amp;amp;#39;
+       option &amp;amp;#39;target&amp;amp;#39; &amp;amp;#39;ACCEPT&amp;amp;#39;
+       option &amp;amp;#39;dest&amp;amp;#39; &amp;amp;#39;lan&amp;amp;#39; 
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;p&amp;gt;Also make sure that you installed the &amp;lt;code&amp;gt;ip6tables&amp;lt;/code&amp;gt; Package,
+then restart the firewall with &amp;lt;code&amp;gt;/etc/init.d/firewall restart&amp;lt;/code&amp;gt;
+and test your setup.&amp;lt;/p&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Run Puppet via Cron&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2013-03-25T13:37:00+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2013/03/25/run-puppet-via-cron/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;While deploying &amp;lt;a href=&amp;quot;http://puppetlabs.com&amp;quot;&amp;gt;Puppet&amp;lt;/a&amp;gt; on several Ubuntu machines, everything was fine until Nagios started sending out warnings about high memory and high CPU usage, caused by the Puppet agent process. Related Bug-reports are:&amp;lt;/p&amp;gt;
+
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;https://projects.puppetlabs.com/issues/1395#change-55821&amp;quot;&amp;gt;Bug #1395&amp;lt;/a&amp;gt; puppet memory usage&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;http://projects.puppetlabs.com/issues/12310#note-16&amp;quot;&amp;gt;Bug #12310&amp;lt;/a&amp;gt; Significant slow down in 2.7.10 apply&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;https://bugs.launchpad.net/ubuntu/+source/puppet/+bug/995719&amp;quot;&amp;gt;Bug #995719&amp;lt;/a&amp;gt; process_name.rb removed in 2.7.11 but still provided by puppet-common&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+
+&amp;lt;p&amp;gt;A common workaround is to run the Puppet agent via Cron. Take a look at the &amp;lt;a href=&amp;quot;http://projects.puppetlabs.com/projects/1/wiki/Cron_Patterns&amp;quot;&amp;gt;Cron Patterns&amp;lt;/a&amp;gt; Wiki page, but don&amp;amp;#39;t get too confused. Until Puppet 2.6, simply run: &amp;lt;/p&amp;gt;
+
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;/usr/sbin/puppetd --no-daemonize --onetime
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;p&amp;gt;With Puppet 2.7 it slightly changed to:&amp;lt;/p&amp;gt;
+
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot; data-lang=&amp;quot;bash&amp;quot;&amp;gt;/usr/bin/puppet agent --no-daemonize --onetime
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;p&amp;gt;Furthermore you won&amp;amp;#39;t run all the agents at the same time. So the next step is to plan the execution time. To run Puppet every 30 minutes, use &amp;lt;code&amp;gt;fqdn_rand(30)&amp;lt;/code&amp;gt; to generate a value between 0 and 29 for the first, and add 30 more to get the second point of time:&amp;lt;/p&amp;gt;
+
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-puppet&amp;quot; data-lang=&amp;quot;puppet&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$min1&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;fqdn_rand&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;30&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$min2&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;nv&amp;quot;&amp;gt;$min1&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;+&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;mi&amp;quot;&amp;gt;30&amp;lt;/span&amp;gt;
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;p&amp;gt;The &amp;lt;code&amp;gt;fqdn_rand&amp;lt;/code&amp;gt; function will generate the same value each time you call it, dependent on the FQDN of the actual host.
+Finally, the file resource will look like this: &amp;lt;/p&amp;gt;
+
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-puppet&amp;quot; data-lang=&amp;quot;puppet&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;k&amp;quot;&amp;gt;file&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;/etc/cron.d/puppet-cron&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;ensure&amp;lt;/span&amp;gt;  &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;present&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;content&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;quot;$min1,$min2 * * * * root /usr/bin/puppet agent --no-daemonize --onetime\n&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;mode&amp;lt;/span&amp;gt;    &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;0644&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;owner&amp;lt;/span&amp;gt;   &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;root&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;na&amp;quot;&amp;gt;group&amp;lt;/span&amp;gt;   &amp;lt;span class=&amp;quot;o&amp;quot;&amp;gt;=&amp;amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;s&amp;quot;&amp;gt;&amp;amp;#39;root&amp;amp;#39;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;
+&amp;lt;span class=&amp;quot;p&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt; 
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;p&amp;gt;As a side effect, this will solve another problem for you.
+Have you ever tried to reconfigure Puppet via Puppet?
+Currently there is no way telling Puppet to stop, re-read it&amp;amp;#39;s configuration and start again (e.g. via sending the SIGHUP signal). This related Bug-report was added two years ago:&amp;lt;/p&amp;gt;
+
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;http://projects.puppetlabs.com/issues/7273&amp;quot;&amp;gt;Bug #7273&amp;lt;/a&amp;gt; - Add additional signals for restarting Puppet agent runs&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
+  
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/feed&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;As mentioned above, &lt;code&gt;url: http://yoursite.com&lt;/code&gt; and &lt;code&gt;author: Your Name&lt;/code&gt; must be set in &lt;code&gt;_config.yml&lt;/code&gt;.&lt;/p&gt;
@@ -730,12 +1625,12 @@ layout: nil
 
 &lt;p&gt;Append this to &lt;code&gt;_layouts/post.html&lt;/code&gt; for linking previous/next posts:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;{% if page.previous %}
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{{ page.previous.url }}&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;« {{ page.previous.title }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-{% endif %}
-{% if page.next %}
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{{ page.next.url }}&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ page.next.title }} »&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-{% endif %}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;« Pros and cons using Puppet&#39;s $::osfamily instead of $::operatingsystem Fact&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/blog/2014/05/02/pomodoro-timesheet/&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Time tracking with the Pomodoro.app »&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Other useful variables can be found here: &lt;a href=&quot;http://jekyllrb.com/docs/variables/&quot;&gt;http://jekyllrb.com/docs/variables/&lt;/a&gt;.&lt;/p&gt;
 </content>
@@ -753,6 +1648,7 @@ For this time, it&amp;#39;s about when to use &lt;code&gt;$::osfamily&lt;/code&g
 &lt;h4&gt;Pros&lt;/h4&gt;
 
 &lt;p&gt;The key benefit of using &lt;code&gt;$::osfamily&lt;/code&gt; is that you don&amp;#39;t end up forking your favorite Puppet module on GitHub to add the eleventh RedHat derivate: &lt;/p&gt;
+
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-puppet&quot; data-lang=&quot;puppet&quot;&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$::operatingsystem&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
    &lt;span class=&quot;s&quot;&gt;&amp;#39;RedHat&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;CentOS&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Scientific&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;OracleLinux&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;OEL&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;     # do something RHEL specific&lt;/span&gt;
@@ -765,7 +1661,9 @@ For this time, it&amp;#39;s about when to use &lt;code&gt;$::osfamily&lt;/code&g
    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;Instead you would use:&lt;/p&gt;
+
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-puppet&quot; data-lang=&quot;puppet&quot;&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$::osfamily&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
    &lt;span class=&quot;s&quot;&gt;&amp;#39;redhat&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;     # do something RHEL specific&lt;/span&gt;
@@ -778,6 +1676,7 @@ For this time, it&amp;#39;s about when to use &lt;code&gt;$::osfamily&lt;/code&g
    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;It allows you to write cleaner manifests and works well for common tasks. 
 You still have the choice to handle details via &lt;code&gt;$::operatingsystem&lt;/code&gt; the more complex your classes become.&lt;/p&gt;
 
@@ -789,6 +1688,7 @@ But my experience is that most people are using the EPEL repositories anyway. So
 &lt;h4&gt;Support for Facter &amp;lt; 1.6.1&lt;/h4&gt;
 
 &lt;p&gt;The &lt;code&gt;$::osfamily&lt;/code&gt; fact was introduced with Facter 1.6.1. There is a simple workaround for older versions. I found this solution in the description of the &lt;a href=&quot;https://github.com/puppetlabs/puppetlabs-mysql/&quot;&gt;puppetlabs-mysql Module&lt;/a&gt;. Just put this into your &lt;code&gt;site.pp&lt;/code&gt; (before any node definition):&lt;/p&gt;
+
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-puppet&quot; data-lang=&quot;puppet&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$::osfamily&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$::operatingsystem&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&amp;#39;RedHat&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Fedora&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;CentOS&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Scientific&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;SLC&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Ascendos&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;CloudLinux&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;PSBM&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;OracleLinux&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;OVS&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;OEL&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -809,6 +1709,7 @@ But my experience is that most people are using the EPEL repositories anyway. So
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;It defines &lt;code&gt;$::osfamily&lt;/code&gt; if not available.&lt;/p&gt;
 </content>
   </entry>
@@ -828,6 +1729,7 @@ But my experience is that most people are using the EPEL repositories anyway. So
 &lt;p&gt;OpenWRT Attitude Adjustment 2012.09 warning: There is an ongoing discussion regarding the AICCU init script. If you can, stay with OpenWRT Backfire 2010.3.&lt;/p&gt;
 
 &lt;p&gt;I&amp;#39;m using SixxS tunnels to enable IPv6. My &lt;code&gt;/etc/config/network&lt;/code&gt; looks like this:&lt;/p&gt;
+
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;config interface &amp;#39;lan&amp;#39;
     # ...
     option ip6addr &amp;#39;2001:my:subnet:prefix::1/64&amp;#39;
@@ -836,7 +1738,9 @@ config &amp;#39;interface&amp;#39; &amp;#39;wan6&amp;#39;
     # ...
     option &amp;#39;ip6addr&amp;#39; &amp;#39;2001:my:end:point::2&amp;#39;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;To enable that your local server is reachable via SSH (port 22) add this rule to &lt;code&gt;/etc/config/firewall&lt;/code&gt; straight after the standard IPv6 rules: &lt;/p&gt;
+
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;config rule
        option &amp;#39;src&amp;#39; &amp;#39;wan6&amp;#39;
        option &amp;#39;proto&amp;#39; &amp;#39;tcp&amp;#39;
@@ -846,6 +1750,7 @@ config &amp;#39;interface&amp;#39; &amp;#39;wan6&amp;#39;
        option &amp;#39;target&amp;#39; &amp;#39;ACCEPT&amp;#39;
        option &amp;#39;dest&amp;#39; &amp;#39;lan&amp;#39; 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;Also make sure that you installed the &lt;code&gt;ip6tables&lt;/code&gt; Package,
 then restart the firewall with &lt;code&gt;/etc/init.d/firewall restart&lt;/code&gt;
 and test your setup.&lt;/p&gt;
@@ -866,17 +1771,24 @@ and test your setup.&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;A common workaround is to run the Puppet agent via Cron. Take a look at the &lt;a href=&quot;http://projects.puppetlabs.com/projects/1/wiki/Cron_Patterns&quot;&gt;Cron Patterns&lt;/a&gt; Wiki page, but don&amp;#39;t get too confused. Until Puppet 2.6, simply run: &lt;/p&gt;
+
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;/usr/sbin/puppetd --no-daemonize --onetime
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;With Puppet 2.7 it slightly changed to:&lt;/p&gt;
+
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;/usr/bin/puppet agent --no-daemonize --onetime
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;Furthermore you won&amp;#39;t run all the agents at the same time. So the next step is to plan the execution time. To run Puppet every 30 minutes, use &lt;code&gt;fqdn_rand(30)&lt;/code&gt; to generate a value between 0 and 29 for the first, and add 30 more to get the second point of time:&lt;/p&gt;
+
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-puppet&quot; data-lang=&quot;puppet&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$min1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fqdn_rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$min2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$min1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;The &lt;code&gt;fqdn_rand&lt;/code&gt; function will generate the same value each time you call it, dependent on the FQDN of the actual host.
 Finally, the file resource will look like this: &lt;/p&gt;
+
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-puppet&quot; data-lang=&quot;puppet&quot;&gt;&lt;span class=&quot;k&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;/etc/cron.d/puppet-cron&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;ensure&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;present&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;$min1,$min2 * * * * root /usr/bin/puppet agent --no-daemonize --onetime\n&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -885,6 +1797,7 @@ Finally, the file resource will look like this: &lt;/p&gt;
   &lt;span class=&quot;na&quot;&gt;group&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;root&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;As a side effect, this will solve another problem for you.
 Have you ever tried to reconfigure Puppet via Puppet?
 Currently there is no way telling Puppet to stop, re-read it&amp;#39;s configuration and start again (e.g. via sending the SIGHUP signal). This related Bug-report was added two years ago:&lt;/p&gt;
