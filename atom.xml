@@ -3,7 +3,7 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2016-02-06T15:35:44+00:00</updated>
+  <updated>2016-02-06T15:50:58+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
@@ -15,15 +15,17 @@
     <link href="https://sedden.github.io"/>
     <updated>2016-02-06T15:09:23+00:00</updated>
     <id>https://sedden.github.io/blog/2016/02/06/docker-on-cubietruck/</id>
-    <content type="html">&lt;p&gt;To get started with &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; on &lt;a href=&quot;http://www.cubietruck.com&quot;&gt;Cubietruck&lt;/a&gt; (also know as
-Cubieboard 3), it&amp;#39;s necessary to switch to a more recent Vanilla kernel.
-My distribution of choice was &lt;a href=&quot;http://www.armbian.com/&quot;&gt;armbian&lt;/a&gt; (a lightweight Linux
-distribution based on Debian Wheezy, Jessie or Ubuntu Trusty).&lt;/p&gt;
+    <content type="html">&lt;p&gt;To get started with &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; on the &lt;a href=&quot;http://www.cubietruck.com&quot;&gt;Cubietruck&lt;/a&gt; (also know
+as Cubieboard 3), it&amp;#39;s necessary to switch to a more recent vanilla kernel.
+I did not try to upgrade or switch the kernel of my current Lubuntu Server
+installation that runs on NAND storage, which is currently not supported by
+the Linux mainline kernel.
+So my distribution of choice was &lt;a href=&quot;http://www.armbian.com/&quot;&gt;armbian&lt;/a&gt; -- a lightweight Linux
+distribution based on Debian Wheezy, Jessie or Ubuntu Trusty.&lt;/p&gt;
 
 &lt;h2&gt;Get armbian&lt;/h2&gt;
 
-&lt;p&gt;Prepare your SD-Card with Debian Jessie and the Vanilla kernel.
-My setup runs: Armbian&lt;em&gt;4.5&lt;/em&gt;Cubietruck&lt;em&gt;Debian&lt;/em&gt;jessie_4.2.3.zip.
+&lt;p&gt;Prepare your SD-Card with Debian Jessie and the vanilla Linux kernel 4.2.3.
 Get it from here: &lt;a href=&quot;http://www.armbian.com/cubietruck/&quot;&gt;http://www.armbian.com/cubietruck/&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2&gt;Enable systemd&lt;/h2&gt;
@@ -811,7 +813,7 @@ layout: nil
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;A developers notebook&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io/atom.xml&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;self&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-02-06T15:35:44+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-02-06T15:50:58+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;author&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;Stefan Jenkner&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
@@ -823,15 +825,17 @@ layout: nil
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-02-06T15:09:23+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2016/02/06/docker-on-cubietruck/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;To get started with &amp;lt;a href=&amp;quot;https://www.docker.com/&amp;quot;&amp;gt;Docker&amp;lt;/a&amp;gt; on &amp;lt;a href=&amp;quot;http://www.cubietruck.com&amp;quot;&amp;gt;Cubietruck&amp;lt;/a&amp;gt; (also know as
-Cubieboard 3), it&amp;amp;#39;s necessary to switch to a more recent Vanilla kernel.
-My distribution of choice was &amp;lt;a href=&amp;quot;http://www.armbian.com/&amp;quot;&amp;gt;armbian&amp;lt;/a&amp;gt; (a lightweight Linux
-distribution based on Debian Wheezy, Jessie or Ubuntu Trusty).&amp;lt;/p&amp;gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;To get started with &amp;lt;a href=&amp;quot;https://www.docker.com/&amp;quot;&amp;gt;Docker&amp;lt;/a&amp;gt; on the &amp;lt;a href=&amp;quot;http://www.cubietruck.com&amp;quot;&amp;gt;Cubietruck&amp;lt;/a&amp;gt; (also know
+as Cubieboard 3), it&amp;amp;#39;s necessary to switch to a more recent vanilla kernel.
+I did not try to upgrade or switch the kernel of my current Lubuntu Server
+installation that runs on NAND storage, which is currently not supported by
+the Linux mainline kernel.
+So my distribution of choice was &amp;lt;a href=&amp;quot;http://www.armbian.com/&amp;quot;&amp;gt;armbian&amp;lt;/a&amp;gt; -- a lightweight Linux
+distribution based on Debian Wheezy, Jessie or Ubuntu Trusty.&amp;lt;/p&amp;gt;
 
 &amp;lt;h2&amp;gt;Get armbian&amp;lt;/h2&amp;gt;
 
-&amp;lt;p&amp;gt;Prepare your SD-Card with Debian Jessie and the Vanilla kernel.
-My setup runs: Armbian&amp;lt;em&amp;gt;4.5&amp;lt;/em&amp;gt;Cubietruck&amp;lt;em&amp;gt;Debian&amp;lt;/em&amp;gt;jessie_4.2.3.zip.
+&amp;lt;p&amp;gt;Prepare your SD-Card with Debian Jessie and the vanilla Linux kernel 4.2.3.
 Get it from here: &amp;lt;a href=&amp;quot;http://www.armbian.com/cubietruck/&amp;quot;&amp;gt;http://www.armbian.com/cubietruck/&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
 
 &amp;lt;h2&amp;gt;Enable systemd&amp;lt;/h2&amp;gt;
