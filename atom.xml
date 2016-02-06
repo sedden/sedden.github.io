@@ -3,12 +3,116 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2016-02-02T22:26:16+00:00</updated>
+  <updated>2016-02-06T15:35:44+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
     <email></email>
   </author>
+  
+  <entry>
+    <title>Docker on Cubietruck</title>
+    <link href="https://sedden.github.io"/>
+    <updated>2016-02-06T15:09:23+00:00</updated>
+    <id>https://sedden.github.io/blog/2016/02/06/docker-on-cubietruck/</id>
+    <content type="html">&lt;p&gt;To get started with &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; on &lt;a href=&quot;http://www.cubietruck.com&quot;&gt;Cubietruck&lt;/a&gt; (also know as
+Cubieboard 3), it&amp;#39;s necessary to switch to a more recent Vanilla kernel.
+My distribution of choice was &lt;a href=&quot;http://www.armbian.com/&quot;&gt;armbian&lt;/a&gt; (a lightweight Linux
+distribution based on Debian Wheezy, Jessie or Ubuntu Trusty).&lt;/p&gt;
+
+&lt;h2&gt;Get armbian&lt;/h2&gt;
+
+&lt;p&gt;Prepare your SD-Card with Debian Jessie and the Vanilla kernel.
+My setup runs: Armbian&lt;em&gt;4.5&lt;/em&gt;Cubietruck&lt;em&gt;Debian&lt;/em&gt;jessie_4.2.3.zip.
+Get it from here: &lt;a href=&quot;http://www.armbian.com/cubietruck/&quot;&gt;http://www.armbian.com/cubietruck/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Enable systemd&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://wiki.freedesktop.org/www/Software/systemd/&quot;&gt;systemd&lt;/a&gt; is disabled by default on Debian Jessie based
+&lt;a href=&quot;http://www.armbian.com/&quot;&gt;armbian&lt;/a&gt;. To enable it, remove the &lt;code&gt;ramlog&lt;/code&gt; Package due to an
+incompatibility with the &lt;code&gt;systemd&lt;/code&gt; Package:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;apt-get remove --purge ramlog
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To enable &lt;a href=&quot;https://wiki.freedesktop.org/www/Software/systemd/&quot;&gt;systemd&lt;/a&gt; run:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;apt-get update
+apt-get install --no-install-recommends systemd-sysv fake-hwclock
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then just reboot.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;There is no need to recompile boot scripts.&lt;/p&gt;
+
+&lt;h2&gt;Install Docker&lt;/h2&gt;
+
+&lt;p&gt;Thanks to folks at &lt;a href=&quot;http://blog.hypriot.com/downloads/&quot;&gt;Hypriot&lt;/a&gt;, it&amp;#39;s quiet easy to get docker binaries
+for the ARM architecture:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;wget &amp;quot;http://downloads.hypriot.com/docker-hypriot_1.10.0-1_armhf.deb&amp;quot;
+sudo dpkg -i docker-hypriot_1.10.0-1_armhf.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To start &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; run:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sudo systemctl start docker
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To enable &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; on &lt;a href=&quot;https://docs.docker.com/engine/admin/systemd/&quot;&gt;system boot&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sudo systemctl enable docker
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Verify the result with:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sudo docker info
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Expected output should be like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Containers: 0
+ Running: 0
+ Paused: 0
+ Stopped: 0
+Images: 0
+Server Version: 1.10.0
+Storage Driver: overlay
+ Backing Filesystem: extfs
+Execution Driver: native-0.2
+Logging Driver: json-file
+Plugins:
+ Volume: local
+ Network: null host bridge
+Kernel Version: 4.2.3-sunxi
+Operating System: Debian GNU/Linux 8 (jessie)
+OSType: linux
+Architecture: armv7l
+CPUs: 2
+Total Memory: 1.969 GiB
+Name: nepomuk
+ID: FZT4:I4JM:6PIG:BY55:KUOG:7P57:PV6U:QHAY:2PD5:XLZR:MOIF:W6B5
+Debug mode (server): true
+ File Descriptors: 11
+ Goroutines: 20
+ System Time: 2016-02-06T01:57:59.080651972+01:00
+ EventsListeners: 0
+ Init SHA1: 357816754f63702bece2e1a3db651d7f2527a78c
+ Init Path: /usr/lib/docker/dockerinit
+ Docker Root Dir: /var/lib/docker
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Further information&lt;/h2&gt;
+
+&lt;p&gt;For additional information regarding &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; on ARM, check out the
+&lt;a href=&quot;http://blog.hypriot.com/getting-started-with-docker-on-your-arm-device/&quot;&gt;Hypriot Blog&lt;/a&gt; and their
+&lt;a href=&quot;https://hub.docker.com/u/hypriot/&quot;&gt;Raspberry Pi compatible Docker Image&lt;/a&gt;
+on Docker Hub.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>PostgreSQL XML Functions</title>
@@ -707,12 +811,100 @@ layout: nil
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;A developers notebook&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io/atom.xml&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;self&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-02-02T22:26:16+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-02-06T15:35:44+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;author&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;Stefan Jenkner&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;email&amp;gt;&amp;lt;/email&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/author&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Docker on Cubietruck&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-02-06T15:09:23+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2016/02/06/docker-on-cubietruck/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;To get started with &amp;lt;a href=&amp;quot;https://www.docker.com/&amp;quot;&amp;gt;Docker&amp;lt;/a&amp;gt; on &amp;lt;a href=&amp;quot;http://www.cubietruck.com&amp;quot;&amp;gt;Cubietruck&amp;lt;/a&amp;gt; (also know as
+Cubieboard 3), it&amp;amp;#39;s necessary to switch to a more recent Vanilla kernel.
+My distribution of choice was &amp;lt;a href=&amp;quot;http://www.armbian.com/&amp;quot;&amp;gt;armbian&amp;lt;/a&amp;gt; (a lightweight Linux
+distribution based on Debian Wheezy, Jessie or Ubuntu Trusty).&amp;lt;/p&amp;gt;
+
+&amp;lt;h2&amp;gt;Get armbian&amp;lt;/h2&amp;gt;
+
+&amp;lt;p&amp;gt;Prepare your SD-Card with Debian Jessie and the Vanilla kernel.
+My setup runs: Armbian&amp;lt;em&amp;gt;4.5&amp;lt;/em&amp;gt;Cubietruck&amp;lt;em&amp;gt;Debian&amp;lt;/em&amp;gt;jessie_4.2.3.zip.
+Get it from here: &amp;lt;a href=&amp;quot;http://www.armbian.com/cubietruck/&amp;quot;&amp;gt;http://www.armbian.com/cubietruck/&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+
+&amp;lt;h2&amp;gt;Enable systemd&amp;lt;/h2&amp;gt;
+
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://wiki.freedesktop.org/www/Software/systemd/&amp;quot;&amp;gt;systemd&amp;lt;/a&amp;gt; is disabled by default on Debian Jessie based
+&amp;lt;a href=&amp;quot;http://www.armbian.com/&amp;quot;&amp;gt;armbian&amp;lt;/a&amp;gt;. To enable it, remove the &amp;lt;code&amp;gt;ramlog&amp;lt;/code&amp;gt; Package due to an
+incompatibility with the &amp;lt;code&amp;gt;systemd&amp;lt;/code&amp;gt; Package:&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-text&amp;quot; data-lang=&amp;quot;text&amp;quot;&amp;gt;apt-get remove --purge ramlog
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;p&amp;gt;To enable &amp;lt;a href=&amp;quot;https://wiki.freedesktop.org/www/Software/systemd/&amp;quot;&amp;gt;systemd&amp;lt;/a&amp;gt; run:&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-text&amp;quot; data-lang=&amp;quot;text&amp;quot;&amp;gt;apt-get update
+apt-get install --no-install-recommends systemd-sysv fake-hwclock
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;p&amp;gt;Then just reboot.&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-text&amp;quot; data-lang=&amp;quot;text&amp;quot;&amp;gt;reboot
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;p&amp;gt;There is no need to recompile boot scripts.&amp;lt;/p&amp;gt;
+
+&amp;lt;h2&amp;gt;Install Docker&amp;lt;/h2&amp;gt;
+
+&amp;lt;p&amp;gt;Thanks to folks at &amp;lt;a href=&amp;quot;http://blog.hypriot.com/downloads/&amp;quot;&amp;gt;Hypriot&amp;lt;/a&amp;gt;, it&amp;amp;#39;s quiet easy to get docker binaries
+for the ARM architecture:&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-text&amp;quot; data-lang=&amp;quot;text&amp;quot;&amp;gt;wget &amp;amp;quot;http://downloads.hypriot.com/docker-hypriot_1.10.0-1_armhf.deb&amp;amp;quot;
+sudo dpkg -i docker-hypriot_1.10.0-1_armhf.deb
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;p&amp;gt;To start &amp;lt;a href=&amp;quot;https://www.docker.com/&amp;quot;&amp;gt;Docker&amp;lt;/a&amp;gt; run:&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-text&amp;quot; data-lang=&amp;quot;text&amp;quot;&amp;gt;sudo systemctl start docker
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;p&amp;gt;To enable &amp;lt;a href=&amp;quot;https://www.docker.com/&amp;quot;&amp;gt;Docker&amp;lt;/a&amp;gt; on &amp;lt;a href=&amp;quot;https://docs.docker.com/engine/admin/systemd/&amp;quot;&amp;gt;system boot&amp;lt;/a&amp;gt;:&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-text&amp;quot; data-lang=&amp;quot;text&amp;quot;&amp;gt;sudo systemctl enable docker
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;p&amp;gt;Verify the result with:&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-text&amp;quot; data-lang=&amp;quot;text&amp;quot;&amp;gt;sudo docker info
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;p&amp;gt;Expected output should be like this:&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-text&amp;quot; data-lang=&amp;quot;text&amp;quot;&amp;gt;Containers: 0
+ Running: 0
+ Paused: 0
+ Stopped: 0
+Images: 0
+Server Version: 1.10.0
+Storage Driver: overlay
+ Backing Filesystem: extfs
+Execution Driver: native-0.2
+Logging Driver: json-file
+Plugins:
+ Volume: local
+ Network: null host bridge
+Kernel Version: 4.2.3-sunxi
+Operating System: Debian GNU/Linux 8 (jessie)
+OSType: linux
+Architecture: armv7l
+CPUs: 2
+Total Memory: 1.969 GiB
+Name: nepomuk
+ID: FZT4:I4JM:6PIG:BY55:KUOG:7P57:PV6U:QHAY:2PD5:XLZR:MOIF:W6B5
+Debug mode (server): true
+ File Descriptors: 11
+ Goroutines: 20
+ System Time: 2016-02-06T01:57:59.080651972+01:00
+ EventsListeners: 0
+ Init SHA1: 357816754f63702bece2e1a3db651d7f2527a78c
+ Init Path: /usr/lib/docker/dockerinit
+ Docker Root Dir: /var/lib/docker
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;h2&amp;gt;Further information&amp;lt;/h2&amp;gt;
+
+&amp;lt;p&amp;gt;For additional information regarding &amp;lt;a href=&amp;quot;https://www.docker.com/&amp;quot;&amp;gt;Docker&amp;lt;/a&amp;gt; on ARM, check out the
+&amp;lt;a href=&amp;quot;http://blog.hypriot.com/getting-started-with-docker-on-your-arm-device/&amp;quot;&amp;gt;Hypriot Blog&amp;lt;/a&amp;gt; and their
+&amp;lt;a href=&amp;quot;https://hub.docker.com/u/hypriot/&amp;quot;&amp;gt;Raspberry Pi compatible Docker Image&amp;lt;/a&amp;gt;
+on Docker Hub.&amp;lt;/p&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
   
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;PostgreSQL XML Functions&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
