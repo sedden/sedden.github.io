@@ -3,7 +3,7 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2016-02-06T15:50:58+00:00</updated>
+  <updated>2016-02-06T16:05:22+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
@@ -16,8 +16,8 @@
     <updated>2016-02-06T15:09:23+00:00</updated>
     <id>https://sedden.github.io/blog/2016/02/06/docker-on-cubietruck/</id>
     <content type="html">&lt;p&gt;To get started with &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; on the &lt;a href=&quot;http://www.cubietruck.com&quot;&gt;Cubietruck&lt;/a&gt; (also know
-as Cubieboard 3), it&amp;#39;s necessary to switch to a more recent vanilla kernel.
-I did not try to upgrade or switch the kernel of my current Lubuntu Server
+as Cubieboard 3), it&amp;#39;s necessary to switch to a more recent Linux kernel.
+I did not try to upgrade the kernel of my current Lubuntu Server
 installation that runs on NAND storage, which is currently not supported by
 the Linux mainline kernel.
 So my distribution of choice was &lt;a href=&quot;http://www.armbian.com/&quot;&gt;armbian&lt;/a&gt; -- a lightweight Linux
@@ -52,7 +52,7 @@ apt-get install --no-install-recommends systemd-sysv fake-hwclock
 
 &lt;h2&gt;Install Docker&lt;/h2&gt;
 
-&lt;p&gt;Thanks to folks at &lt;a href=&quot;http://blog.hypriot.com/downloads/&quot;&gt;Hypriot&lt;/a&gt;, it&amp;#39;s quiet easy to get docker binaries
+&lt;p&gt;Thanks to the folks at &lt;a href=&quot;http://blog.hypriot.com/downloads/&quot;&gt;Hypriot&lt;/a&gt;, it&amp;#39;s quiet easy to get docker binaries
 for the ARM architecture:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;wget &amp;quot;http://downloads.hypriot.com/docker-hypriot_1.10.0-1_armhf.deb&amp;quot;
@@ -813,7 +813,7 @@ layout: nil
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;A developers notebook&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io/atom.xml&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;self&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-02-06T15:50:58+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-02-06T16:05:22+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;author&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;Stefan Jenkner&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
@@ -826,8 +826,8 @@ layout: nil
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-02-06T15:09:23+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2016/02/06/docker-on-cubietruck/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;To get started with &amp;lt;a href=&amp;quot;https://www.docker.com/&amp;quot;&amp;gt;Docker&amp;lt;/a&amp;gt; on the &amp;lt;a href=&amp;quot;http://www.cubietruck.com&amp;quot;&amp;gt;Cubietruck&amp;lt;/a&amp;gt; (also know
-as Cubieboard 3), it&amp;amp;#39;s necessary to switch to a more recent vanilla kernel.
-I did not try to upgrade or switch the kernel of my current Lubuntu Server
+as Cubieboard 3), it&amp;amp;#39;s necessary to switch to a more recent Linux kernel.
+I did not try to upgrade the kernel of my current Lubuntu Server
 installation that runs on NAND storage, which is currently not supported by
 the Linux mainline kernel.
 So my distribution of choice was &amp;lt;a href=&amp;quot;http://www.armbian.com/&amp;quot;&amp;gt;armbian&amp;lt;/a&amp;gt; -- a lightweight Linux
@@ -856,7 +856,7 @@ apt-get install --no-install-recommends systemd-sysv fake-hwclock
 
 &amp;lt;h2&amp;gt;Install Docker&amp;lt;/h2&amp;gt;
 
-&amp;lt;p&amp;gt;Thanks to folks at &amp;lt;a href=&amp;quot;http://blog.hypriot.com/downloads/&amp;quot;&amp;gt;Hypriot&amp;lt;/a&amp;gt;, it&amp;amp;#39;s quiet easy to get docker binaries
+&amp;lt;p&amp;gt;Thanks to the folks at &amp;lt;a href=&amp;quot;http://blog.hypriot.com/downloads/&amp;quot;&amp;gt;Hypriot&amp;lt;/a&amp;gt;, it&amp;amp;#39;s quiet easy to get docker binaries
 for the ARM architecture:&amp;lt;/p&amp;gt;
 &amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-text&amp;quot; data-lang=&amp;quot;text&amp;quot;&amp;gt;wget &amp;amp;quot;http://downloads.hypriot.com/docker-hypriot_1.10.0-1_armhf.deb&amp;amp;quot;
 sudo dpkg -i docker-hypriot_1.10.0-1_armhf.deb

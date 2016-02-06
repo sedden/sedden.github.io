@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Docker on Cubietruck</title>
-  <meta name="description" content="To get started with Docker on the Cubietruck (also knowas Cubieboard 3), it&#39;s necessary to switch to a more recent vanilla kernel.I did not try to upgrad...">
+  <meta name="description" content="To get started with Docker on the Cubietruck (also knowas Cubieboard 3), it&#39;s necessary to switch to a more recent Linux kernel.I did not try to upgrade ...">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="https://sedden.github.io/blog/2016/02/06/docker-on-cubietruck/">
@@ -40,7 +40,7 @@
 	<meta name="twitter:site" content="@sedden">
 	<meta name="twitter:creator" content="@sedden">
 	<meta name="twitter:title" content="Docker on Cubietruck">
-	<meta name="twitter:description" content="To get started with Docker on the Cubietruck (also knowas Cubieboard 3), it&#39;s necessary to switch to a more recent vanilla kernel.I did not try to upgrade or switch the kernel of my current Lub...">
+	<meta name="twitter:description" content="To get started with Docker on the Cubietruck (also knowas Cubieboard 3), it&#39;s necessary to switch to a more recent Linux kernel.I did not try to upgrade the kernel of my current Lubuntu Serveri...">
 	
 	<meta name="twitter:image:src" content="https://sedden.github.iohttps://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67">
 	
@@ -100,8 +100,8 @@
 
   <div class="post-content" itemprop="articleBody">
     <p>To get started with <a href="https://www.docker.com/">Docker</a> on the <a href="http://www.cubietruck.com">Cubietruck</a> (also know
-as Cubieboard 3), it&#39;s necessary to switch to a more recent vanilla kernel.
-I did not try to upgrade or switch the kernel of my current Lubuntu Server
+as Cubieboard 3), it&#39;s necessary to switch to a more recent Linux kernel.
+I did not try to upgrade the kernel of my current Lubuntu Server
 installation that runs on NAND storage, which is currently not supported by
 the Linux mainline kernel.
 So my distribution of choice was <a href="http://www.armbian.com/">armbian</a> -- a lightweight Linux
@@ -136,7 +136,7 @@ apt-get install --no-install-recommends systemd-sysv fake-hwclock
 
 <h2>Install Docker</h2>
 
-<p>Thanks to folks at <a href="http://blog.hypriot.com/downloads/">Hypriot</a>, it&#39;s quiet easy to get docker binaries
+<p>Thanks to the folks at <a href="http://blog.hypriot.com/downloads/">Hypriot</a>, it&#39;s quiet easy to get docker binaries
 for the ARM architecture:</p>
 
 <div class="highlight"><pre><code class="language-text" data-lang="text">wget &quot;http://downloads.hypriot.com/docker-hypriot_1.10.0-1_armhf.deb&quot;

@@ -136,7 +136,7 @@ layout: nil
   <span class="nt">&lt;title&gt;</span>A developers notebook<span class="nt">&lt;/title&gt;</span>
   <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;https://sedden.github.io/atom.xml&quot;</span> <span class="na">rel=</span><span class="s">&quot;self&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;https://sedden.github.io&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;updated&gt;</span>2016-02-06T15:50:58+00:00<span class="nt">&lt;/updated&gt;</span>
+  <span class="nt">&lt;updated&gt;</span>2016-02-06T16:05:22+00:00<span class="nt">&lt;/updated&gt;</span>
   <span class="nt">&lt;id&gt;</span>https://sedden.github.io<span class="nt">&lt;/id&gt;</span>
   <span class="nt">&lt;author&gt;</span>
     <span class="nt">&lt;name&gt;</span>Stefan Jenkner<span class="nt">&lt;/name&gt;</span>
@@ -149,8 +149,8 @@ layout: nil
     <span class="nt">&lt;updated&gt;</span>2016-02-06T15:09:23+00:00<span class="nt">&lt;/updated&gt;</span>
     <span class="nt">&lt;id&gt;</span>https://sedden.github.io/blog/2016/02/06/docker-on-cubietruck/<span class="nt">&lt;/id&gt;</span>
     <span class="nt">&lt;content</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span>&lt;p&gt;To get started with &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; on the &lt;a href=&quot;http://www.cubietruck.com&quot;&gt;Cubietruck&lt;/a&gt; (also know
-as Cubieboard 3), it&amp;#39;s necessary to switch to a more recent vanilla kernel.
-I did not try to upgrade or switch the kernel of my current Lubuntu Server
+as Cubieboard 3), it&amp;#39;s necessary to switch to a more recent Linux kernel.
+I did not try to upgrade the kernel of my current Lubuntu Server
 installation that runs on NAND storage, which is currently not supported by
 the Linux mainline kernel.
 So my distribution of choice was &lt;a href=&quot;http://www.armbian.com/&quot;&gt;armbian&lt;/a&gt; -- a lightweight Linux
@@ -179,7 +179,7 @@ apt-get install --no-install-recommends systemd-sysv fake-hwclock
 
 &lt;h2&gt;Install Docker&lt;/h2&gt;
 
-&lt;p&gt;Thanks to folks at &lt;a href=&quot;http://blog.hypriot.com/downloads/&quot;&gt;Hypriot&lt;/a&gt;, it&amp;#39;s quiet easy to get docker binaries
+&lt;p&gt;Thanks to the folks at &lt;a href=&quot;http://blog.hypriot.com/downloads/&quot;&gt;Hypriot&lt;/a&gt;, it&amp;#39;s quiet easy to get docker binaries
 for the ARM architecture:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;wget &amp;quot;http://downloads.hypriot.com/docker-hypriot_1.10.0-1_armhf.deb&amp;quot;
 sudo dpkg -i docker-hypriot_1.10.0-1_armhf.deb
