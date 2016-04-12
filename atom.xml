@@ -3,12 +3,41 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2016-04-01T16:37:59+00:00</updated>
+  <updated>2016-04-12T05:36:48+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
     <email></email>
   </author>
+  
+  <entry>
+    <title>Automated builds for ARM Docker containers on Intel hosts</title>
+    <link href="https://sedden.github.io"/>
+    <updated>2016-04-11T23:11:01+00:00</updated>
+    <id>https://sedden.github.io/blog/2016/04/11/automated-builds-for-arm-docker-containers-on-intel-hosts/</id>
+    <content type="html">&lt;p&gt;In order to enable automated builds for ARM &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; containers on Intel
+hosts, the Docker images must contain the &lt;code&gt;qemu-arm-static&lt;/code&gt; binary.
+For that reason, the base image &lt;code&gt;sedden/rpi-raspbian-qemu&lt;/code&gt; exists:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  &lt;a href=&quot;https://github.com/sedden/docker-rpi-raspbian-qemu&quot;&gt;https://github.com/sedden/docker-rpi-raspbian-qemu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;  &lt;a href=&quot;https://hub.docker.com/r/sedden/rpi-raspbian-qemu/&quot;&gt;https://hub.docker.com/r/sedden/rpi-raspbian-qemu/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Enable automated builds for ARM containers on Travis CI&lt;/h3&gt;
+
+&lt;p&gt;Automated builds can easily be enabled on &lt;a href=&quot;https://www.travis-ci.org/&quot;&gt;Travis CI&lt;/a&gt;.
+&lt;a href=&quot;http://www.nongnu.org/binfmt-support/&quot;&gt;binfmt-support&lt;/a&gt; is used to register
+ARM binaries to be executed by &lt;code&gt;/usr/bin/qemu-arm-static&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;.travis.yml&lt;/code&gt; must contain this part:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;before_script:
+  - sudo apt-get --yes --no-install-recommends install binfmt-support qemu-user-static
+  - echo &amp;#39;:arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-arm-static:&amp;#39; | sudo tee -a /proc/sys/fs/binfmt_misc/register
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Docker on Cubietruck</title>
@@ -813,12 +842,39 @@ layout: nil
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;A developers notebook&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io/atom.xml&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;self&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-04-01T16:37:59+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-04-12T05:36:48+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;author&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;Stefan Jenkner&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;email&amp;gt;&amp;lt;/email&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/author&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Automated builds for ARM Docker containers on Intel hosts&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://sedden.github.io&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;updated&amp;gt;&lt;/span&gt;2016-04-11T23:11:01+00:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/updated&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;https://sedden.github.io/blog/2016/04/11/automated-builds-for-arm-docker-containers-on-intel-hosts/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;content&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&amp;lt;p&amp;gt;In order to enable automated builds for ARM &amp;lt;a href=&amp;quot;https://www.docker.com/&amp;quot;&amp;gt;Docker&amp;lt;/a&amp;gt; containers on Intel
+hosts, the Docker images must contain the &amp;lt;code&amp;gt;qemu-arm-static&amp;lt;/code&amp;gt; binary.
+For that reason, the base image &amp;lt;code&amp;gt;sedden/rpi-raspbian-qemu&amp;lt;/code&amp;gt; exists:&amp;lt;/p&amp;gt;
+
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;  &amp;lt;a href=&amp;quot;https://github.com/sedden/docker-rpi-raspbian-qemu&amp;quot;&amp;gt;https://github.com/sedden/docker-rpi-raspbian-qemu&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;  &amp;lt;a href=&amp;quot;https://hub.docker.com/r/sedden/rpi-raspbian-qemu/&amp;quot;&amp;gt;https://hub.docker.com/r/sedden/rpi-raspbian-qemu/&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+
+&amp;lt;h3&amp;gt;Enable automated builds for ARM containers on Travis CI&amp;lt;/h3&amp;gt;
+
+&amp;lt;p&amp;gt;Automated builds can easily be enabled on &amp;lt;a href=&amp;quot;https://www.travis-ci.org/&amp;quot;&amp;gt;Travis CI&amp;lt;/a&amp;gt;.
+&amp;lt;a href=&amp;quot;http://www.nongnu.org/binfmt-support/&amp;quot;&amp;gt;binfmt-support&amp;lt;/a&amp;gt; is used to register
+ARM binaries to be executed by &amp;lt;code&amp;gt;/usr/bin/qemu-arm-static&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;The &amp;lt;code&amp;gt;.travis.yml&amp;lt;/code&amp;gt; must contain this part:&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-text&amp;quot; data-lang=&amp;quot;text&amp;quot;&amp;gt;before_script:
+  - sudo apt-get --yes --no-install-recommends install binfmt-support qemu-user-static
+  - echo &amp;amp;#39;:arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-arm-static:&amp;amp;#39; | sudo tee -a /proc/sys/fs/binfmt_misc/register
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;
   
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;entry&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Docker on Cubietruck&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;

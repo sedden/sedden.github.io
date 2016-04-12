@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>A developer's notebook</title>
-  <meta name="description" content="">
+  <title>Automated builds for ARM Docker containers on Intel hosts</title>
+  <meta name="description" content="In order to enable automated builds for ARM Docker containers on Intelhosts, the Docker images must contain the qemu-arm-static binary.For that reason, the b...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="https://sedden.github.io/">
+  <link rel="canonical" href="https://sedden.github.io/blog/2016/04/11/automated-builds-for-arm-docker-containers-on-intel-hosts/">
 
   <!-- OpenID -->
   <link rel="openid2.provider" href="https://openid.stackexchange.com/openid/provider">
@@ -36,11 +36,13 @@
   </script>
 
 	<!-- Twitter Card -->
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@sedden">
 	<meta name="twitter:creator" content="@sedden">
-	<meta name="twitter:title" content="A developer's notebook">
-	<meta name="twitter:description" content="">
+	<meta name="twitter:title" content="Automated builds for ARM Docker containers on Intel hosts">
+	<meta name="twitter:description" content="In order to enable automated builds for ARM Docker containers on Intelhosts, the Docker images must contain the qemu-arm-static binary.For that reason, the base image sedden/rpi-raspbian-qemu exists:">
+	
+	<meta name="twitter:image:src" content="https://sedden.github.iohttps://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67">
 	
 
 </head>
@@ -89,113 +91,63 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Automated builds for ARM Docker containers on Intel hosts</h1>
+    <p class="post-meta"><time datetime="2016-04-11T23:11:01+00:00" itemprop="datePublished">Apr 11, 2016</time></p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Apr 11, 2016</span>
+  <div class="post-content" itemprop="articleBody">
+    <p>In order to enable automated builds for ARM <a href="https://www.docker.com/">Docker</a> containers on Intel
+hosts, the Docker images must contain the <code>qemu-arm-static</code> binary.
+For that reason, the base image <code>sedden/rpi-raspbian-qemu</code> exists:</p>
 
-        <h2>
-          <a class="post-link" href="/blog/2016/04/11/automated-builds-for-arm-docker-containers-on-intel-hosts/">Automated builds for ARM Docker containers on Intel hosts</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Feb 6, 2016</span>
+<ul>
+<li>  <a href="https://github.com/sedden/docker-rpi-raspbian-qemu">https://github.com/sedden/docker-rpi-raspbian-qemu</a></li>
+<li>  <a href="https://hub.docker.com/r/sedden/rpi-raspbian-qemu/">https://hub.docker.com/r/sedden/rpi-raspbian-qemu/</a></li>
+</ul>
 
-        <h2>
-          <a class="post-link" href="/blog/2016/02/06/docker-on-cubietruck/">Docker on Cubietruck</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 29, 2015</span>
+<h3>Enable automated builds for ARM containers on Travis CI</h3>
 
-        <h2>
-          <a class="post-link" href="/blog/2015/11/29/postgresql-xml-functions/">PostgreSQL XML Functions</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 24, 2015</span>
+<p>Automated builds can easily be enabled on <a href="https://www.travis-ci.org/">Travis CI</a>.
+<a href="http://www.nongnu.org/binfmt-support/">binfmt-support</a> is used to register
+ARM binaries to be executed by <code>/usr/bin/qemu-arm-static</code>.</p>
 
-        <h2>
-          <a class="post-link" href="/blog/2015/11/24/getting-started-with-docker-machine-on-ec2/">Getting started with Docker Machine on Amazon EC2</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 11, 2015</span>
+<p>The <code>.travis.yml</code> must contain this part:</p>
 
-        <h2>
-          <a class="post-link" href="/blog/2015/11/11/backup-to-amazon-s3-glacier-with-duplicity/">Backup to Amazon Glacier with Duplicity and Duply</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 8, 2015</span>
+<div class="highlight"><pre><code class="language-text" data-lang="text">before_script:
+  - sudo apt-get --yes --no-install-recommends install binfmt-support qemu-user-static
+  - echo &#39;:arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-arm-static:&#39; | sudo tee -a /proc/sys/fs/binfmt_misc/register
+</code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/blog/2015/11/08/publish-github-pages-via-travis-ci/">Publish to GitHub User Pages with Jekyll and Travis-CI</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Jun 11, 2014</span>
+  </div>
 
-        <h2>
-          <a class="post-link" href="/blog/2014/06/11/fabric-keyring-duplicity-aws/">Fabric, duplicity, AWS credentials and System Keyring</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 2, 2014</span>
+  <!-- Flattr -->
+  <div>
+    <a class="FlattrButton" style="display:none;"
+       title="Automated builds for ARM Docker containers on Intel hosts"
+       rel="flattr;uid:sedden;popout:0;category:text"
+       href="https://sedden.github.io/blog/2016/04/11/automated-builds-for-arm-docker-containers-on-intel-hosts/">
+    </a>
+  </div>
 
-        <h2>
-          <a class="post-link" href="/blog/2014/05/02/pomodoro-timesheet/">Time tracking with the Pomodoro.app</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 1, 2014</span>
+  <!-- Disqus -->
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://sedden.github.io/blog/2016/04/11/automated-builds-for-arm-docker-containers-on-intel-hosts/';
+      this.page.identifier = '/blog/2016/04/11/automated-builds-for-arm-docker-containers-on-intel-hosts';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//sedden.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+  </script>
 
-        <h2>
-          <a class="post-link" href="/blog/2014/05/01/from-octopress-to-jekyll/">Howto migrate from Octopress to Jekyll</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 27, 2013</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/">Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 26, 2013</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2013/03/26/openwrt-ipv6-forwarding/">Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 25, 2013</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2013/03/25/run-puppet-via-cron/">Run Puppet via Cron</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/atom.xml">via Atom Feed</a></p>
-
-</div>
+</article>
 
       </div>
     </div>
