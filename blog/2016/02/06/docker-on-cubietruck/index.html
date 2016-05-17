@@ -36,13 +36,11 @@
   </script>
 
 	<!-- Twitter Card -->
-	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@sedden">
 	<meta name="twitter:creator" content="@sedden">
 	<meta name="twitter:title" content="Docker on Cubietruck">
 	<meta name="twitter:description" content="To get started with Docker on the Cubietruck (also knowas Cubieboard 3), it&#39;s necessary to switch to a more recent Linux kernel.I did not try to upgrade the kernel of my current Lubuntu Serveri...">
-	
-	<meta name="twitter:image:src" content="https://sedden.github.iohttps://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67">
 	
 
 </head>
@@ -117,49 +115,34 @@ Get it from here: <a href="http://www.armbian.com/cubietruck/">http://www.armbia
 <p><a href="https://wiki.freedesktop.org/www/Software/systemd/">systemd</a> is disabled by default on Debian Jessie based
 <a href="http://www.armbian.com/">armbian</a>. To enable it, remove the <code>ramlog</code> Package due to an
 incompatibility with the <code>systemd</code> Package:</p>
-
 <div class="highlight"><pre><code class="language-text" data-lang="text">apt-get remove --purge ramlog
 </code></pre></div>
-
 <p>To enable <a href="https://wiki.freedesktop.org/www/Software/systemd/">systemd</a> run:</p>
-
 <div class="highlight"><pre><code class="language-text" data-lang="text">apt-get update
 apt-get install --no-install-recommends systemd-sysv fake-hwclock
 </code></pre></div>
-
 <p>Then just reboot.</p>
-
 <div class="highlight"><pre><code class="language-text" data-lang="text">reboot
 </code></pre></div>
-
 <p>There is no need to recompile boot scripts.</p>
 
 <h2>Install Docker</h2>
 
 <p>Thanks to the folks at <a href="http://blog.hypriot.com/downloads/">Hypriot</a>, it&#39;s quiet easy to get docker binaries
 for the ARM architecture:</p>
-
 <div class="highlight"><pre><code class="language-text" data-lang="text">wget &quot;http://downloads.hypriot.com/docker-hypriot_1.10.0-1_armhf.deb&quot;
 sudo dpkg -i docker-hypriot_1.10.0-1_armhf.deb
 </code></pre></div>
-
 <p>To start <a href="https://www.docker.com/">Docker</a> run:</p>
-
 <div class="highlight"><pre><code class="language-text" data-lang="text">sudo systemctl start docker
 </code></pre></div>
-
 <p>To enable <a href="https://www.docker.com/">Docker</a> on <a href="https://docs.docker.com/engine/admin/systemd/">system boot</a>:</p>
-
 <div class="highlight"><pre><code class="language-text" data-lang="text">sudo systemctl enable docker
 </code></pre></div>
-
 <p>Verify the result with:</p>
-
 <div class="highlight"><pre><code class="language-text" data-lang="text">sudo docker info
 </code></pre></div>
-
 <p>Expected output should be like this:</p>
-
 <div class="highlight"><pre><code class="language-text" data-lang="text">Containers: 0
  Running: 0
  Paused: 0
@@ -190,7 +173,6 @@ Debug mode (server): true
  Init Path: /usr/lib/docker/dockerinit
  Docker Root Dir: /var/lib/docker
 </code></pre></div>
-
 <h2>Further information</h2>
 
 <p>For additional information regarding <a href="https://www.docker.com/">Docker</a> on ARM, check out the

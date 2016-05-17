@@ -36,13 +36,11 @@
   </script>
 
 	<!-- Twitter Card -->
-	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@sedden">
 	<meta name="twitter:creator" content="@sedden">
 	<meta name="twitter:title" content="Forwarding IPv6 Traffic from WAN to LAN with OpenWRT">
 	<meta name="twitter:description" content="We&#39;re starting from the premise that you already enabled IPv6. If not so, this will help you to switch it on:">
-	
-	<meta name="twitter:image:src" content="https://sedden.github.iohttps://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67">
 	
 
 </head>
@@ -109,7 +107,6 @@
 <p>OpenWRT Attitude Adjustment 2012.09 warning: There is an ongoing discussion regarding the AICCU init script. If you can, stay with OpenWRT Backfire 2010.3.</p>
 
 <p>I&#39;m using SixxS tunnels to enable IPv6. My <code>/etc/config/network</code> looks like this:</p>
-
 <div class="highlight"><pre><code class="language-text" data-lang="text">config interface &#39;lan&#39;
     # ...
     option ip6addr &#39;2001:my:subnet:prefix::1/64&#39;
@@ -118,9 +115,7 @@ config &#39;interface&#39; &#39;wan6&#39;
     # ...
     option &#39;ip6addr&#39; &#39;2001:my:end:point::2&#39;
 </code></pre></div>
-
 <p>To enable that your local server is reachable via SSH (port 22) add this rule to <code>/etc/config/firewall</code> straight after the standard IPv6 rules: </p>
-
 <div class="highlight"><pre><code class="language-text" data-lang="text">config rule
        option &#39;src&#39; &#39;wan6&#39;
        option &#39;proto&#39; &#39;tcp&#39;
@@ -130,7 +125,6 @@ config &#39;interface&#39; &#39;wan6&#39;
        option &#39;target&#39; &#39;ACCEPT&#39;
        option &#39;dest&#39; &#39;lan&#39; 
 </code></pre></div>
-
 <p>Also make sure that you installed the <code>ip6tables</code> Package,
 then restart the firewall with <code>/etc/init.d/firewall restart</code>
 and test your setup.</p>

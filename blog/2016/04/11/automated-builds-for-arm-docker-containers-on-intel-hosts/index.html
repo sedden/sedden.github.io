@@ -36,13 +36,11 @@
   </script>
 
 	<!-- Twitter Card -->
-	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@sedden">
 	<meta name="twitter:creator" content="@sedden">
 	<meta name="twitter:title" content="Automated builds for ARM Docker containers on Intel hosts">
 	<meta name="twitter:description" content="In order to enable automated builds for ARM Docker containers on Intelhosts, the Docker images must contain the qemu-arm-static binary.For that reason, the base image sedden/rpi-raspbian-qemu exists:">
-	
-	<meta name="twitter:image:src" content="https://sedden.github.iohttps://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67">
 	
 
 </head>
@@ -115,12 +113,10 @@ For that reason, the base image <code>sedden/rpi-raspbian-qemu</code> exists:</p
 ARM binaries to be executed by <code>/usr/bin/qemu-arm-static</code>.</p>
 
 <p>The <code>.travis.yml</code> must contain this part:</p>
-
 <div class="highlight"><pre><code class="language-text" data-lang="text">before_script:
   - sudo apt-get --yes --no-install-recommends install binfmt-support qemu-user-static
   - echo &#39;:arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-arm-static:&#39; | sudo tee -a /proc/sys/fs/binfmt_misc/register
 </code></pre></div>
-
   </div>
 
   <!-- Flattr -->
