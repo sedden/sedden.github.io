@@ -3,12 +3,84 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2016-11-20T01:46:24+00:00</updated>
+  <updated>2016-12-02T23:24:25+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
     <email></email>
   </author>
+  
+  <entry>
+    <title>Testing and patching Cubietruck for Dirty COW vulnerability</title>
+    <link href="https://sedden.github.io"/>
+    <updated>2016-12-02T22:53:13+00:00</updated>
+    <id>https://sedden.github.io/blog/2016/12/02/patching-cubietruck-for-dirty-cow/</id>
+    <content type="html">&lt;p&gt;Recently, I stumbled across the &lt;a href=&quot;https://blog.hypriot.com/post/fix-dirty-cow-on-raspberry-pi/&quot;&gt;Fix Dirty COW on Raspberry Pi the Docker way&lt;/a&gt; guide by &lt;a href=&quot;http://blog.hypriot.com/downloads/&quot;&gt;Hypriot&lt;/a&gt;.
+As it&amp;#39;s related to RPis, this is how to test and fix a &lt;a href=&quot;http://www.cubietruck.com&quot;&gt;Cubietruck&lt;/a&gt; running &lt;a href=&quot;http://www.armbian.com/&quot;&gt;armbian&lt;/a&gt; 
+for that kind of &lt;a href=&quot;http://www.theregister.co.uk/2016/10/21/linux_privilege_escalation_hole/&quot;&gt;kernel security vulnerability&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Step 1. - Verify kernel version:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ uname -a
+Linux nepomuk 4.7.3-sunxi #26 SMP Wed Sep 14 19:50:18 CEST 2016 armv7l GNU/Linux
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Step 2. - Test the kernel for Dirty COW vulnerability:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ docker run --rm hypriot/rpi-dirtycow
+Unable to find image &amp;#39;hypriot/rpi-dirtycow:latest&amp;#39; locally
+latest: Pulling from hypriot/rpi-dirtycow
+38070c4d0c33: Pull complete 
+a3ed95caeb02: Pull complete 
+2d2e2d46b9b5: Pull complete 
+Digest: sha256:065d979dd3c48e6488044206ec782628ecf241ef02104610c076949d9881ad0d
+Status: Downloaded newer image for hypriot/rpi-dirtycow:latest
+
+Test for Dirty Cow:
+  $ echo &amp;quot;You are SAFE!          &amp;quot; &amp;gt; foo
+  $ chmod 404 foo
+  $ ./dirtyc0w foo &amp;quot;You are VULNERABLE!!!&amp;quot; &amp;amp;
+  $ sleep 2
+  $ cat foo
+You are VULNERABLE!!!  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Step 3. - Upgrade the kernel:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ sudo apt-get update &amp;amp;&amp;amp; sudo apt-get -u dist-upgrade
+...
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+The following packages will be upgraded:
+  linux-dtb-next-sunxi linux-firmware-image-next-sunxi linux-headers-next-sunxi linux-image-next-sunxi linux-jessie-root-next-cubietruck
+5 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Need to get 0 B/26.3 MB of archives.
+After this operation, 2,637 kB of additional disk space will be used.
+Do you want to continue? [Y/n]
+...
+Processing triggers for systemd (215-17+deb8u5) ...
+Setting up linux-dtb-next-sunxi (5.23) ...
+Setting up linux-firmware-image-next-sunxi (5.23) ...
+Setting up linux-image-next-sunxi (5.23) ...
+Setting up linux-jessie-root-next-cubietruck (5.23) ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Step 4. - Reboot the machine:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ sudo reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Step 5. - Test again:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ docker run --rm hypriot/rpi-dirtycow
+Test for Dirty Cow:
+  $ echo &amp;quot;You are SAFE!          &amp;quot; &amp;gt; foo
+  $ chmod 404 foo
+  $ ./dirtyc0w foo &amp;quot;You are VULNERABLE!!!&amp;quot; &amp;amp;
+  $ sleep 2
+  $ cat foo
+You are SAFE!  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Step 6. - Verify the new kernel version:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ uname -a
+Linux nepomuk 4.8.4-sunxi #6 SMP Sun Oct 23 15:55:47 CEST 2016 armv7l GNU/Linux
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The Cubietruck is now running Linux version 4.8.4.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Automated builds for ARM Docker containers on Intel hosts</title>

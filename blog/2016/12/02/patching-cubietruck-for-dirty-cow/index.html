@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>A developer's notebook</title>
-  <meta name="description" content="">
+  <title>Testing and patching Cubietruck for Dirty COW vulnerability</title>
+  <meta name="description" content="Recently, I stumbled across the Fix Dirty COW on Raspberry Pi the Docker way guide by Hypriot.As it&#39;s related to RPis, this is how to test and fix a Cubi...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="https://sedden.github.io/">
+  <link rel="canonical" href="https://sedden.github.io/blog/2016/12/02/patching-cubietruck-for-dirty-cow/">
 
   <!-- OpenID -->
   <link rel="openid2.provider" href="https://openid.stackexchange.com/openid/provider">
@@ -39,8 +39,8 @@
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@sedden">
 	<meta name="twitter:creator" content="@sedden">
-	<meta name="twitter:title" content="A developer's notebook">
-	<meta name="twitter:description" content="">
+	<meta name="twitter:title" content="Testing and patching Cubietruck for Dirty COW vulnerability">
+	<meta name="twitter:description" content="Recently, I stumbled across the Fix Dirty COW on Raspberry Pi the Docker way guide by Hypriot.As it&#39;s related to RPis, this is how to test and fix a Cubietruck running armbian for that kind of ...">
 	
 
 </head>
@@ -89,121 +89,106 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Testing and patching Cubietruck for Dirty COW vulnerability</h1>
+    <p class="post-meta"><time datetime="2016-12-02T22:53:13+00:00" itemprop="datePublished">Dec 2, 2016</time></p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Dec 2, 2016</span>
+  <div class="post-content" itemprop="articleBody">
+    <p>Recently, I stumbled across the <a href="https://blog.hypriot.com/post/fix-dirty-cow-on-raspberry-pi/">Fix Dirty COW on Raspberry Pi the Docker way</a> guide by <a href="http://blog.hypriot.com/downloads/">Hypriot</a>.
+As it&#39;s related to RPis, this is how to test and fix a <a href="http://www.cubietruck.com">Cubietruck</a> running <a href="http://www.armbian.com/">armbian</a> 
+for that kind of <a href="http://www.theregister.co.uk/2016/10/21/linux_privilege_escalation_hole/">kernel security vulnerability</a>.</p>
 
-        <h2>
-          <a class="post-link" href="/blog/2016/12/02/patching-cubietruck-for-dirty-cow/">Testing and patching Cubietruck for Dirty COW vulnerability</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Apr 11, 2016</span>
+<p>Step 1. - Verify kernel version:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ uname -a
+Linux nepomuk 4.7.3-sunxi #26 SMP Wed Sep 14 19:50:18 CEST 2016 armv7l GNU/Linux
+</code></pre></div>
+<p>Step 2. - Test the kernel for Dirty COW vulnerability:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker run --rm hypriot/rpi-dirtycow
+Unable to find image &#39;hypriot/rpi-dirtycow:latest&#39; locally
+latest: Pulling from hypriot/rpi-dirtycow
+38070c4d0c33: Pull complete 
+a3ed95caeb02: Pull complete 
+2d2e2d46b9b5: Pull complete 
+Digest: sha256:065d979dd3c48e6488044206ec782628ecf241ef02104610c076949d9881ad0d
+Status: Downloaded newer image for hypriot/rpi-dirtycow:latest
 
-        <h2>
-          <a class="post-link" href="/blog/2016/04/11/automated-builds-for-arm-docker-containers-on-intel-hosts/">Automated builds for ARM Docker containers on Intel hosts</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Feb 6, 2016</span>
+Test for Dirty Cow:
+  $ echo &quot;You are SAFE!          &quot; &gt; foo
+  $ chmod 404 foo
+  $ ./dirtyc0w foo &quot;You are VULNERABLE!!!&quot; &amp;
+  $ sleep 2
+  $ cat foo
+You are VULNERABLE!!!  
+</code></pre></div>
+<p>Step 3. - Upgrade the kernel:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ sudo apt-get update &amp;&amp; sudo apt-get -u dist-upgrade
+...
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+The following packages will be upgraded:
+  linux-dtb-next-sunxi linux-firmware-image-next-sunxi linux-headers-next-sunxi linux-image-next-sunxi linux-jessie-root-next-cubietruck
+5 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Need to get 0 B/26.3 MB of archives.
+After this operation, 2,637 kB of additional disk space will be used.
+Do you want to continue? [Y/n]
+...
+Processing triggers for systemd (215-17+deb8u5) ...
+Setting up linux-dtb-next-sunxi (5.23) ...
+Setting up linux-firmware-image-next-sunxi (5.23) ...
+Setting up linux-image-next-sunxi (5.23) ...
+Setting up linux-jessie-root-next-cubietruck (5.23) ...
+</code></pre></div>
+<p>Step 4. - Reboot the machine:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ sudo reboot
+</code></pre></div>
+<p>Step 5. - Test again:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker run --rm hypriot/rpi-dirtycow
+Test for Dirty Cow:
+  $ echo &quot;You are SAFE!          &quot; &gt; foo
+  $ chmod 404 foo
+  $ ./dirtyc0w foo &quot;You are VULNERABLE!!!&quot; &amp;
+  $ sleep 2
+  $ cat foo
+You are SAFE!  
+</code></pre></div>
+<p>Step 6. - Verify the new kernel version:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ uname -a
+Linux nepomuk 4.8.4-sunxi #6 SMP Sun Oct 23 15:55:47 CEST 2016 armv7l GNU/Linux
+</code></pre></div>
+<p>The Cubietruck is now running Linux version 4.8.4.</p>
 
-        <h2>
-          <a class="post-link" href="/blog/2016/02/06/docker-on-cubietruck/">Docker on Cubietruck</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 29, 2015</span>
+  </div>
 
-        <h2>
-          <a class="post-link" href="/blog/2015/11/29/postgresql-xml-functions/">PostgreSQL XML Functions</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 24, 2015</span>
+  <!-- Flattr -->
+  <div>
+    <a class="FlattrButton" style="display:none;"
+       title="Testing and patching Cubietruck for Dirty COW vulnerability"
+       rel="flattr;uid:sedden;popout:0;category:text"
+       href="https://sedden.github.io/blog/2016/12/02/patching-cubietruck-for-dirty-cow/">
+    </a>
+  </div>
 
-        <h2>
-          <a class="post-link" href="/blog/2015/11/24/getting-started-with-docker-machine-on-ec2/">Getting started with Docker Machine on Amazon EC2</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 11, 2015</span>
+  <!-- Disqus -->
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://sedden.github.io/blog/2016/12/02/patching-cubietruck-for-dirty-cow/';
+      this.page.identifier = '/blog/2016/12/02/patching-cubietruck-for-dirty-cow';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//sedden.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+  </script>
 
-        <h2>
-          <a class="post-link" href="/blog/2015/11/11/backup-to-amazon-s3-glacier-with-duplicity/">Backup to Amazon Glacier with Duplicity and Duply</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 8, 2015</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2015/11/08/publish-github-pages-via-travis-ci/">Publish to GitHub User Pages with Jekyll and Travis-CI</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Jun 11, 2014</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2014/06/11/fabric-keyring-duplicity-aws/">Fabric, duplicity, AWS credentials and System Keyring</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 2, 2014</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2014/05/02/pomodoro-timesheet/">Time tracking with the Pomodoro.app</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 1, 2014</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2014/05/01/from-octopress-to-jekyll/">Howto migrate from Octopress to Jekyll</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 27, 2013</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2013/03/27/use-osfamily-instead-of-operatingsystem/">Pros and cons using Puppet's $::osfamily instead of $::operatingsystem Fact</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 26, 2013</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2013/03/26/openwrt-ipv6-forwarding/">Forwarding IPv6 Traffic from WAN to LAN with OpenWRT</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 25, 2013</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2013/03/25/run-puppet-via-cron/">Run Puppet via Cron</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/atom.xml">via Atom Feed</a></p>
-
-</div>
+</article>
 
       </div>
     </div>
