@@ -115,14 +115,14 @@ Get it from here: <a href="http://www.armbian.com/cubietruck/">http://www.armbia
 <p><a href="https://wiki.freedesktop.org/www/Software/systemd/">systemd</a> is disabled by default on Debian Jessie based
 <a href="http://www.armbian.com/">armbian</a>. To enable it, remove the <code>ramlog</code> Package due to an
 incompatibility with the <code>systemd</code> Package:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">apt-get remove --purge ramlog
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>apt-get remove --purge ramlog
 </code></pre></div>
 <p>To enable <a href="https://wiki.freedesktop.org/www/Software/systemd/">systemd</a> run:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">apt-get update
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>apt-get update
 apt-get install --no-install-recommends systemd-sysv fake-hwclock
 </code></pre></div>
 <p>Then just reboot.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">reboot
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>reboot
 </code></pre></div>
 <p>There is no need to recompile boot scripts.</p>
 
@@ -130,20 +130,20 @@ apt-get install --no-install-recommends systemd-sysv fake-hwclock
 
 <p>Thanks to the folks at <a href="http://blog.hypriot.com/downloads/">Hypriot</a>, it&#39;s quiet easy to get docker binaries
 for the ARM architecture:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">wget &quot;http://downloads.hypriot.com/docker-hypriot_1.10.0-1_armhf.deb&quot;
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>wget &quot;http://downloads.hypriot.com/docker-hypriot_1.10.0-1_armhf.deb&quot;
 sudo dpkg -i docker-hypriot_1.10.0-1_armhf.deb
 </code></pre></div>
 <p>To start <a href="https://www.docker.com/">Docker</a> run:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">sudo systemctl start docker
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>sudo systemctl start docker
 </code></pre></div>
 <p>To enable <a href="https://www.docker.com/">Docker</a> on <a href="https://docs.docker.com/engine/admin/systemd/">system boot</a>:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">sudo systemctl enable docker
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>sudo systemctl enable docker
 </code></pre></div>
 <p>Verify the result with:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">sudo docker info
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>sudo docker info
 </code></pre></div>
 <p>Expected output should be like this:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Containers: 0
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>Containers: 0
  Running: 0
  Paused: 0
  Stopped: 0

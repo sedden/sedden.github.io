@@ -119,14 +119,14 @@ This is kind of a best-of using an HTTPS API Token (via environment variable) an
 <li>Last but not least, add the <code>.travis.yml</code> file below to your <code>jekyll</code> branch, adjust it, commit and push.</li>
 </ol>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-<span class="l-Scalar-Plain">language</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ruby</span>
-<span class="l-Scalar-Plain">branches</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">only</span><span class="p-Indicator">:</span>
-    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">jekyll</span>
-<span class="l-Scalar-Plain">script</span><span class="p-Indicator">:</span>
-  <span class="p-Indicator">-</span> <span class="s">&quot;bundle</span><span class="nv"> </span><span class="s">exec</span><span class="nv"> </span><span class="s">jekyll</span><span class="nv"> </span><span class="s">build&quot;</span>
-<span class="l-Scalar-Plain">after_success</span><span class="p-Indicator">:</span> <span class="p-Indicator">|</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span></span><span class="l l-Scalar l-Scalar-Plain">sudo</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="l l-Scalar l-Scalar-Plain">language</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ruby</span>
+<span class="l l-Scalar l-Scalar-Plain">branches</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">only</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">jekyll</span>
+<span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;bundle</span><span class="nv"> </span><span class="s">exec</span><span class="nv"> </span><span class="s">jekyll</span><span class="nv"> </span><span class="s">build&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">after_success</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
   <span class="no">if [ -n &quot;${GITHUB_ACCESS_TOKEN}&quot; ] &amp;&amp; [ &quot;${TRAVIS_PULL_REQUEST}&quot; = &#39;false&#39; ]</span>
   <span class="no">then</span>
     <span class="no">cd &quot;${TRAVIS_BUILD_DIR}/_site&quot;</span>

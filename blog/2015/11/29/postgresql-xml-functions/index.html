@@ -111,7 +111,7 @@ Much more, it attempts to make it adaptable to other situations.</p>
 <p>The easiest case was the users table without any relations and no need for
 aggregation. The goal was to create XML elements like this:</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;wp:author&gt;</span>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;wp:author&gt;</span>
   <span class="nt">&lt;wp:author_id&gt;</span>1<span class="nt">&lt;/wp:author_id&gt;</span>
   <span class="nt">&lt;wp:author_login&gt;</span>stefan<span class="nt">&lt;/wp:author_login&gt;</span>
   <span class="nt">&lt;wp:author_email&gt;</span>stefan@example.com<span class="nt">&lt;/wp:author_email&gt;</span>
@@ -122,7 +122,7 @@ aggregation. The goal was to create XML elements like this:</p>
 
 <p>This can be done with this select statement:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">xmlelement</span><span class="p">(</span>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">SELECT</span> <span class="n">xmlelement</span><span class="p">(</span>
     <span class="n">name</span> <span class="ss">&quot;wp:author&quot;</span><span class="p">,</span>
         <span class="n">xmlforest</span> <span class="p">(</span>
           <span class="n">id</span> <span class="k">as</span> <span class="ss">&quot;wp:author_id&quot;</span><span class="p">,</span>
@@ -145,7 +145,7 @@ expression and create a sequence of the given elements.</p>
 <p>The goal was to create XML elements like this. An item can have none or
 multiple comments:</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;item&gt;</span>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;item&gt;</span>
   <span class="nt">&lt;title&gt;</span>PostgreSQL rocks!<span class="nt">&lt;/title&gt;</span>
   <span class="nt">&lt;link&gt;</span>http://example.com/blog/2013/06/18/postgresql-rocks/<span class="nt">&lt;/link&gt;</span>
   <span class="nt">&lt;pubDate&gt;</span>2013-06-18T10:53:25+00:00<span class="nt">&lt;/pubDate&gt;</span>
@@ -177,7 +177,7 @@ multiple comments:</p>
 <code>GROUP BY p.id</code> (ID of the article) to also include articles without comments.
 To make it clear - the second column (count) of the following select statement can be zero:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">SELECT</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
 <span class="k">FROM</span> <span class="n">posts</span> <span class="n">p</span>
   <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">comments</span> <span class="k">c</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">post_id</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span>
@@ -191,7 +191,7 @@ example. The <code>xmlelement</code> expression creates the <em>item</em> node a
 It just concatenates the elements created by the <code>xmlelement</code> expression
 and passes it to the aggregation call.</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">xmlelement</span><span class="p">(</span>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">SELECT</span> <span class="n">xmlelement</span><span class="p">(</span>
     <span class="n">name</span> <span class="n">item</span><span class="p">,</span>
         <span class="n">xmlforest</span> <span class="p">(</span>
             <span class="n">p</span><span class="p">.</span><span class="n">title</span> <span class="k">as</span> <span class="ss">&quot;title&quot;</span><span class="p">,</span>
@@ -229,14 +229,14 @@ and passes it to the aggregation call.</p>
 the <code>xmlagg</code> functions. The following node was generated, even if an
 article does not have any comments.</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;wp:comment&gt;</span>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;wp:comment&gt;</span>
   <span class="nt">&lt;wp:wp:comment_approved&gt;</span>1<span class="nt">&lt;/wp:wp:comment_approved&gt;</span>
 <span class="nt">&lt;/wp:comment&gt;</span>
 <span class="nt">&lt;/item&gt;</span></code></pre></figure>
 
 <p>The solution was to express &#39;0&#39; and &#39;1&#39; by using the comment&#39;s ID:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="o">-</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="ss">&quot;wp:comment_parent&quot;</span> <span class="c1">-- &#39;0&#39;</span>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="o">-</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="ss">&quot;wp:comment_parent&quot;</span> <span class="c1">-- &#39;0&#39;</span>
 <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="o">/</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="ss">&quot;wp:comment_approved&quot;</span> <span class="c1">-- &#39;1&#39;</span></code></pre></figure>
 
 <h4>Further information</h4>

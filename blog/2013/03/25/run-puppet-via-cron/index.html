@@ -106,23 +106,23 @@
 </ul>
 
 <p>A common workaround is to run the Puppet agent via Cron. Take a look at the <a href="http://projects.puppetlabs.com/projects/1/wiki/Cron_Patterns">Cron Patterns</a> Wiki page, but don&#39;t get too confused. Until Puppet 2.6, simply run: </p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">/usr/sbin/puppetd --no-daemonize --onetime
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>/usr/sbin/puppetd --no-daemonize --onetime
 </code></pre></div>
 <p>With Puppet 2.7 it slightly changed to:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">/usr/bin/puppet agent --no-daemonize --onetime
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>/usr/bin/puppet agent --no-daemonize --onetime
 </code></pre></div>
 <p>Furthermore you won&#39;t run all the agents at the same time. So the next step is to plan the execution time. To run Puppet every 30 minutes, use <code>fqdn_rand(30)</code> to generate a value between 0 and 29 for the first, and add 30 more to get the second point of time:</p>
-<div class="highlight"><pre><code class="language-puppet" data-lang="puppet"><span class="nv">$min1</span> <span class="o">=</span> <span class="k">fqdn_rand</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
-<span class="nv">$min2</span> <span class="o">=</span> <span class="nv">$min1</span> <span class="o">+</span> <span class="mi">30</span>
+<div class="highlight"><pre><code class="language-puppet" data-lang="puppet"><span></span><span class="nv">$min1</span> <span class="o">=</span> <span class="nf">fqdn_rand</span><span class="p">(</span><span class="m">30</span><span class="p">)</span>
+<span class="nv">$min2</span> <span class="o">=</span> <span class="nv">$min1</span> <span class="o">+</span> <span class="m">30</span>
 </code></pre></div>
 <p>The <code>fqdn_rand</code> function will generate the same value each time you call it, dependent on the FQDN of the actual host.
 Finally, the file resource will look like this: </p>
-<div class="highlight"><pre><code class="language-puppet" data-lang="puppet"><span class="k">file</span> <span class="p">{</span> <span class="s">&#39;/etc/cron.d/puppet-cron&#39;</span><span class="p">:</span>
-  <span class="na">ensure</span>  <span class="o">=&gt;</span> <span class="s">&#39;present&#39;</span><span class="p">,</span>
-  <span class="na">content</span> <span class="o">=&gt;</span> <span class="s">&quot;$min1,$min2 * * * * root /usr/bin/puppet agent --no-daemonize --onetime\n&quot;</span><span class="p">,</span>
-  <span class="na">mode</span>    <span class="o">=&gt;</span> <span class="s">&#39;0644&#39;</span><span class="p">,</span>
-  <span class="na">owner</span>   <span class="o">=&gt;</span> <span class="s">&#39;root&#39;</span><span class="p">,</span>
-  <span class="na">group</span>   <span class="o">=&gt;</span> <span class="s">&#39;root&#39;</span><span class="p">,</span>
+<div class="highlight"><pre><code class="language-puppet" data-lang="puppet"><span></span><span class="nc">file</span> <span class="p">{</span> <span class="s1">&#39;/etc/cron.d/puppet-cron&#39;</span><span class="p">:</span>
+  <span class="nt">ensure</span>  <span class="p">=&gt;</span> <span class="s1">&#39;present&#39;</span><span class="p">,</span>
+  <span class="nt">content</span> <span class="p">=&gt;</span> <span class="s2">&quot;$min1,$min2 * * * * root /usr/bin/puppet agent --no-daemonize --onetime</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+  <span class="nt">mode</span>    <span class="p">=&gt;</span> <span class="s1">&#39;0644&#39;</span><span class="p">,</span>
+  <span class="nt">owner</span>   <span class="p">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+  <span class="nt">group</span>   <span class="p">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
 <span class="p">}</span> 
 </code></pre></div>
 <p>As a side effect, this will solve another problem for you.

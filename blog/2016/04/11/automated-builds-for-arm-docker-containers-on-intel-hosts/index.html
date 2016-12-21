@@ -113,7 +113,7 @@ For that reason, the base image <code>sedden/rpi-raspbian-qemu</code> exists:</p
 ARM binaries to be executed by <code>/usr/bin/qemu-arm-static</code>.</p>
 
 <p>The <code>.travis.yml</code> must contain this part:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">before_script:
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>before_script:
   - sudo apt-get --yes --no-install-recommends install binfmt-support qemu-user-static
   - echo &#39;:arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-arm-static:&#39; | sudo tee -a /proc/sys/fs/binfmt_misc/register
 </code></pre></div>

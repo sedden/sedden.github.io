@@ -102,11 +102,11 @@ As it&#39;s related to RPis, this is how to test and fix a <a href="http://www.c
 for that kind of <a href="http://www.theregister.co.uk/2016/10/21/linux_privilege_escalation_hole/">kernel security vulnerability</a>.</p>
 
 <p>Step 1. - Verify kernel version:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ uname -a
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ uname -a
 Linux nepomuk 4.7.3-sunxi #26 SMP Wed Sep 14 19:50:18 CEST 2016 armv7l GNU/Linux
 </code></pre></div>
 <p>Step 2. - Test the kernel for Dirty COW vulnerability:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker run --rm hypriot/rpi-dirtycow
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ docker run --rm hypriot/rpi-dirtycow
 Unable to find image &#39;hypriot/rpi-dirtycow:latest&#39; locally
 latest: Pulling from hypriot/rpi-dirtycow
 38070c4d0c33: Pull complete 
@@ -124,7 +124,7 @@ Test for Dirty Cow:
 You are VULNERABLE!!!  
 </code></pre></div>
 <p>Step 3. - Upgrade the kernel:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ sudo apt-get update &amp;&amp; sudo apt-get -u dist-upgrade
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ sudo apt-get update &amp;&amp; sudo apt-get -u dist-upgrade
 ...
 Reading package lists... Done
 Building dependency tree       
@@ -144,10 +144,10 @@ Setting up linux-image-next-sunxi (5.23) ...
 Setting up linux-jessie-root-next-cubietruck (5.23) ...
 </code></pre></div>
 <p>Step 4. - Reboot the machine:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ sudo reboot
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ sudo reboot
 </code></pre></div>
 <p>Step 5. - Test again:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker run --rm hypriot/rpi-dirtycow
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ docker run --rm hypriot/rpi-dirtycow
 Test for Dirty Cow:
   $ echo &quot;You are SAFE!          &quot; &gt; foo
   $ chmod 404 foo
@@ -157,7 +157,7 @@ Test for Dirty Cow:
 You are SAFE!  
 </code></pre></div>
 <p>Step 6. - Verify the new kernel version:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ uname -a
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ uname -a
 Linux nepomuk 4.8.4-sunxi #6 SMP Sun Oct 23 15:55:47 CEST 2016 armv7l GNU/Linux
 </code></pre></div>
 <p>The Cubietruck is now running Linux version 4.8.4.</p>

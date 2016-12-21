@@ -123,8 +123,8 @@ variables which are relevant to <code>docker-machine --driver amazonec2 create .
 <p>Create a new user (e.g. docker-machine), note the access key and secret and
 populate the environment variables:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>AKI...
-<span class="nb">export </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>...</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">export</span> <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>AKI...
+<span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>...</code></pre></figure>
 
 <p>Then select the user, switch to the <em>Permissions</em> tab and add a new
 <em>Custom Policy</em> (expand Inline Policy to do so).
@@ -134,7 +134,7 @@ The following policy was shared by
 
 <p>A slightly extended it with permissions for creating security groups:</p>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span></span><span class="p">{</span>
     <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
     <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
@@ -191,24 +191,24 @@ I also changed the region to <code>eu-west-1</code>.</p>
 Login to the AWS console and navigate to Services / VPC / Your VPCs.
 Get the VPC ID from the VPC column and set the environment variable like this:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">AWS_VPC_ID</span><span class="o">=</span>vpc-....</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">export</span> <span class="nv">AWS_VPC_ID</span><span class="o">=</span>vpc-....</code></pre></figure>
 
 <h4>Create the docker machine</h4>
 
 <p>Four environment variables have been populated:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>AKI... <span class="c"># first step</span>
-<span class="nb">export </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>... <span class="c"># first step</span>
-<span class="nb">export </span><span class="nv">AWS_VPC_ID</span><span class="o">=</span>vpc-.... <span class="c"># second step</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">export</span> <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>AKI... <span class="c1"># first step</span>
+<span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>... <span class="c1"># first step</span>
+<span class="nb">export</span> <span class="nv">AWS_VPC_ID</span><span class="o">=</span>vpc-.... <span class="c1"># second step</span></code></pre></figure>
 
 <p>As mentioned in the previous step, I changed to region to <code>eu-west-1</code>.
 It must match the region in the IAM policy:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>eu-west-1 <span class="c"># Ireland</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">export</span> <span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>eu-west-1 <span class="c1"># Ireland</span></code></pre></figure>
 
 <p>Create the <em>aws01</em> machine with <code>-D</code> option for debugging:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">docker-machine -D create --driver amazonec2 aws01</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>docker-machine -D create --driver amazonec2 aws01</code></pre></figure>
 
 <p>Everything is fine, if the command above completes with the message:
 <em>&quot;To see how to connect Docker to this machine, run: docker-machine env aws01&quot;</em>
@@ -216,11 +216,11 @@ If not so, check out the troubleshooting section below.</p>
 
 <p>To verify the setup, just run:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">eval</span> <span class="s2">&quot;$(docker-machine env aws01)&quot;</span> <span class="c"># setup DOCKER_* environment variables</span>
-docker ps                          <span class="c"># list running containers</span>
-docker images                      <span class="c"># list images</span>
-docker-machine ls                  <span class="c"># list docker machines</span>
-docker-machine ssh aws01           <span class="c"># ssh into instance aws01</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>docker-machine env aws01<span class="k">)</span><span class="s2">&quot;</span> <span class="c1"># setup DOCKER_* environment variables</span>
+docker ps                          <span class="c1"># list running containers</span>
+docker images                      <span class="c1"># list images</span>
+docker-machine ls                  <span class="c1"># list docker machines</span>
+docker-machine ssh aws01           <span class="c1"># ssh into instance aws01</span></code></pre></figure>
 
 <p>Use the docker-machine command to interact with the newly created EC2 instance.</p>
 
