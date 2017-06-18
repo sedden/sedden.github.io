@@ -79,8 +79,6 @@
         
           
         
-          
-        
       </div>
     </nav>
 
@@ -113,7 +111,7 @@ Much more, it attempts to make it adaptable to other situations.</p>
 <p>The easiest case was the users table without any relations and no need for
 aggregation. The goal was to create XML elements like this:</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;wp:author&gt;</span>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;wp:author&gt;</span>
   <span class="nt">&lt;wp:author_id&gt;</span>1<span class="nt">&lt;/wp:author_id&gt;</span>
   <span class="nt">&lt;wp:author_login&gt;</span>stefan<span class="nt">&lt;/wp:author_login&gt;</span>
   <span class="nt">&lt;wp:author_email&gt;</span>stefan@example.com<span class="nt">&lt;/wp:author_email&gt;</span>
@@ -124,15 +122,15 @@ aggregation. The goal was to create XML elements like this:</p>
 
 <p>This can be done with this select statement:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">SELECT</span> <span class="n">xmlelement</span><span class="p">(</span>
-    <span class="n">name</span> <span class="ss">&quot;wp:author&quot;</span><span class="p">,</span>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">xmlelement</span><span class="p">(</span>
+    <span class="n">name</span> <span class="nv">"wp:author"</span><span class="p">,</span>
         <span class="n">xmlforest</span> <span class="p">(</span>
-          <span class="n">id</span> <span class="k">as</span> <span class="ss">&quot;wp:author_id&quot;</span><span class="p">,</span>
-          <span class="n">username</span> <span class="k">as</span> <span class="ss">&quot;wp:author_login&quot;</span><span class="p">,</span>
-          <span class="n">email</span> <span class="k">as</span> <span class="ss">&quot;wp:author_email&quot;</span><span class="p">,</span>
-          <span class="n">first_name</span> <span class="k">as</span> <span class="ss">&quot;wp:display_name&quot;</span><span class="p">,</span>
-          <span class="n">first_name</span> <span class="k">as</span> <span class="ss">&quot;wp:first_name&quot;</span><span class="p">,</span>
-          <span class="n">last_name</span> <span class="k">as</span> <span class="ss">&quot;wp:last_name&quot;</span>
+          <span class="n">id</span> <span class="k">as</span> <span class="nv">"wp:author_id"</span><span class="p">,</span>
+          <span class="n">username</span> <span class="k">as</span> <span class="nv">"wp:author_login"</span><span class="p">,</span>
+          <span class="n">email</span> <span class="k">as</span> <span class="nv">"wp:author_email"</span><span class="p">,</span>
+          <span class="n">first_name</span> <span class="k">as</span> <span class="nv">"wp:display_name"</span><span class="p">,</span>
+          <span class="n">first_name</span> <span class="k">as</span> <span class="nv">"wp:first_name"</span><span class="p">,</span>
+          <span class="n">last_name</span> <span class="k">as</span> <span class="nv">"wp:last_name"</span>
           <span class="p">)</span>
         <span class="p">)</span>
 <span class="k">FROM</span> <span class="n">users</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span><span class="p">;</span></code></pre></figure>
@@ -147,7 +145,7 @@ expression and create a sequence of the given elements.</p>
 <p>The goal was to create XML elements like this. An item can have none or
 multiple comments:</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;item&gt;</span>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;item&gt;</span>
   <span class="nt">&lt;title&gt;</span>PostgreSQL rocks!<span class="nt">&lt;/title&gt;</span>
   <span class="nt">&lt;link&gt;</span>http://example.com/blog/2013/06/18/postgresql-rocks/<span class="nt">&lt;/link&gt;</span>
   <span class="nt">&lt;pubDate&gt;</span>2013-06-18T10:53:25+00:00<span class="nt">&lt;/pubDate&gt;</span>
@@ -179,7 +177,7 @@ multiple comments:</p>
 <code>GROUP BY p.id</code> (ID of the article) to also include articles without comments.
 To make it clear - the second column (count) of the following select statement can be zero:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">SELECT</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
 <span class="k">FROM</span> <span class="n">posts</span> <span class="n">p</span>
   <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">comments</span> <span class="k">c</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">post_id</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span>
@@ -193,31 +191,31 @@ example. The <code>xmlelement</code> expression creates the <em>item</em> node a
 It just concatenates the elements created by the <code>xmlelement</code> expression
 and passes it to the aggregation call.</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">SELECT</span> <span class="n">xmlelement</span><span class="p">(</span>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">xmlelement</span><span class="p">(</span>
     <span class="n">name</span> <span class="n">item</span><span class="p">,</span>
         <span class="n">xmlforest</span> <span class="p">(</span>
-            <span class="n">p</span><span class="p">.</span><span class="n">title</span> <span class="k">as</span> <span class="ss">&quot;title&quot;</span><span class="p">,</span>
-            <span class="s1">&#39;http://example.com/blog/&#39;</span> <span class="o">||</span> <span class="n">to_char</span><span class="p">(</span><span class="nb">date</span><span class="p">,</span> <span class="s1">&#39;YYYY&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;/&#39;</span> <span class="o">||</span> <span class="n">to_char</span><span class="p">(</span><span class="nb">date</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;/&#39;</span> <span class="o">||</span> <span class="n">to_char</span><span class="p">(</span><span class="nb">date</span><span class="p">,</span> <span class="s1">&#39;DD&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;/&#39;</span> <span class="o">||</span> <span class="n">p</span><span class="p">.</span><span class="n">slug</span> <span class="k">as</span> <span class="ss">&quot;link&quot;</span><span class="p">,</span>
-            <span class="n">p</span><span class="p">.</span><span class="nb">date</span> <span class="k">as</span> <span class="ss">&quot;pubDate&quot;</span><span class="p">,</span>
-            <span class="p">(</span><span class="k">SELECT</span> <span class="n">username</span> <span class="k">FROM</span> <span class="n">users</span> <span class="n">u</span> <span class="k">WHERE</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">author_id</span><span class="p">)</span> <span class="k">as</span> <span class="ss">&quot;dc:creator&quot;</span><span class="p">,</span>
-            <span class="s1">&#39;http://example.com/?p=&#39;</span> <span class="o">||</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span>  <span class="k">as</span> <span class="ss">&quot;guid&quot;</span><span class="p">,</span>
-            <span class="s1">&#39;&#39;</span> <span class="k">as</span> <span class="ss">&quot;description&quot;</span><span class="p">,</span>
-            <span class="n">p</span><span class="p">.</span><span class="n">body</span> <span class="k">as</span> <span class="ss">&quot;content:encoded&quot;</span><span class="p">,</span>
-            <span class="n">p</span><span class="p">.</span><span class="n">excerpt</span> <span class="k">as</span> <span class="ss">&quot;excerpt:encoded&quot;</span><span class="p">,</span>
-            <span class="n">p</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="ss">&quot;wp:post_id&quot;</span><span class="p">,</span>
+            <span class="n">p</span><span class="p">.</span><span class="n">title</span> <span class="k">as</span> <span class="nv">"title"</span><span class="p">,</span>
+            <span class="s1">'http://example.com/blog/'</span> <span class="o">||</span> <span class="n">to_char</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="s1">'YYYY'</span><span class="p">)</span> <span class="o">||</span> <span class="s1">'/'</span> <span class="o">||</span> <span class="n">to_char</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="s1">'MM'</span><span class="p">)</span> <span class="o">||</span> <span class="s1">'/'</span> <span class="o">||</span> <span class="n">to_char</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="s1">'DD'</span><span class="p">)</span> <span class="o">||</span> <span class="s1">'/'</span> <span class="o">||</span> <span class="n">p</span><span class="p">.</span><span class="n">slug</span> <span class="k">as</span> <span class="nv">"link"</span><span class="p">,</span>
+            <span class="n">p</span><span class="p">.</span><span class="n">date</span> <span class="k">as</span> <span class="nv">"pubDate"</span><span class="p">,</span>
+            <span class="p">(</span><span class="k">SELECT</span> <span class="n">username</span> <span class="k">FROM</span> <span class="n">users</span> <span class="n">u</span> <span class="k">WHERE</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">author_id</span><span class="p">)</span> <span class="k">as</span> <span class="nv">"dc:creator"</span><span class="p">,</span>
+            <span class="s1">'http://example.com/?p='</span> <span class="o">||</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span>  <span class="k">as</span> <span class="nv">"guid"</span><span class="p">,</span>
+            <span class="s1">''</span> <span class="k">as</span> <span class="nv">"description"</span><span class="p">,</span>
+            <span class="n">p</span><span class="p">.</span><span class="n">body</span> <span class="k">as</span> <span class="nv">"content:encoded"</span><span class="p">,</span>
+            <span class="n">p</span><span class="p">.</span><span class="n">excerpt</span> <span class="k">as</span> <span class="nv">"excerpt:encoded"</span><span class="p">,</span>
+            <span class="n">p</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="nv">"wp:post_id"</span><span class="p">,</span>
             <span class="c1">-- ... skipped</span>
-            <span class="nb">date</span> <span class="k">as</span> <span class="ss">&quot;wp:post_date&quot;</span>
+            <span class="n">date</span> <span class="k">as</span> <span class="nv">"wp:post_date"</span>
         <span class="p">),</span>
         <span class="n">xmlagg</span><span class="p">(</span>
             <span class="n">xmlelement</span><span class="p">(</span>
-                <span class="n">name</span> <span class="ss">&quot;wp:comment&quot;</span><span class="p">,</span>
+                <span class="n">name</span> <span class="nv">"wp:comment"</span><span class="p">,</span>
                 <span class="n">xmlforest</span><span class="p">(</span>
-                    <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="ss">&quot;wp:comment_id&quot;</span><span class="p">,</span>
-                    <span class="k">c</span><span class="p">.</span><span class="n">user_name</span> <span class="k">as</span> <span class="ss">&quot;wp:comment_author&quot;</span><span class="p">,</span>
-                    <span class="k">c</span><span class="p">.</span><span class="n">user_email</span> <span class="k">as</span> <span class="ss">&quot;wp:comment_author_email&quot;</span><span class="p">,</span>
+                    <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="nv">"wp:comment_id"</span><span class="p">,</span>
+                    <span class="k">c</span><span class="p">.</span><span class="n">user_name</span> <span class="k">as</span> <span class="nv">"wp:comment_author"</span><span class="p">,</span>
+                    <span class="k">c</span><span class="p">.</span><span class="n">user_email</span> <span class="k">as</span> <span class="nv">"wp:comment_author_email"</span><span class="p">,</span>
                     <span class="c1">-- skipped ...</span>
-                    <span class="k">c</span><span class="p">.</span><span class="k">comment</span> <span class="k">as</span> <span class="ss">&quot;wp:comment_content&quot;</span><span class="p">,</span>
-                    <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="o">/</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="ss">&quot;wp:comment_approved&quot;</span> <span class="c1">-- &#39;1&#39;</span>
+                    <span class="k">c</span><span class="p">.</span><span class="k">comment</span> <span class="k">as</span> <span class="nv">"wp:comment_content"</span><span class="p">,</span>
+                    <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="o">/</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="nv">"wp:comment_approved"</span> <span class="c1">-- '1'</span>
                 <span class="p">)</span>
             <span class="p">)</span>
         <span class="p">)</span>
@@ -231,15 +229,15 @@ and passes it to the aggregation call.</p>
 the <code>xmlagg</code> functions. The following node was generated, even if an
 article does not have any comments.</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;wp:comment&gt;</span>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;wp:comment&gt;</span>
   <span class="nt">&lt;wp:wp:comment_approved&gt;</span>1<span class="nt">&lt;/wp:wp:comment_approved&gt;</span>
 <span class="nt">&lt;/wp:comment&gt;</span>
 <span class="nt">&lt;/item&gt;</span></code></pre></figure>
 
 <p>The solution was to express &#39;0&#39; and &#39;1&#39; by using the comment&#39;s ID:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="o">-</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="ss">&quot;wp:comment_parent&quot;</span> <span class="c1">-- &#39;0&#39;</span>
-<span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="o">/</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="ss">&quot;wp:comment_approved&quot;</span> <span class="c1">-- &#39;1&#39;</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="o">-</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="nv">"wp:comment_parent"</span> <span class="c1">-- '0'</span>
+<span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="o">/</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="nv">"wp:comment_approved"</span> <span class="c1">-- '1'</span></code></pre></figure>
 
 <h4>Further information</h4>
 
@@ -288,7 +286,7 @@ the manual.</p>
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
           <li>A developer's notebook</li>
-          <li><a href="mailto:%73%74%65%66%61%6E@%6A%65%6E%6B%6E%65%72.%6F%72%67" title="contact me">contact me</a></li>
+          <li><a href="mailto:stefan@jenkner.org" title="contact me">contact me</a></li>
         </ul>
       </div>
 

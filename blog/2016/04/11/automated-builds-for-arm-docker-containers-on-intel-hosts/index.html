@@ -79,8 +79,6 @@
         
           
         
-          
-        
       </div>
     </nav>
 
@@ -115,9 +113,9 @@ For that reason, the base image <code>sedden/rpi-raspbian-qemu</code> exists:</p
 ARM binaries to be executed by <code>/usr/bin/qemu-arm-static</code>.</p>
 
 <p>The <code>.travis.yml</code> must contain this part:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>before_script:
+<div class="highlight"><pre><code class="language-" data-lang="">before_script:
   - sudo apt-get --yes --no-install-recommends install binfmt-support qemu-user-static
-  - echo &#39;:arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-arm-static:&#39; | sudo tee -a /proc/sys/fs/binfmt_misc/register
+  - echo ':arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-arm-static:' | sudo tee -a /proc/sys/fs/binfmt_misc/register
 </code></pre></div>
   </div>
 
@@ -160,7 +158,7 @@ ARM binaries to be executed by <code>/usr/bin/qemu-arm-static</code>.</p>
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
           <li>A developer's notebook</li>
-          <li><a href="mailto:%73%74%65%66%61%6E@%6A%65%6E%6B%6E%65%72.%6F%72%67" title="contact me">contact me</a></li>
+          <li><a href="mailto:stefan@jenkner.org" title="contact me">contact me</a></li>
         </ul>
       </div>
 

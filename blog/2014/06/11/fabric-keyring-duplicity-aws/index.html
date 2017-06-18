@@ -79,8 +79,6 @@
         
           
         
-          
-        
       </div>
     </nav>
 
@@ -117,18 +115,18 @@ So the goal was to keep those credentials out of version control, retrieve them 
 
 <p>This simple task creates a backup with <a href="http://duplicity.nongu.org/">duplicity</a> using it&#39;s S3 backend:</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="nd">@task</span>
-<span class="nd">@hosts</span><span class="p">(</span><span class="s1">&#39;admin@host1.local&#39;</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="nd">@task</span>
+<span class="nd">@hosts</span><span class="p">(</span><span class="s">'admin@host1.local'</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">backup_host1</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Backup host1.local to S3 via duplicity.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;s3://s3-eu-west-1.amazonaws.com/duplicity-host1.local&#39;</span>
-    <span class="k">with</span> <span class="n">duplicity_env</span><span class="p">(</span><span class="s1">&#39;host1.local&#39;</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">local_dir</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;/etc&#39;</span><span class="p">,</span> <span class="s1">&#39;/home&#39;</span><span class="p">,</span> <span class="s1">&#39;/var/www&#39;</span><span class="p">]:</span>
-            <span class="n">remote_url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">local_dir</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
-            <span class="n">sudo</span><span class="p">(</span><span class="s2">&quot;duplicity remove-older-than 60D -v3 --force </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">remote_url</span><span class="p">))</span>
-            <span class="n">sudo</span><span class="p">(</span><span class="s2">&quot;duplicity --full-if-older-than 30D -v3 </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_dir</span><span class="p">,</span> <span class="n">remote_url</span><span class="p">))</span></code></pre></figure>
+    <span class="s">"""
+    Backup host1.local to S3 via duplicity.
+    """</span>
+    <span class="n">base_url</span> <span class="o">=</span> <span class="s">'s3://s3-eu-west-1.amazonaws.com/duplicity-host1.local'</span>
+    <span class="k">with</span> <span class="n">duplicity_env</span><span class="p">(</span><span class="s">'host1.local'</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">local_dir</span> <span class="ow">in</span> <span class="p">[</span><span class="s">'/etc'</span><span class="p">,</span> <span class="s">'/home'</span><span class="p">,</span> <span class="s">'/var/www'</span><span class="p">]:</span>
+            <span class="n">remote_url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s">'/'</span> <span class="o">+</span> <span class="n">local_dir</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'/'</span><span class="p">,</span><span class="s">'_'</span><span class="p">)</span>
+            <span class="n">sudo</span><span class="p">(</span><span class="s">"duplicity remove-older-than 60D -v3 --force </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">remote_url</span><span class="p">))</span>
+            <span class="n">sudo</span><span class="p">(</span><span class="s">"duplicity --full-if-older-than 30D -v3 </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_dir</span><span class="p">,</span> <span class="n">remote_url</span><span class="p">))</span></code></pre></figure>
 
 <p>The task makes use of a custom <a href="http://docs.fabfile.org/en/latest/api/core/context_managers.html">Context Manager</a> <code>duplicity_env</code> which will be explained below.</p>
 
@@ -140,27 +138,27 @@ As Fabric already comes along with it&#39;s own context manager for setting envi
 The <a href="https://pypi.python.org/pypi/keyring">python keyring library</a> enables easy access to the system keyring service.
 It works pretty well with OS X Keychain and GNOME Keyring, but should also work with the Windows Credential Vault (untestet by me).</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="k">def</span> <span class="nf">duplicity_env</span><span class="p">(</span><span class="n">hostname</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Set shell environment variables for duplicity.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">duplicity_env</span><span class="p">(</span><span class="n">hostname</span><span class="p">):</span>
+    <span class="s">"""
+    Set shell environment variables for duplicity.
+    """</span>
     <span class="kn">from</span> <span class="nn">fabric.context_managers</span> <span class="kn">import</span> <span class="n">_setenv</span>
     <span class="kn">import</span> <span class="nn">keyring</span><span class="o">,</span> <span class="nn">sys</span>
     <span class="n">kw</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">to_env</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;Duplicity&#39;</span><span class="p">:</span> <span class="s1">&#39;PASSPHRASE&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Access Key Id&#39;</span><span class="p">:</span> <span class="s1">&#39;AWS_ACCESS_KEY_ID&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Secret Access Key&#39;</span><span class="p">:</span> <span class="s1">&#39;AWS_SECRET_ACCESS_KEY&#39;</span><span class="p">,</span>
+        <span class="s">'Duplicity'</span><span class="p">:</span> <span class="s">'PASSPHRASE'</span><span class="p">,</span>
+        <span class="s">'Access Key Id'</span><span class="p">:</span> <span class="s">'AWS_ACCESS_KEY_ID'</span><span class="p">,</span>
+        <span class="s">'Secret Access Key'</span><span class="p">:</span> <span class="s">'AWS_SECRET_ACCESS_KEY'</span><span class="p">,</span>
     <span class="p">}</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">var</span> <span class="ow">in</span> <span class="n">to_env</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">secret</span> <span class="o">=</span> <span class="n">keyring</span><span class="o">.</span><span class="n">get_password</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">secret</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">print</span> <span class="s2">&quot;&quot;&quot;Run: python -c </span><span class="se">\&quot;</span><span class="s2">import keyring;</span>
-<span class="s2">            keyring.set_password(&#39;</span><span class="si">%s</span><span class="s2">&#39;, &#39;</span><span class="si">%s</span><span class="s2">&#39;, &#39;PASSWORD&#39;)</span><span class="se">\&quot;</span><span class="s2">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">print</span> <span class="s">"""Run: python -c </span><span class="se">\"</span><span class="s">import keyring;
+            keyring.set_password('</span><span class="si">%</span><span class="s">s', '</span><span class="si">%</span><span class="s">s', 'PASSWORD')</span><span class="se">\"</span><span class="s">"""</span> <span class="o">%</span> <span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">kw</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">secret</span>
-    <span class="k">return</span> <span class="n">_setenv</span><span class="p">({</span><span class="s1">&#39;shell_env&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">})</span></code></pre></figure>
+    <span class="k">return</span> <span class="n">_setenv</span><span class="p">({</span><span class="s">'shell_env'</span><span class="p">:</span> <span class="n">kw</span><span class="p">})</span></code></pre></figure>
 
 <p>The code above defines a dictionary <code>to_env</code> that maps keychain identifiers to environment variables.
 If the keyring does not contain the entry, it give some hints on how to add it.</p>
@@ -218,7 +216,7 @@ If the keyring does not contain the entry, it give some hints on how to add it.<
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
           <li>A developer's notebook</li>
-          <li><a href="mailto:%73%74%65%66%61%6E@%6A%65%6E%6B%6E%65%72.%6F%72%67" title="contact me">contact me</a></li>
+          <li><a href="mailto:stefan@jenkner.org" title="contact me">contact me</a></li>
         </ul>
       </div>
 

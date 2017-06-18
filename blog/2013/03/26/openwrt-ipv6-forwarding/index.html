@@ -79,8 +79,6 @@
         
           
         
-          
-        
       </div>
     </nav>
 
@@ -109,23 +107,23 @@
 <p>OpenWRT Attitude Adjustment 2012.09 warning: There is an ongoing discussion regarding the AICCU init script. If you can, stay with OpenWRT Backfire 2010.3.</p>
 
 <p>I&#39;m using SixxS tunnels to enable IPv6. My <code>/etc/config/network</code> looks like this:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>config interface &#39;lan&#39;
+<div class="highlight"><pre><code class="language-" data-lang="">config interface 'lan'
     # ...
-    option ip6addr &#39;2001:my:subnet:prefix::1/64&#39;
+    option ip6addr '2001:my:subnet:prefix::1/64'
 
-config &#39;interface&#39; &#39;wan6&#39;
+config 'interface' 'wan6'
     # ...
-    option &#39;ip6addr&#39; &#39;2001:my:end:point::2&#39;
+    option 'ip6addr' '2001:my:end:point::2'
 </code></pre></div>
 <p>To enable that your local server is reachable via SSH (port 22) add this rule to <code>/etc/config/firewall</code> straight after the standard IPv6 rules: </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>config rule
-       option &#39;src&#39; &#39;wan6&#39;
-       option &#39;proto&#39; &#39;tcp&#39;
-       option &#39;dest_port&#39; &#39;22&#39;
-       option &#39;dest_ip&#39; &#39;2001:your:servers:global:ipv6:address:####:####&#39;
-       option &#39;family&#39; &#39;ipv6&#39;
-       option &#39;target&#39; &#39;ACCEPT&#39;
-       option &#39;dest&#39; &#39;lan&#39; 
+<div class="highlight"><pre><code class="language-" data-lang="">config rule
+       option 'src' 'wan6'
+       option 'proto' 'tcp'
+       option 'dest_port' '22'
+       option 'dest_ip' '2001:your:servers:global:ipv6:address:####:####'
+       option 'family' 'ipv6'
+       option 'target' 'ACCEPT'
+       option 'dest' 'lan' 
 </code></pre></div>
 <p>Also make sure that you installed the <code>ip6tables</code> Package,
 then restart the firewall with <code>/etc/init.d/firewall restart</code>
@@ -172,7 +170,7 @@ and test your setup.</p>
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
           <li>A developer's notebook</li>
-          <li><a href="mailto:%73%74%65%66%61%6E@%6A%65%6E%6B%6E%65%72.%6F%72%67" title="contact me">contact me</a></li>
+          <li><a href="mailto:stefan@jenkner.org" title="contact me">contact me</a></li>
         </ul>
       </div>
 

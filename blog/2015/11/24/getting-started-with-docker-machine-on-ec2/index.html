@@ -79,8 +79,6 @@
         
           
         
-          
-        
       </div>
     </nav>
 
@@ -125,8 +123,8 @@ variables which are relevant to <code>docker-machine --driver amazonec2 create .
 <p>Create a new user (e.g. docker-machine), note the access key and secret and
 populate the environment variables:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">export</span> <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>AKI...
-<span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>...</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>AKI...
+<span class="nb">export </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>...</code></pre></figure>
 
 <p>Then select the user, switch to the <em>Permissions</em> tab and add a new
 <em>Custom Policy</em> (expand Inline Policy to do so).
@@ -136,53 +134,53 @@ The following policy was shared by
 
 <p>A slightly extended it with permissions for creating security groups:</p>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span></span><span class="p">{</span>
-    <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="nt">&quot;Sid&quot;</span><span class="p">:</span> <span class="s2">&quot;TheseActionsDontSupportResourceLevelPermissions&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="s2">&quot;ec2:CreateKeyPair&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;ec2:DeleteKeyPair&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;ec2:ImportKeyPair&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;ec2:Describe*&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;ec2:CreateTags&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;ec2:CreateSecurityGroup&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;ec2:AuthorizeSecurityGroupIngress&quot;</span>
-            <span class="p">],</span>
-            <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-            <span class="nt">&quot;Sid&quot;</span><span class="p">:</span> <span class="s2">&quot;ThisActionsSupportResourceLevelPermissions&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ec2:RunInstances&quot;</span><span class="p">],</span>
-            <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="s2">&quot;arn:aws:ec2:eu-west-1::image/ami-*&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:instance/*&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:key-pair/*&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:network-interface/*&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:placement-group/*&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:security-group/*&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:subnet/*&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:volume/*&quot;</span>
-                <span class="p">]</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-            <span class="nt">&quot;Sid&quot;</span><span class="p">:</span> <span class="s2">&quot;TheseActionsSupportResourceLevelPermissions&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="s2">&quot;ec2:TerminateInstances&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;ec2:StopInstances&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;ec2:StartInstances&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;ec2:RebootInstances&quot;</span>
-            <span class="p">],</span>
-            <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="s2">&quot;arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:instance/*&quot;</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nt">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TheseActionsDontSupportResourceLevelPermissions"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"ec2:CreateKeyPair"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ec2:DeleteKeyPair"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ec2:ImportKeyPair"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ec2:Describe*"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ec2:CreateTags"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ec2:CreateSecurityGroup"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ec2:AuthorizeSecurityGroupIngress"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ThisActionsSupportResourceLevelPermissions"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ec2:RunInstances"</span><span class="p">],</span><span class="w">
+            </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"arn:aws:ec2:eu-west-1::image/ami-*"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:instance/*"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:key-pair/*"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:network-interface/*"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:placement-group/*"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:security-group/*"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:subnet/*"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:volume/*"</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TheseActionsSupportResourceLevelPermissions"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"ec2:TerminateInstances"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ec2:StopInstances"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ec2:StartInstances"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ec2:RebootInstances"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:instance/*"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
 
 <p>Replace <code>%AWS_ACCOUNT_ID%</code> with your account ID. Get it from: AWS console / My Account.
 I also changed the region to <code>eu-west-1</code>.</p>
@@ -193,24 +191,24 @@ I also changed the region to <code>eu-west-1</code>.</p>
 Login to the AWS console and navigate to Services / VPC / Your VPCs.
 Get the VPC ID from the VPC column and set the environment variable like this:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">export</span> <span class="nv">AWS_VPC_ID</span><span class="o">=</span>vpc-....</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">AWS_VPC_ID</span><span class="o">=</span>vpc-....</code></pre></figure>
 
 <h4>Create the docker machine</h4>
 
 <p>Four environment variables have been populated:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">export</span> <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>AKI... <span class="c1"># first step</span>
-<span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>... <span class="c1"># first step</span>
-<span class="nb">export</span> <span class="nv">AWS_VPC_ID</span><span class="o">=</span>vpc-.... <span class="c1"># second step</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>AKI... <span class="c"># first step</span>
+<span class="nb">export </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>... <span class="c"># first step</span>
+<span class="nb">export </span><span class="nv">AWS_VPC_ID</span><span class="o">=</span>vpc-.... <span class="c"># second step</span></code></pre></figure>
 
 <p>As mentioned in the previous step, I changed to region to <code>eu-west-1</code>.
 It must match the region in the IAM policy:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">export</span> <span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>eu-west-1 <span class="c1"># Ireland</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>eu-west-1 <span class="c"># Ireland</span></code></pre></figure>
 
 <p>Create the <em>aws01</em> machine with <code>-D</code> option for debugging:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>docker-machine -D create --driver amazonec2 aws01</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">docker-machine -D create --driver amazonec2 aws01</code></pre></figure>
 
 <p>Everything is fine, if the command above completes with the message:
 <em>&quot;To see how to connect Docker to this machine, run: docker-machine env aws01&quot;</em>
@@ -218,11 +216,11 @@ If not so, check out the troubleshooting section below.</p>
 
 <p>To verify the setup, just run:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>docker-machine env aws01<span class="k">)</span><span class="s2">&quot;</span> <span class="c1"># setup DOCKER_* environment variables</span>
-docker ps                          <span class="c1"># list running containers</span>
-docker images                      <span class="c1"># list images</span>
-docker-machine ls                  <span class="c1"># list docker machines</span>
-docker-machine ssh aws01           <span class="c1"># ssh into instance aws01</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">eval</span> <span class="s2">"</span><span class="k">$(</span>docker-machine env aws01<span class="k">)</span><span class="s2">"</span> <span class="c"># setup DOCKER_* environment variables</span>
+docker ps                          <span class="c"># list running containers</span>
+docker images                      <span class="c"># list images</span>
+docker-machine ls                  <span class="c"># list docker machines</span>
+docker-machine ssh aws01           <span class="c"># ssh into instance aws01</span></code></pre></figure>
 
 <p>Use the docker-machine command to interact with the newly created EC2 instance.</p>
 
@@ -277,7 +275,7 @@ docker-machine ssh aws01           <span class="c1"># ssh into instance aws01</s
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
           <li>A developer's notebook</li>
-          <li><a href="mailto:%73%74%65%66%61%6E@%6A%65%6E%6B%6E%65%72.%6F%72%67" title="contact me">contact me</a></li>
+          <li><a href="mailto:stefan@jenkner.org" title="contact me">contact me</a></li>
         </ul>
       </div>
 

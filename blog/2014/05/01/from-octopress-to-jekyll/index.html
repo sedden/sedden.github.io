@@ -79,8 +79,6 @@
         
           
         
-          
-        
       </div>
     </nav>
 
@@ -114,13 +112,13 @@ Set <code>permalink: /blog/:year/:month/:day/:title</code> in <code>_config.yml<
 
 <p>The <code>robots.txt</code> can easily be adopted from the Octopress installation.</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span></span><span class="nn">---</span>
-<span class="l l-Scalar l-Scalar-Plain">layout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nil</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<span class="s">layout</span><span class="pi">:</span> <span class="s">nil</span>
 <span class="nn">---</span>
-<span class="l l-Scalar l-Scalar-Plain">User-agent</span><span class="p p-Indicator">:</span> <span class="err">*</span>
-<span class="l l-Scalar l-Scalar-Plain">Disallow</span><span class="p p-Indicator">:</span> 
+<span class="s">User-agent</span><span class="pi">:</span> <span class="err">*</span>
+<span class="s">Disallow</span><span class="pi">:</span> 
 
-<span class="l l-Scalar l-Scalar-Plain">Sitemap</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{{</span> <span class="nv">site.url</span> <span class="p p-Indicator">}}</span><span class="l l-Scalar l-Scalar-Plain">/sitemap.xml</span> </code></pre></figure>
+<span class="s">Sitemap</span><span class="pi">:</span> <span class="pi">{{</span> <span class="nv">site.url</span> <span class="pi">}}</span><span class="s">/sitemap.xml</span> </code></pre></figure>
 
 <p>Ensure that <code>url: http://yoursite.com</code> has been set in <code>_config.yml</code>.</p>
 
@@ -128,14 +126,14 @@ Set <code>permalink: /blog/:year/:month/:day/:title</code> in <code>_config.yml<
 
 <p>This <code>atom.xml</code> provides atom feed functionality.</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span></span>---
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">---
 layout: nil
 ---
-<span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-<span class="nt">&lt;feed</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2005/Atom&quot;</span><span class="nt">&gt;</span>
+<span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;feed</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2005/Atom"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;title&gt;</span>{{ site.name }}<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;{{ site.url }}/atom.xml&quot;</span> <span class="na">rel=</span><span class="s">&quot;self&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;{{ site.url }}&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"{{ site.url }}/atom.xml"</span> <span class="na">rel=</span><span class="s">"self"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"{{ site.url }}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;updated&gt;</span>{{site.time | date_to_xmlschema }}<span class="nt">&lt;/updated&gt;</span>
   <span class="nt">&lt;id&gt;</span>{{ site.url }}<span class="nt">&lt;/id&gt;</span>
   <span class="nt">&lt;author&gt;</span>
@@ -145,10 +143,10 @@ layout: nil
   {% for post in site.posts %}
   <span class="nt">&lt;entry&gt;</span>
     <span class="nt">&lt;title&gt;</span>{{ post.title }}<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;{{ site.url }}&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"{{ site.url }}"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;updated&gt;</span>{{post.date | date_to_xmlschema }}<span class="nt">&lt;/updated&gt;</span>
     <span class="nt">&lt;id&gt;</span>{{ site.url }}{{ post.url }}<span class="nt">&lt;/id&gt;</span>
-    <span class="nt">&lt;content</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span>{{ post.content | xml_escape }}<span class="nt">&lt;/content&gt;</span>
+    <span class="nt">&lt;content</span> <span class="na">type=</span><span class="s">"html"</span><span class="nt">&gt;</span>{{ post.content | xml_escape }}<span class="nt">&lt;/content&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>
   {% endfor %}
 <span class="nt">&lt;/feed&gt;</span></code></pre></figure>
@@ -159,11 +157,11 @@ layout: nil
 
 <p>Append this to <code>_layouts/post.html</code> for linking previous/next posts:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span></span>{% if page.previous %}
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ page.previous.url }}&quot;</span><span class="p">&gt;</span>« {{ page.previous.title }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% if page.previous %}
+    <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.previous.url }}"</span><span class="nt">&gt;</span>« {{ page.previous.title }}<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
 {% endif %}
 {% if page.next %}
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ page.next.url }}&quot;</span><span class="p">&gt;</span>{{ page.next.title }} »<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.next.url }}"</span><span class="nt">&gt;</span>{{ page.next.title }} »<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
 {% endif %}</code></pre></figure>
 
 <p>Other useful variables can be found here: <a href="http://jekyllrb.com/docs/variables/">http://jekyllrb.com/docs/variables/</a>.</p>
@@ -209,7 +207,7 @@ layout: nil
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
           <li>A developer's notebook</li>
-          <li><a href="mailto:%73%74%65%66%61%6E@%6A%65%6E%6B%6E%65%72.%6F%72%67" title="contact me">contact me</a></li>
+          <li><a href="mailto:stefan@jenkner.org" title="contact me">contact me</a></li>
         </ul>
       </div>
 

@@ -79,8 +79,6 @@
         
           
         
-          
-        
       </div>
     </nav>
 
@@ -112,8 +110,8 @@ For that reason I wrote a <a href="https://gist.github.com/sedden/19391359f6c0e4
 <p>Frist put the <a href="https://gist.github.com/sedden/19391359f6c0e4baf8ed">Python-Script</a> somewhere.
 Then launch <em>Pomodoro</em> , go to <em>Preferences</em> / <em>Scripts</em>, check <em>End</em> and put this script into the field:</p>
 
-<figure class="highlight"><pre><code class="language-applescript" data-lang="applescript"><span></span><span class="c">-- Applescript:</span>
-<span class="nb">do shell script</span> <span class="s2">&quot;/Users/stefan/timesheet_add.py -t \&quot;$pomodoroName\&quot; -m \&quot;$duration\&quot;&quot;</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-applescript" data-lang="applescript"><span class="c1">-- Applescript:</span><span class="w">
+</span><span class="nb">do shell script</span><span class="w"> </span><span class="s2">"/Users/stefan/timesheet_add.py -t \"$pomodoroName\" -m \"$duration\""</span></code></pre></figure>
 
 <p>Just replace the path to <code>timesheet_add.py</code>. The parameters <code>$pomodoroName</code> (name of the activity) and <code>$duration</code> (time in minutes) will be passed to the script.</p>
 
@@ -121,45 +119,45 @@ Then launch <em>Pomodoro</em> , go to <em>Preferences</em> / <em>Scripts</em>, c
 
 <p>The table structure is as simple as:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">activities</span> <span class="p">(</span>
-  <span class="k">day</span> <span class="nb">text</span><span class="p">,</span>
-  <span class="n">activity</span> <span class="nb">text</span><span class="p">,</span>
-  <span class="n">minutes</span> <span class="nb">text</span><span class="p">,</span>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">activities</span> <span class="p">(</span>
+  <span class="k">day</span> <span class="n">text</span><span class="p">,</span>
+  <span class="n">activity</span> <span class="n">text</span><span class="p">,</span>
+  <span class="n">minutes</span> <span class="n">text</span><span class="p">,</span>
   <span class="n">added</span> <span class="k">timestamp</span>
 <span class="p">);</span></code></pre></figure>
 
 <p>This <code>timesheet</code> view groups all activities with the same name on a certain day and shows the time <code>HH:MM</code> formated:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">timesheet</span> <span class="k">AS</span>
-   <span class="k">select</span> <span class="k">day</span><span class="p">,</span> <span class="n">activity</span> <span class="p">,</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;:&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">%</span><span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">hours</span> 
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">timesheet</span> <span class="k">AS</span>
+   <span class="k">select</span> <span class="k">day</span><span class="p">,</span> <span class="n">activity</span> <span class="p">,</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">||</span> <span class="s1">':'</span> <span class="o">||</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">%</span><span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">hours</span> 
    <span class="k">from</span> <span class="n">activities</span>
    <span class="k">group</span> <span class="k">by</span> <span class="k">day</span><span class="p">,</span><span class="n">activity</span></code></pre></figure>
 
 <p>The next one only selects activities of the current week:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">timesheet_current_week</span> <span class="k">AS</span>
-   <span class="k">select</span> <span class="k">day</span><span class="p">,</span><span class="n">activity</span><span class="p">,</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;:&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">%</span><span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">hours</span> 
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">timesheet_current_week</span> <span class="k">AS</span>
+   <span class="k">select</span> <span class="k">day</span><span class="p">,</span><span class="n">activity</span><span class="p">,</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">||</span> <span class="s1">':'</span> <span class="o">||</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">%</span><span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">hours</span> 
    <span class="k">from</span> <span class="n">activities</span> 
-   <span class="k">where</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%YW%W&#39;</span><span class="p">,</span> <span class="k">day</span><span class="p">)</span> <span class="o">=</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%YW%W&#39;</span><span class="p">,</span> <span class="nb">date</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">))</span> 
+   <span class="k">where</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">'%YW%W'</span><span class="p">,</span> <span class="k">day</span><span class="p">)</span> <span class="o">=</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">'%YW%W'</span><span class="p">,</span> <span class="n">date</span><span class="p">(</span><span class="s1">'now'</span><span class="p">))</span> 
    <span class="k">group</span> <span class="k">by</span> <span class="k">day</span><span class="p">,</span><span class="n">activity</span></code></pre></figure>
 
 <p>With a slightly altered <code>WHERE</code> condition to select last weeks activities:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">timesheet_last_week</span> <span class="k">AS</span>
-  <span class="k">select</span> <span class="k">day</span><span class="p">,</span><span class="n">activity</span><span class="p">,</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;:&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">%</span><span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">hours</span>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">timesheet_last_week</span> <span class="k">AS</span>
+  <span class="k">select</span> <span class="k">day</span><span class="p">,</span><span class="n">activity</span><span class="p">,</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">||</span> <span class="s1">':'</span> <span class="o">||</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">%</span><span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">hours</span>
   <span class="k">from</span> <span class="n">activities</span>
-  <span class="k">where</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%YW%W&#39;</span><span class="p">,</span> <span class="k">day</span><span class="p">)</span> <span class="o">=</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%YW%W&#39;</span><span class="p">,</span> <span class="nb">date</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">,</span> <span class="s1">&#39;-7 days&#39;</span><span class="p">))</span> 
+  <span class="k">where</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">'%YW%W'</span><span class="p">,</span> <span class="k">day</span><span class="p">)</span> <span class="o">=</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">'%YW%W'</span><span class="p">,</span> <span class="n">date</span><span class="p">(</span><span class="s1">'now'</span><span class="p">,</span> <span class="s1">'-7 days'</span><span class="p">))</span> 
   <span class="k">group</span> <span class="k">by</span> <span class="k">day</span><span class="p">,</span><span class="n">activity</span></code></pre></figure>
 
 <p>There is even a view that indicates if you worked too much (100% = 480 minutes = 8 hours):</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span></span><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">completeness_current_week</span> <span class="k">AS</span>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">completeness_current_week</span> <span class="k">AS</span>
   <span class="k">select</span>
    <span class="k">day</span><span class="p">,</span>
-   <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;:&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">%</span><span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">hours</span><span class="p">,</span>
+   <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">||</span> <span class="s1">':'</span> <span class="o">||</span> <span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">%</span><span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">hours</span><span class="p">,</span>
    <span class="n">round</span><span class="p">(((</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">480</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="k">sum</span><span class="p">(</span><span class="n">minutes</span><span class="p">)),</span> <span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">percent</span>
   <span class="k">from</span> <span class="n">activities</span> 
-  <span class="k">where</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%YW%W&#39;</span><span class="p">,</span> <span class="k">day</span><span class="p">)</span> <span class="o">=</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%YW%W&#39;</span><span class="p">,</span> <span class="nb">date</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">))</span>
+  <span class="k">where</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">'%YW%W'</span><span class="p">,</span> <span class="k">day</span><span class="p">)</span> <span class="o">=</span> <span class="n">strftime</span><span class="p">(</span><span class="s1">'%YW%W'</span><span class="p">,</span> <span class="n">date</span><span class="p">(</span><span class="s1">'now'</span><span class="p">))</span>
   <span class="k">group</span> <span class="k">by</span> <span class="k">day</span></code></pre></figure>
 
 <p>I use <a href="https://www.sqlitepro.com/">SQLite Professional</a> (at that time it was free) to display the views.
@@ -206,7 +204,7 @@ It automatically detects changes on the database file and refreshes the current 
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
           <li>A developer's notebook</li>
-          <li><a href="mailto:%73%74%65%66%61%6E@%6A%65%6E%6B%6E%65%72.%6F%72%67" title="contact me">contact me</a></li>
+          <li><a href="mailto:stefan@jenkner.org" title="contact me">contact me</a></li>
         </ul>
       </div>
 

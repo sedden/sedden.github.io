@@ -79,8 +79,6 @@
         
           
         
-          
-        
       </div>
     </nav>
 
@@ -104,12 +102,12 @@ As it&#39;s related to RPis, this is how to test and fix a <a href="http://www.c
 for that kind of <a href="http://www.theregister.co.uk/2016/10/21/linux_privilege_escalation_hole/">kernel security vulnerability</a>.</p>
 
 <p>Step 1. - Verify kernel version:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ uname -a
+<div class="highlight"><pre><code class="language-" data-lang="">$ uname -a
 Linux nepomuk 4.7.3-sunxi #26 SMP Wed Sep 14 19:50:18 CEST 2016 armv7l GNU/Linux
 </code></pre></div>
 <p>Step 2. - Test the kernel for Dirty COW vulnerability:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ docker run --rm hypriot/rpi-dirtycow
-Unable to find image &#39;hypriot/rpi-dirtycow:latest&#39; locally
+<div class="highlight"><pre><code class="language-" data-lang="">$ docker run --rm hypriot/rpi-dirtycow
+Unable to find image 'hypriot/rpi-dirtycow:latest' locally
 latest: Pulling from hypriot/rpi-dirtycow
 38070c4d0c33: Pull complete 
 a3ed95caeb02: Pull complete 
@@ -118,15 +116,15 @@ Digest: sha256:065d979dd3c48e6488044206ec782628ecf241ef02104610c076949d9881ad0d
 Status: Downloaded newer image for hypriot/rpi-dirtycow:latest
 
 Test for Dirty Cow:
-  $ echo &quot;You are SAFE!          &quot; &gt; foo
+  $ echo "You are SAFE!          " &gt; foo
   $ chmod 404 foo
-  $ ./dirtyc0w foo &quot;You are VULNERABLE!!!&quot; &amp;
+  $ ./dirtyc0w foo "You are VULNERABLE!!!" &amp;
   $ sleep 2
   $ cat foo
 You are VULNERABLE!!!  
 </code></pre></div>
 <p>Step 3. - Upgrade the kernel:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ sudo apt-get update &amp;&amp; sudo apt-get -u dist-upgrade
+<div class="highlight"><pre><code class="language-" data-lang="">$ sudo apt-get update &amp;&amp; sudo apt-get -u dist-upgrade
 ...
 Reading package lists... Done
 Building dependency tree       
@@ -146,20 +144,20 @@ Setting up linux-image-next-sunxi (5.23) ...
 Setting up linux-jessie-root-next-cubietruck (5.23) ...
 </code></pre></div>
 <p>Step 4. - Reboot the machine:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ sudo reboot
+<div class="highlight"><pre><code class="language-" data-lang="">$ sudo reboot
 </code></pre></div>
 <p>Step 5. - Test again:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ docker run --rm hypriot/rpi-dirtycow
+<div class="highlight"><pre><code class="language-" data-lang="">$ docker run --rm hypriot/rpi-dirtycow
 Test for Dirty Cow:
-  $ echo &quot;You are SAFE!          &quot; &gt; foo
+  $ echo "You are SAFE!          " &gt; foo
   $ chmod 404 foo
-  $ ./dirtyc0w foo &quot;You are VULNERABLE!!!&quot; &amp;
+  $ ./dirtyc0w foo "You are VULNERABLE!!!" &amp;
   $ sleep 2
   $ cat foo
 You are SAFE!  
 </code></pre></div>
 <p>Step 6. - Verify the new kernel version:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ uname -a
+<div class="highlight"><pre><code class="language-" data-lang="">$ uname -a
 Linux nepomuk 4.8.4-sunxi #6 SMP Sun Oct 23 15:55:47 CEST 2016 armv7l GNU/Linux
 </code></pre></div>
 <p>The Cubietruck is now running Linux version 4.8.4.</p>
@@ -205,7 +203,7 @@ Linux nepomuk 4.8.4-sunxi #6 SMP Sun Oct 23 15:55:47 CEST 2016 armv7l GNU/Linux
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
           <li>A developer's notebook</li>
-          <li><a href="mailto:%73%74%65%66%61%6E@%6A%65%6E%6B%6E%65%72.%6F%72%67" title="contact me">contact me</a></li>
+          <li><a href="mailto:stefan@jenkner.org" title="contact me">contact me</a></li>
         </ul>
       </div>
 
