@@ -106,10 +106,10 @@
 </ul>
 
 <p>A common workaround is to run the Puppet agent via Cron. Take a look at the <a href="http://projects.puppetlabs.com/projects/1/wiki/Cron_Patterns">Cron Patterns</a> Wiki page, but don&#39;t get too confused. Until Puppet 2.6, simply run: </p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">/usr/sbin/puppetd --no-daemonize --onetime
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">/usr/sbin/puppetd <span class="nt">--no-daemonize</span> <span class="nt">--onetime</span>
 </code></pre></div>
 <p>With Puppet 2.7 it slightly changed to:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">/usr/bin/puppet agent --no-daemonize --onetime
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">/usr/bin/puppet agent <span class="nt">--no-daemonize</span> <span class="nt">--onetime</span>
 </code></pre></div>
 <p>Furthermore you won&#39;t run all the agents at the same time. So the next step is to plan the execution time. To run Puppet every 30 minutes, use <code>fqdn_rand(30)</code> to generate a value between 0 and 29 for the first, and add 30 more to get the second point of time:</p>
 <div class="highlight"><pre><code class="language-puppet" data-lang="puppet"><span class="nv">$min1</span> <span class="err">=</span> <span class="nf">fqdn_rand</span><span class="p">(</span><span class="m">30</span><span class="p">)</span>

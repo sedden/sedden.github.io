@@ -119,14 +119,14 @@ This is kind of a best-of using an HTTPS API Token (via environment variable) an
 <li>Last but not least, add the <code>.travis.yml</code> file below to your <code>jekyll</code> branch, adjust it, commit and push.</li>
 </ol>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">sudo</span><span class="pi">:</span> <span class="s">false</span>
-<span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
-<span class="s">branches</span><span class="pi">:</span>
-  <span class="s">only</span><span class="pi">:</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">sudo</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<span class="na">branches</span><span class="pi">:</span>
+  <span class="na">only</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="s">jekyll</span>
-<span class="s">script</span><span class="pi">:</span>
+<span class="na">script</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s2">"</span><span class="s">bundle</span><span class="nv"> </span><span class="s">exec</span><span class="nv"> </span><span class="s">jekyll</span><span class="nv"> </span><span class="s">build"</span>
-<span class="s">after_success</span><span class="pi">:</span> <span class="pi">|</span>
+<span class="na">after_success</span><span class="pi">:</span> <span class="pi">|</span>
   <span class="no">if [ -n "${GITHUB_ACCESS_TOKEN}" ] &amp;&amp; [ "${TRAVIS_PULL_REQUEST}" = 'false' ]</span>
   <span class="no">then</span>
     <span class="no">cd "${TRAVIS_BUILD_DIR}/_site"</span>

@@ -135,12 +135,12 @@ The following policy was shared by
 <p>A slightly extended it with permissions for creating security groups:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="nt">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TheseActionsDontSupportResourceLevelPermissions"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TheseActionsDontSupportResourceLevelPermissions"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"ec2:CreateKeyPair"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"ec2:DeleteKeyPair"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"ec2:ImportKeyPair"</span><span class="p">,</span><span class="w">
@@ -149,13 +149,13 @@ The following policy was shared by
                 </span><span class="s2">"ec2:CreateSecurityGroup"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"ec2:AuthorizeSecurityGroupIngress"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+            </span><span class="s2">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ThisActionsSupportResourceLevelPermissions"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ec2:RunInstances"</span><span class="p">],</span><span class="w">
-            </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ThisActionsSupportResourceLevelPermissions"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ec2:RunInstances"</span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"arn:aws:ec2:eu-west-1::image/ami-*"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:instance/*"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:key-pair/*"</span><span class="p">,</span><span class="w">
@@ -167,15 +167,15 @@ The following policy was shared by
                 </span><span class="p">]</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TheseActionsSupportResourceLevelPermissions"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TheseActionsSupportResourceLevelPermissions"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"ec2:TerminateInstances"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"ec2:StopInstances"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"ec2:StartInstances"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"ec2:RebootInstances"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"arn:aws:ec2:eu-west-1:%AWS_ACCOUNT_ID%:instance/*"</span><span class="w">
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -208,7 +208,7 @@ It must match the region in the IAM policy:</p>
 
 <p>Create the <em>aws01</em> machine with <code>-D</code> option for debugging:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">docker-machine -D create --driver amazonec2 aws01</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">docker-machine <span class="nt">-D</span> create <span class="nt">--driver</span> amazonec2 aws01</code></pre></figure>
 
 <p>Everything is fine, if the command above completes with the message:
 <em>&quot;To see how to connect Docker to this machine, run: docker-machine env aws01&quot;</em>
@@ -219,7 +219,7 @@ If not so, check out the troubleshooting section below.</p>
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">eval</span> <span class="s2">"</span><span class="k">$(</span>docker-machine env aws01<span class="k">)</span><span class="s2">"</span> <span class="c"># setup DOCKER_* environment variables</span>
 docker ps                          <span class="c"># list running containers</span>
 docker images                      <span class="c"># list images</span>
-docker-machine ls                  <span class="c"># list docker machines</span>
+docker-machine <span class="nb">ls</span>                  <span class="c"># list docker machines</span>
 docker-machine ssh aws01           <span class="c"># ssh into instance aws01</span></code></pre></figure>
 
 <p>Use the docker-machine command to interact with the newly created EC2 instance.</p>
