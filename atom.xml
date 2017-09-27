@@ -3,12 +3,119 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2017-09-23T23:03:37+00:00</updated>
+  <updated>2017-09-27T03:04:39+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
     <email></email>
   </author>
+  
+  <entry>
+    <title>WriteTheDocsEU 2017 post-event wrap-up report</title>
+    <link href="https://sedden.github.io"/>
+    <updated>2017-09-24T22:53:13+00:00</updated>
+    <id>https://sedden.github.io/blog/2017/09/24/writethedocs-post-event-wrap-up-report/</id>
+    <content type="html">&lt;p&gt;This is my post-event wrap-up report for the &lt;a href=&quot;http://www.writethedocs.org/conf/eu/2017/&quot;&gt;WriteTheDocs EU&lt;/a&gt; conference which took place in September 2017 in Prague/CZ.&lt;/p&gt;
+
+&lt;h3&gt;What is WriteTheDocs?&lt;/h3&gt;
+
+&lt;p&gt;This conference is all about documentation and it brings together Developers, Technical Writers, Support Engineers, Editors, and many others. There have been very good sessions and I had the chance to meet so many smart people that are passionate for documentation. It’s been the fourth WriteTheDocs conference where more than 50% of the attendees were newcomers.&lt;/p&gt;
+
+&lt;h3&gt;The venue&lt;/h3&gt;
+
+&lt;p&gt;The venue for the conference and writing day was the Auto Klub CZ which is located pretty close to the train station in the Prague city center. Were has been enough space for the 250 attendees with one conference room for the main track, but also rooms to get together for working on projects or to escape in the so-called Quiet room (where no laptops or phones are allowed at all). The food was quite good and they served traditional Czech cuisine and also some vegetarian, vegetarian, gluten-free options.&lt;/p&gt;
+
+&lt;h3&gt;Talks&lt;/h3&gt;
+
+&lt;p&gt;I&amp;#39;d like to highlight some talks. The full schedule is available &lt;a href=&quot;http://www.writethedocs.org/conf/eu/2017/speakers/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://twitter.com/EvilDMP&quot;&gt;Daniele Procida:&lt;/a&gt; the four kinds of documentation or what nobody tells you about documentation&lt;/h4&gt;
+
+&lt;p&gt;&lt;span&gt;Daniele Procida&lt;/span&gt;&lt;span&gt; is a core &lt;/span&gt;committer&lt;span&gt; of the Django project. He started his talk with the theses that most people know that they need good documentation but most people also fail. Just trying harder to not fail doesn’t work. Mostly, &amp;quot;we’re just doing it wrong”. &lt;/span&gt;He explained that there is no “one documentation”, but actually four kinds of documentation:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  &lt;strong&gt;Tutorials:&lt;/strong&gt; Tutorials are lessons or learning materials to achieve something. They are not about theoretical knowledge but practical knowledge. Tutorials should not explain anything the learner doesn’t need to know but they allow to learn later.&lt;/li&gt;
+&lt;li&gt;  &lt;strong&gt;How-to-guides: &lt;/strong&gt;How-to-guides are answers to questions or show patterns how to solve common problems. They are strict distinct to tutorials, as they are not as bullet-proof or guided to teach. &lt;/li&gt;
+&lt;li&gt;  &lt;strong&gt;References:&lt;/strong&gt; References are listings or technical descriptions which are up-to-date and accurate, e.g. Wikipedia articles.&lt;/li&gt;
+&lt;li&gt;  &lt;strong&gt;Explanations:&lt;/strong&gt; Explanations intend to give background to the content on describe why things are so. They could also show alternative approaches.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The key message I got from the talk is that we fail because we mix those things up. We first need to get clear about what kind of documentation we want to provide.&lt;/p&gt;
+
+&lt;p&gt;From my point of view, if I want to make someone to use my API, library or whatever software product, I at least need to provide a reference and a How-To-Guide, but also provide a start-here page and give the readers the choice to either explore some basic use cases or let the more advanced users dive into the reference guide for looking up specific details. If I want to address people that are new to the topic at all, it might be better to provide a separate tutorial for a bullet-proof step-by-step guide with a practical result.&lt;/p&gt;
+
+&lt;p&gt;&lt;span&gt;Please see &lt;/span&gt;Daniele&amp;#39;s super-useful &lt;span&gt;blog post about &lt;a href=&quot;https://www.divio.com/en/blog/documentation/&quot;&gt;https://www.divio.com/en/blog/documentation/&lt;/a&gt;. &lt;/span&gt;&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://twitter.com/ktdocs&quot;&gt;@ktdocs:&lt;/a&gt; How language is changing in documentation&lt;/h4&gt;
+
+&lt;p&gt;The original title of the talk was: &amp;quot;Aw Snap! The Docs, They Are A-Changin’ (with apologies to Bob Dylan)&amp;quot;. If you ever wanted to know how language is changing in the documentation world, you should take a look at &lt;a href=&quot;http://mambucom.jira.com&quot;&gt;Kate Wilcox&amp;#39;s slides&lt;/a&gt;. Even if not, I’d definitely recommend the talk if you were asking yourself:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  How to create a friendly tone in a documentation?&lt;/li&gt;
+&lt;li&gt;  Should I try to be funny?&lt;/li&gt;
+&lt;li&gt;  Which names can I use when providing sample data?&lt;/li&gt;
+&lt;li&gt;  Sorry, shouldn’t I use question sparingly?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;She ran a survey with a mixed group of 150+ editors and technical writers and presented the results.&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://twitter.com/MChabowski&quot;&gt;@MChabowski:&lt;/a&gt; Documentation? No one reads it anyway talk!&lt;/h4&gt;
+
+&lt;p&gt;Meike Chabowski&amp;#39;s talk &amp;quot;An Alien Looking From the Outside In: Main Takeaways After One Year in Documentation&amp;quot; gave some good insides on how documentation is done at SuSE.&lt;/p&gt;
+
+&lt;p&gt;The key messages I toke were:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  “No one reads it anyway!” might be true but everyone complains about missing documentation.&lt;/li&gt;
+&lt;li&gt;  Documentation is still underestimated.&lt;/li&gt;
+&lt;li&gt;  It’s a myth that developers talk about their work (like: how a product works) and technical writers just need to write it down in an understandable way.&lt;/li&gt;
+&lt;li&gt;  Documentarians needs to be involved early, even if it’s a semi-finished product.&lt;/li&gt;
+&lt;li&gt;  A streamlined and standardized workflow for creating documentation makes things a lot easier.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://twitter.com/timrogers&quot;&gt;@timrogers:&lt;/a&gt; Writing good getting started guides&lt;/h4&gt;
+
+&lt;p&gt;Tim Rogers from GoCardless explained how to “design” a good getting started guide.&lt;/p&gt;
+
+&lt;p&gt;The key messages I toke were:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  The getting started guide is about making a first impression.&lt;/li&gt;
+&lt;li&gt;  It should also explain some basic concepts and provide some handholding through the first steps.&lt;/li&gt;
+&lt;li&gt;  We need to set the scope of the documentation and better describe alternate or uncommon approaches separately.&lt;/li&gt;
+&lt;li&gt;  The getting started guide differs from a reference and we have to accept that “one size fits it all” doesn’t work for documentation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://twitter.com/canncrochet&quot;&gt;@canncrochet:&lt;/a&gt; You have already succeeded: Design critique guidelines make feedback easier 2.0&lt;/h4&gt;
+
+&lt;p&gt;Feedback makes things better and Christy Lutz from Wacom gave some very practical tips on how-to give or deal with feedback.&lt;/p&gt;
+
+&lt;p&gt;The key messages I toke were:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  It’s good to have feedback guidelines written down.&lt;/li&gt;
+&lt;li&gt;  We should feel like we don’t need to please our feedbackers and just “use” them.&lt;/li&gt;
+&lt;li&gt;  When giving feedback, we can try to replace “but” with “and”.&lt;/li&gt;
+&lt;li&gt;  It’s a good thing to defend your feedback before you give it (speak it out).&lt;/li&gt;
+&lt;li&gt;  Ever heard about a Feedback Party? Giving feedback can be easier when playing a role:
+
+&lt;ul&gt;
+&lt;li&gt;  The person that assumes the Red-Hat role is only allowed to give emotional feedback.&lt;/li&gt;
+&lt;li&gt;  The one that assumes the Black-Hat role is only allowed to give negative feedback.&lt;/li&gt;
+&lt;li&gt;  …&lt;/li&gt;
+&lt;li&gt;  Check out the &lt;a href=&quot;https://en.wikipedia.org/wiki/Six_Thinking_Hats&quot;&gt;Six Thinking Hats&lt;/a&gt; in case you want to find out more about it&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Other things I learned&lt;/h3&gt;
+
+&lt;p&gt;The PacMan rule: The code of conduct for this conference was very interesting. To be honest, I have never heard of the PacMan rule, which is simplified: when a few people chat together, they should try not to stand in a triangle, but instead leave some space in order to make it easier for other people to join the conversation (and always expand the circle).&lt;/p&gt;
+
+&lt;h3&gt;Looking forward&lt;/h3&gt;
+
+&lt;p&gt;The upcoming &lt;a href=&quot;http://apithedocs.org&quot;&gt;API The Docs Conference (November 21, 2017 Amsterdam)&lt;/a&gt; is about how to build a good developer portals, what technologies can be used or what types of documentation are needed. If you&amp;#39;re interest in or want to share knowledge about API documentation, you should submit your talk or check the schedule (soon).&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Testing and patching Cubietruck for Dirty COW vulnerability</title>
