@@ -216,7 +216,7 @@ If not so, check out the troubleshooting section below.</p>
 
 <p>To verify the setup, just run:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">eval</span> <span class="s2">"</span><span class="k">$(</span>docker-machine env aws01<span class="k">)</span><span class="s2">"</span> <span class="c"># setup DOCKER_* environment variables</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">eval</span> <span class="s2">"</span><span class="k">$(</span>docker-machine <span class="nb">env </span>aws01<span class="k">)</span><span class="s2">"</span> <span class="c"># setup DOCKER_* environment variables</span>
 docker ps                          <span class="c"># list running containers</span>
 docker images                      <span class="c"># list images</span>
 docker-machine <span class="nb">ls</span>                  <span class="c"># list docker machines</span>

@@ -3,7 +3,7 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2018-01-09T19:25:01+00:00</updated>
+  <updated>2018-01-09T19:31:23+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
@@ -585,7 +585,7 @@ If not so, check out the troubleshooting section below.&lt;/p&gt;
 
 &lt;p&gt;To verify the setup, just run:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;docker-machine env aws01&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# setup DOCKER_* environment variables&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;docker-machine &lt;span class=&quot;nb&quot;&gt;env &lt;/span&gt;aws01&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# setup DOCKER_* environment variables&lt;/span&gt;
 docker ps                          &lt;span class=&quot;c&quot;&gt;# list running containers&lt;/span&gt;
 docker images                      &lt;span class=&quot;c&quot;&gt;# list images&lt;/span&gt;
 docker-machine &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt;                  &lt;span class=&quot;c&quot;&gt;# list docker machines&lt;/span&gt;
@@ -630,12 +630,12 @@ transfer fees).&lt;/p&gt;
 
 &lt;p&gt;On Mac OS X with Homebrew:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;brew install gnupg duplicity duply python
-pip install keyring&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;gnupg duplicity duply python
+pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;keyring&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;On Debian/Ubuntu:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get install gnupg duplicity duply python-keyring&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;gnupg duplicity duply python-keyring&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Package names may differ depending on the version of your distributions. Please
 try &lt;code&gt;gnupg2&lt;/code&gt; and &lt;code&gt;python3-keyring&lt;/code&gt; if one of these packages cannot be found.&lt;/p&gt;
