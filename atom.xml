@@ -3,12 +3,65 @@
   <title>A developers notebook</title>
   <link href="https://sedden.github.io/atom.xml" rel="self"/>
   <link href="https://sedden.github.io"/>
-  <updated>2018-03-19T20:54:43+00:00</updated>
+  <updated>2018-04-14T17:56:16+00:00</updated>
   <id>https://sedden.github.io</id>
   <author>
     <name>Stefan Jenkner</name>
     <email></email>
   </author>
+  
+  <entry>
+    <title>UniFi v5 Controller on Cubietruck</title>
+    <link href="https://sedden.github.io"/>
+    <updated>2018-03-27T23:13:54+00:00</updated>
+    <id>https://sedden.github.io/blog/2018/03/27/unifi-controller-on-cubietruck-armbian/</id>
+    <content type="html">&lt;p&gt;This is about how to install the UniFi v5 Contoller on &lt;a href=&quot;http://www.armbian.com/&quot;&gt;armbian&lt;/a&gt; -- a lightweight Linux distribution based on Debian Jessie (or Debian Stretch) supporting the &lt;a href=&quot;http://www.cubietruck.com&quot;&gt;Cubietruck&lt;/a&gt; (also know as Cubieboard 3). The UniFi Controller software is required for provisioning and management of UniFi Enterprise devices like the UAP-AC-PRO.&lt;/p&gt;
+
+&lt;p&gt;The following instructions are based on armbian Jessie and UniFi v5.7.20 which requieres Java 8.&lt;/p&gt;
+
+&lt;h2&gt;Install Java 8 on armbian Jessie&lt;/h2&gt;
+
+&lt;p&gt;At this point in time, the JDK shipped with armbian Jessie is OpenJDK 7.
+To download &lt;code&gt;oracle-java8-jdk&lt;/code&gt; and install it along with its dependencies, run:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;wget &quot;http://archive.raspberrypi.org/debian/pool/main/o/oracle-java8-jdk/oracle-java8-jdk_8u65_armhf.deb&quot;
+sudo apt-get update
+sudo apt-get install --no-install-recommends libasound2 libgcc1 libx11-6 libxext6 libxi6 libxrender1 libxtst6
+sudo dpkg -i oracle-java8-jdk_8u65_armhf.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This packages provides &lt;code&gt;java8-runtime-headless&lt;/code&gt;, a dependency of the Unifi Controller software.&lt;/p&gt;
+
+&lt;h2&gt;Install the UniFi v5 Controller software&lt;/h2&gt;
+
+&lt;p&gt;There are multiarch packages available for the UniFi Controller software.
+For version &lt;a href=&quot;https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-7-20-Stable-has-been-released/ba-p/2271529&quot;&gt;5.7.20&lt;/a&gt; it&amp;#39;s:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;wget &quot;http://dl.ubnt.com/unifi/5.7.20/unifi_sysvinit_all.deb&quot;
+apt-get install --no-install-recommends jsvc mongodb-server
+sudo systemctl disable mongodb
+sudo dpkg -i unifi_sysvinit_all.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Line 3 disables the mongodb service which is not needed since the UniFi Controller starts a dedicated process.
+To verify it&amp;#39;s working, please run:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;netstat -l -t |grep 8443
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and check the output:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;tcp6       0      0 [::]:8443               [::]:*                  LISTEN
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The controller will be available on port 8443 then:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;https://&amp;lt;ip-address&amp;gt;:8443/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Troubleshooting&lt;/h2&gt;
+
+&lt;p&gt;The log files can be found in the &lt;code&gt;/var/log/unifi&lt;/code&gt; directory. View them with:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;sudo tail -f /var/log/unifi/{server,mongod}.log
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;unifi&lt;/code&gt; service can be started/stopped with &lt;code&gt;sudo /etc/init.d/unifi {start|stop|restart|reload|force-reload}&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Further information&lt;/h2&gt;
+
+&lt;p&gt;For the lastes version of the UniFi Controller software, please check out the
+&lt;a href=&quot;https://community.ubnt.com/t5/UniFi-Updates-Blog/bg-p/Blog_UniFi&quot;&gt;UniFi-Updates-Blog&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>WriteTheDocsEU 2017 post-event wrap-up report</title>
