@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: https://sedden.github.io/sitemap.xml 
+Sitemap: https://stefanjenkner.github.io/sitemap.xml 
